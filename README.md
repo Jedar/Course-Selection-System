@@ -6,13 +6,12 @@
 * 17SS YuJitao
 
 ### Assignment 
-| assignment        | deadline           | finish   |
-| :------------:    |:------------- :    | :-----:   |
-| Schema            | Dec. 3th           |   yes    |
-| data              | Dec. 4th           |   yes    |
-| Dao design        | Dec. 4th           |   ing    |
-| Service design    | Dec. 5th           |   ing    |
-| frontend design   | Dec. 10th          |   ing    |
+
+1. Schema
+2. data
+3. Dao design
+4. Service design
+5. frontend design
 
 
 
