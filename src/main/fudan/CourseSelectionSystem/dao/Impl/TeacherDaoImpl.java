@@ -3,6 +3,8 @@ package main.fudan.CourseSelectionSystem.dao.Impl;
 import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
 import main.fudan.CourseSelectionSystem.entity.*;
+import main.fudan.CourseSelectionSystem.entity.Profile;
+import main.fudan.CourseSelectionSystem.entity.Teacher;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,6 +23,11 @@ public class TeacherDaoImpl implements TeacherDao {
     public boolean addTeacher(Teacher teacher) throws SQLException {
         String sql = "insert into teacher (teacher_id, teacher_name, title, school_abbr) values (?,?,?,?)";
         return dao.update(sql, teacher.getTeacher_id(), teacher.getTeacher_name(), teacher.getTitle(), teacher.getSchool_abbr());
+    }
+
+    @Override
+    public boolean addTeacherWithProfile(Teacher teacher, Profile profile) {
+        return false;
     }
 
     @Override

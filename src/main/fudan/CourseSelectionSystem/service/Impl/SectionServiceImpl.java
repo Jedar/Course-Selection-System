@@ -69,7 +69,7 @@ public class SectionServiceImpl implements SectionService {
                 for (Teaches t : teachesList){
                     teachesDao.addTeaches(t);
                 }
-                allCorrect = allCorrect && insertSection(section);
+                allCorrect = insertSection(section) && allCorrect;
             }
             catch (Exception e){
                 System.err.println(e.getMessage());

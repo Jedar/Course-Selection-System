@@ -38,7 +38,7 @@ public class CourseServiceImpl implements CourseService {
                 course.setCredits(Integer.parseInt(list.get(2)));
                 course.setCredit_hours(Integer.parseInt(list.get(3)));
                 course.setSchool_abbr(list.get(4));
-                allCorrect = allCorrect && insertCourse(course);
+                allCorrect =  insertCourse(course) & allCorrect;
             }
             catch (Exception e){
                 System.err.println(e.getMessage());
