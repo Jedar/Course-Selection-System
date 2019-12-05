@@ -12,6 +12,7 @@ public class CompleteSection {
     private int section_id;
     private int year;
     private String semester;
+    private String current_student_num;
     private int section_capacity;
     private String course_name;
     private int credits;

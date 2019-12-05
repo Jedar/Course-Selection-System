@@ -108,7 +108,7 @@ public class JDBCDao<T> implements BaseDao<T> {
     }
 
     @Override
-    public boolean update(Class<T> clazz, String sql, Object... args) {
+    public boolean update(String sql, Object... args) throws SQLException{
         Connection conn = null;
         PreparedStatement ps = null;
         int exeNum = 0;
@@ -125,14 +125,42 @@ public class JDBCDao<T> implements BaseDao<T> {
 
             /* 执行语句 */
             exeNum = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        }finally {
             /* 释放连接 */
             release(null,ps,conn);
         }
 
         return (exeNum > 0);
+    }
+
+    @Override
+    public boolean transactionUpdate(List<String> sqls, List<List<Object>> args) throws SQLException{
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int exeNum = 0;
+        try {
+            /* 获取连接 */
+            conn = dataSource.getConnection();
+            conn.setAutoCommit(false);
+            for(int i = 0; i < sqls.size(); i++) {
+                ps = conn.prepareStatement(sqls.get(i));
+
+                /* 放置参数 */
+                int idx = 1;
+                for(Object object : args.get(i)) {
+                    ps.setObject(idx++, object);
+                }
+
+                /*执行语句*/
+                exeNum += ps.executeUpdate();
+            }
+
+            /*提交执行*/
+            conn.commit();
+        }finally {
+            release(null,ps,conn);
+        }
+        return exeNum > 0;
     }
 
     @Override

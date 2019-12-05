@@ -37,38 +37,7 @@ public class DaoRepository {
     }
 
     public static SectionDao getSectionDao(){
-        return new SectionDao(){
-
-            @Override
-            public boolean addSection(Section section) {
-                return true;
-            }
-
-            @Override
-            public boolean deleteSection(int courseID, int sectionID, int year, String semester) {
-                return true;
-            }
-
-            @Override
-            public boolean updateSection(Section section) {
-                return true;
-            }
-
-            @Override
-            public List<Section> getCriteriaSectionList(CriteriaSection criteriaSection) {
-                return null;
-            }
-
-            @Override
-            public List<Section> getSectionList() {
-                return null;
-            }
-
-            @Override
-            public int getStudentNum(Section section) {
-                return 0;
-            }
-        };
+        return new SectionDaoImpl();
     }
 
     public static StudentDao getStudentDao(){

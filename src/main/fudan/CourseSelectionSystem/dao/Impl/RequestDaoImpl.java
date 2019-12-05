@@ -12,7 +12,7 @@ import java.util.List;
  * @Date 2019/12/3 19:32
  * @Version 1.0
  **/
-public class RequestDaoImpl{
+public class RequestDaoImpl implements RequestDao{
 
     @Override
     public boolean addRequest(Request request) {
