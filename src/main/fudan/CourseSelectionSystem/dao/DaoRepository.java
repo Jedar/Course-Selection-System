@@ -33,7 +33,33 @@ public class DaoRepository {
     }
 
     public static RequestDao getRequestDao(){
-        return new RequestDaoImpl();
+        return new RequestDao(){
+
+            @Override
+            public boolean addRequest(Request request) {
+                return true;
+            }
+
+            @Override
+            public boolean deleteRequest(int studentID, int courseID, int sectionID, int year, String semester) {
+                return true;
+            }
+
+            @Override
+            public boolean updateRequest(Request request) {
+                return true;
+            }
+
+            @Override
+            public List<Request> getRequestListBySection(int courseID, int sectionID, int year, String semester) {
+                return null;
+            }
+
+            @Override
+            public List<Request> getRequestListByStudent(int studentID) {
+                return null;
+            }
+        };
     }
 
     public static SectionDao getSectionDao(){
@@ -136,6 +162,13 @@ public class DaoRepository {
             }
 
             @Override
+            public boolean addTeacherWithProfile(Teacher teacher, Profile profile) {
+                System.out.println(teacher);
+                System.out.println(profile);
+                return true;
+            }
+
+            @Override
             public boolean deleteTeacher(int teacherID) {
                 return true;
             }
@@ -193,6 +226,36 @@ public class DaoRepository {
             @Override
             public List<Teaches> getTeaches() {
                 return new ArrayList<>();
+            }
+        };
+    }
+
+    public static ProfileDao getProfileDao(){
+        return new ProfileDao() {
+            @Override
+            public boolean addProfile(Profile profile) {
+                return true;
+            }
+
+            @Override
+            public Profile getProfile(String ID) {
+                return null;
+            }
+        };
+    }
+
+    public static ManagerDao getManagerDao(){
+        return new ManagerDao() {
+            @Override
+            public boolean addManager(Manager manager, Profile profile) {
+                System.out.println(manager);
+                System.out.println(profile);
+                return true;
+            }
+
+            @Override
+            public Manager getManager(String id) {
+                return null;
             }
         };
     }
