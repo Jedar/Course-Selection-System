@@ -38,6 +38,11 @@ public class JDBCDao<T> implements BaseDao<T> {
     }
 
     @Override
+    public <E> E getForValue(String sql, Object... args) {
+        return null;
+    }
+
+    @Override
     public List<T> getForList(Class<T> clazz, String sql, Object... args) {
         List<T> list = new ArrayList<>();
         Connection conn = null;

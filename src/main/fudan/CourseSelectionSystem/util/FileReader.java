@@ -8,5 +8,5 @@ package main.fudan.CourseSelectionSystem.util;
  * @Version 1.0
  **/
 public class FileReader {
-    
+
 }

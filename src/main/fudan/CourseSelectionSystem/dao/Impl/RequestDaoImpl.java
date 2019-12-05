@@ -9,6 +9,6 @@ import main.fudan.CourseSelectionSystem.dao.RequestDao;
  * @Date 2019/12/3 19:32
  * @Version 1.0
  **/
-public class RequestDaoImpl implements RequestDao {
+public class RequestDaoImpl{
 
 }

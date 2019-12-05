@@ -19,4 +19,9 @@ public class CompleteSection {
     private String school_abbr;
     private String building;
     private String room_number;
+    private String course_time;
+    private String exam_date;
+    private String exam_type;
+    private String exam_time;
+    private String teachers;
 }
