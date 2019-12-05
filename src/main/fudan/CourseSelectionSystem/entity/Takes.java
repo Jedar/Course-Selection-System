@@ -85,4 +85,17 @@ public class Takes {
     public void setDrop_flag(boolean drop_flag) {
         this.drop_flag = drop_flag;
     }
+
+    @Override
+    public String toString() {
+        return "Takes{" +
+                "student_id=" + student_id +
+                ", course_id=" + course_id +
+                ", section_id=" + section_id +
+                ", year=" + year +
+                ", semester='" + semester + '\'' +
+                ", level='" + level + '\'' +
+                ", drop_flag=" + drop_flag +
+                '}';
+    }
 }

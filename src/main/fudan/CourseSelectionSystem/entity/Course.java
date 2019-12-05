@@ -65,4 +65,15 @@ public class Course {
     public void setSchool_abbr(String school_abbr) {
         this.school_abbr = school_abbr;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "course_id=" + course_id +
+                ", course_name='" + course_name + '\'' +
+                ", credits=" + credits +
+                ", credit_hours=" + credit_hours +
+                ", school_abbr='" + school_abbr + '\'' +
+                '}';
+    }
 }

@@ -84,4 +84,18 @@ public class Section {
     public void setTime_slot_id(int time_slot_id) {
         this.time_slot_id = time_slot_id;
     }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "course_id=" + course_id +
+                ", section_id=" + section_id +
+                ", year=" + year +
+                ", semester='" + semester + '\'' +
+                ", section_capacity=" + section_capacity +
+                ", building='" + building + '\'' +
+                ", room_number='" + room_number + '\'' +
+                ", time_slot_id=" + time_slot_id +
+                '}';
+    }
 }

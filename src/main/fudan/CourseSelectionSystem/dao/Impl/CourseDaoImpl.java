@@ -36,8 +36,7 @@ public class CourseDaoImpl implements CourseDao {
         return false;
     }
 
-    @Override
-    public List<CourseDao> getCourseList() {
+    public List<Course> getCourseList() {
         return null;
     }
 }

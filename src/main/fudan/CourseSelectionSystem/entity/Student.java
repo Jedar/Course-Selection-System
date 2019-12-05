@@ -45,4 +45,13 @@ public class Student {
     public void setSchool_abbr(String school_abbr) {
         this.school_abbr = school_abbr;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "student_id='" + student_id + '\'' +
+                ", student_name='" + student_name + '\'' +
+                ", school_abbr='" + school_abbr + '\'' +
+                '}';
+    }
 }

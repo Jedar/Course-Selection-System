@@ -35,4 +35,12 @@ public class School {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "abbr='" + abbr + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

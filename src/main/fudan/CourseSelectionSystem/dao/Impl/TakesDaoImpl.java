@@ -1,6 +1,4 @@
 package main.fudan.CourseSelectionSystem.dao.Impl;
-
-import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.TakesDao;
 import main.fudan.CourseSelectionSystem.entity.Takes;
 

@@ -8,5 +8,5 @@ public interface CourseDao {
     public boolean addCourse(Course course);
     public boolean deleteCourse(int courseID);
     public boolean updateCourse(int courseID);
-    public List<CourseDao> getCourseList();
+    public List<Course> getCourseList();
 }
