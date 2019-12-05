@@ -95,4 +95,18 @@ public class Request {
     public void setReply_content(String reply_content) {
         this.reply_content = reply_content;
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "student_id='" + student_id + '\'' +
+                ", course_id=" + course_id +
+                ", section_id=" + section_id +
+                ", year=" + year +
+                ", semester='" + semester + '\'' +
+                ", request_content='" + request_content + '\'' +
+                ", pass_or_not='" + pass_or_not + '\'' +
+                ", reply_content='" + reply_content + '\'' +
+                '}';
+    }
 }

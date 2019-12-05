@@ -55,4 +55,14 @@ public class Teacher {
     public void setSchool_abbr(String school_abbr) {
         this.school_abbr = school_abbr;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacher_id='" + teacher_id + '\'' +
+                ", teacher_name='" + teacher_name + '\'' +
+                ", title='" + title + '\'' +
+                ", school_abbr='" + school_abbr + '\'' +
+                '}';
+    }
 }

@@ -19,4 +19,21 @@ public class CompleteSection {
     private String school_abbr;
     private String building;
     private String room_number;
+
+    @Override
+    public String toString() {
+        return "CompleteSection{" +
+                "course_id=" + course_id +
+                ", section_id=" + section_id +
+                ", year=" + year +
+                ", semester='" + semester + '\'' +
+                ", section_capacity=" + section_capacity +
+                ", course_name='" + course_name + '\'' +
+                ", credits=" + credits +
+                ", credit_hours=" + credit_hours +
+                ", school_abbr='" + school_abbr + '\'' +
+                ", building='" + building + '\'' +
+                ", room_number='" + room_number + '\'' +
+                '}';
+    }
 }

@@ -7,5 +7,5 @@ public interface SectionService {
     public boolean insertSection(Section section);
 
     /* 根据excel表格插入数据 */
-    public boolean insertSectionsByExcel(String path);
+    public boolean insertSectionsByExcel(String path) throws Exception;
 }

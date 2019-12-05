@@ -8,5 +8,5 @@ public interface StudentService {
 
 
     /* 通过excel文件导入学生数据 */
-    public boolean insertStudentsByExcel(String path);
+    public boolean insertStudentsByExcel(String path) throws Exception;
 }

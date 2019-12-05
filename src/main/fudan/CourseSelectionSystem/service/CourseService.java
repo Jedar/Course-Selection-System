@@ -7,5 +7,5 @@ public interface CourseService {
     public boolean insertCourse(Course course);
 
     /* 根据Excel文件插入Course数据 */
-    public boolean insertCoursesByExcel(String path);
+    public boolean insertCoursesByExcel(String path) throws Exception;
 }
