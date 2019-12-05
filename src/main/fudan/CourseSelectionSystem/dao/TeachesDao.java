@@ -1,4 +1,4 @@
-package main.fudan.CourseSelectionSystem.dao.Impl;
+package main.fudan.CourseSelectionSystem.dao;
 
 import main.fudan.CourseSelectionSystem.entity.Teaches;
 
