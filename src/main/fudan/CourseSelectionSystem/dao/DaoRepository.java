@@ -241,6 +241,11 @@ public class DaoRepository {
             public Profile getProfile(String ID) {
                 return null;
             }
+
+            @Override
+            public boolean checkExist(String ID, String passwd) {
+                return false;
+            }
         };
     }
 
