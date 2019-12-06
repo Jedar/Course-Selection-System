@@ -4,6 +4,7 @@ import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.CourseDao;
 import main.fudan.CourseSelectionSystem.entity.Course;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,9 +22,9 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean addCourse(Course course) {
+    public boolean addCourse(Course course) throws SQLException{
         String sql = "insert into course (course_id, course_name, credits, credit_hours, school_abbr) values (?,?,?,?,?)";
-        return dao.update(Course.class, sql, course.getCourse_id(), course.getCourse_name(), course.getCredits(), course.getCredit_hours(), course.getSchool_abbr());
+        return dao.update(sql, course.getCourse_id(), course.getCourse_name(), course.getCredits(), course.getCredit_hours(), course.getSchool_abbr());
     }
 
     @Override

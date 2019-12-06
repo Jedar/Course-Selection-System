@@ -18,3 +18,20 @@
 ### appendix
  1. Course data from Course List of Fudan University. 
  
+### DAO job distribution
+邓朋：
+student
+takes
+classroom
+school
+LevelToGrade
+
+
+俞继涛：
+teacher
+section
+course
+request
+profile
+
+ 

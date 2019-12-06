@@ -4,6 +4,8 @@ import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.SchoolDao;
 import main.fudan.CourseSelectionSystem.entity.School;
 
+import java.sql.SQLException;
+
 /**
  * @ClassName SchoolDaoImpl
  * @Description TODO
@@ -19,9 +21,9 @@ public class SchoolDaoImpl implements SchoolDao {
     }
 
     @Override
-    public boolean addSchool(School school) {
+    public boolean addSchool(School school) throws SQLException {
         String sql = "insert into school (abbr, name) values (?,?)";
-        return dao.update(School.class, sql, school.getAbbr(), school.getName());
+        return dao.update(sql, school.getAbbr(), school.getName());
     }
 
     @Override

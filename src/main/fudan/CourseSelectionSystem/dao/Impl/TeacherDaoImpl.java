@@ -2,9 +2,11 @@ package main.fudan.CourseSelectionSystem.dao.Impl;
 
 import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
+import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.entity.Profile;
 import main.fudan.CourseSelectionSystem.entity.Teacher;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,9 +20,9 @@ public class TeacherDaoImpl implements TeacherDao {
     private BaseDao<Teacher> dao = new JDBCDao<>();
 
     @Override
-    public boolean addTeacher(Teacher teacher) {
+    public boolean addTeacher(Teacher teacher) throws SQLException {
         String sql = "insert into teacher (teacher_id, teacher_name, title, school_abbr) values (?,?,?,?)";
-        return dao.update(Teacher.class, sql, teacher.getTeacher_id(), teacher.getTeacher_name(), teacher.getTitle(), teacher.getSchool_abbr());
+        return dao.update(sql, teacher.getTeacher_id(), teacher.getTeacher_name(), teacher.getTitle(), teacher.getSchool_abbr());
     }
 
     @Override
@@ -35,7 +37,7 @@ public class TeacherDaoImpl implements TeacherDao {
     }
 
     @Override
-    public boolean updateTeacher(int teacherID) {
+    public boolean updateTeacher(int teacherID) throws SQLException {
         return false;
     }
 
@@ -43,4 +45,21 @@ public class TeacherDaoImpl implements TeacherDao {
     public List<Teacher> getTeacherList() {
         return null;
     }
+
+    @Override
+    public List<Section> getTimeConflictSections(CompleteSection section, String teacherID) {
+        return null;
+    }
+
+    @Override
+    public List<Student> getStudentOf(Teaches teaches) {
+        return null;
+    }
+
+    @Override
+    public List<Request> getRequestList(String teacherID, int year, String semester) {
+        return null;
+    }
+
+
 }
