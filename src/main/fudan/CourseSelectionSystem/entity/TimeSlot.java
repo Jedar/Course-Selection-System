@@ -6,6 +6,17 @@ public class TimeSlot {
     private int start_time;
     private int end_time;
 
+    public TimeSlot() {
+
+    }
+
+    public TimeSlot(int time_slot_id, String day, int start_time, int end_time) {
+        this.time_slot_id = time_slot_id;
+        this.day = day;
+        this.start_time = start_time;
+        this.end_time = end_time;
+    }
+
     public int getTime_slot_id() {
         return time_slot_id;
     }

@@ -22,8 +22,9 @@ public class ClassroomDaoImpl implements ClassroomDao {
     }
 
     @Override
-    public boolean deleteClassroom(String building, String room_number) {
-        return false;
+    public boolean deleteClassroom(String building, String room_number) throws SQLException{
+        String sql = "delete from classroom where building = ? and room_number = ?";
+        return dao.update(sql, building, room_number);
     }
 
     @Override

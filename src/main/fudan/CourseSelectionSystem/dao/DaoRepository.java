@@ -67,91 +67,15 @@ public class DaoRepository {
     }
 
     public static StudentDao getStudentDao(){
-        return new StudentDao(){
-
-            @Override
-            public boolean addStudent(Student student) {
-                System.out.println(student);
-                return true;
-            }
-
-            @Override
-            public boolean deleteStudent(int studentID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateStudent(int studentID) {
-                return true;
-            }
-
-            @Override
-            public Student getStudentByID(int studentID) {
-                return null;
-            }
-
-            @Override
-            public Student getStudentsBySection(Section section) {
-                return null;
-            }
-        };
+        return new StudentDaoImpl();
     }
 
     public static TakesDao getTakeDao(){
-        return new TakesDao(){
-
-            @Override
-            public boolean updateTakes(Takes takes) {
-                return true;
-            }
-
-            @Override
-            public boolean addTakes(Takes takes) {
-                return true;
-            }
-
-            @Override
-            public boolean dropSection(int studentID, int courseID, int sectionID, int year, String semester) {
-                return true;
-            }
-
-            @Override
-            public List<Takes> getTakesListByStudent(int StudentID) {
-                return null;
-            }
-        };
+        return new TakesDaoImpl();
     }
 
     public static TeacherDao getTeacherDao(){
-        return new TeacherDao(){
-
-            @Override
-            public boolean addTeacher(Teacher teacher) {
-                return true;
-            }
-
-            @Override
-            public boolean addTeacherWithProfile(Teacher teacher, Profile profile) {
-                System.out.println(teacher);
-                System.out.println(profile);
-                return true;
-            }
-
-            @Override
-            public boolean deleteTeacher(int teacherID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateTeacher(int teacherID) {
-                return true;
-            }
-
-            @Override
-            public List<Teacher> getTeacherList() {
-                return null;
-            }
-        };
+        return new TeacherDaoImpl();
     }
 
     public static TimeSlotDao getTimeSlotDao() {

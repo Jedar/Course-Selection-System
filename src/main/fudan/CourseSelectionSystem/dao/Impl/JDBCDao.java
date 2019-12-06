@@ -39,6 +39,32 @@ public class JDBCDao<T> implements BaseDao<T> {
 
     @Override
     public <E> E getForValue(String sql, Object... args) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            /* 获取连接 */
+            conn = dataSource.getConnection();
+            ps = conn.prepareStatement(sql);
+
+            /* 放入参数 */
+            int idx = 1;
+            for(Object object:args){
+                ps.setObject(idx++,object);
+            }
+
+            /* 执行语句 */
+            resultSet = ps.executeQuery();
+
+            if(resultSet.next()) {
+                return (E) resultSet.getObject(1);
+            }
+        }catch (SQLException se) {
+            se.printStackTrace();
+        }finally {
+            /* 释放连接 */
+            release(resultSet,ps,conn);
+        }
         return null;
     }
 
@@ -50,8 +76,8 @@ public class JDBCDao<T> implements BaseDao<T> {
         ResultSet resultSet = null;
         try {
             /* 获取连接 */
-            ps = conn.prepareStatement(sql);
             conn = dataSource.getConnection();
+            ps = conn.prepareStatement(sql);
 
             /* 放入参数 */
             int idx = 1;

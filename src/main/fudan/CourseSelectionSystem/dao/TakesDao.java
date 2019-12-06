@@ -10,7 +10,7 @@ public interface TakesDao {
     public Takes getTakes(int studentID, int courseID, int sectionID, int year, String semester);
     public boolean updateTakes(Takes takes) throws SQLException;
     public boolean addTakes(Takes takes) throws SQLException;
-    public boolean dropSection(int studentID, int courseID, int sectionID, int year, String semester);
+    public boolean dropSection(int studentID, int courseID, int sectionID, int year, String semester) throws SQLException;
 
     /*得到上课时间冲突列表*/
     public List<Section> getTimeConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester);

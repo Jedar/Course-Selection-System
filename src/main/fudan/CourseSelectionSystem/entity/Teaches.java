@@ -14,6 +14,18 @@ public class Teaches {
     private String semester;
     private String teacher_id;
 
+    public Teaches() {
+
+    }
+
+    public Teaches(int course_id, int section_id, int year, String semester, String teacher_id) {
+        this.course_id = course_id;
+        this.section_id = section_id;
+        this.year = year;
+        this.semester = semester;
+        this.teacher_id = teacher_id;
+    }
+
     public int getCourse_id() {
         return course_id;
     }

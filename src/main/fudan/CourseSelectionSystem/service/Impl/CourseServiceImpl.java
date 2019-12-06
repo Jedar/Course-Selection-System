@@ -12,7 +12,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseDao courseDao = DaoRepository.getCourseDao();
 
     @Override
-    public boolean insertCourse(Course course) {
+    public boolean insertCourse(Course course) throws Exception{
         /* 底层报错 */
         return courseDao.addCourse(course);
     }

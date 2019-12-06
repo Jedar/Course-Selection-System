@@ -21,6 +21,17 @@ public class Section {
 
     }
 
+    public Section(int course_id, int section_id, int year, String semester, int section_capacity, String building, String room_number, int time_slot_id) {
+        this.course_id = course_id;
+        this.section_id = section_id;
+        this.year = year;
+        this.semester = semester;
+        this.section_capacity = section_capacity;
+        this.building = building;
+        this.room_number = room_number;
+        this.time_slot_id = time_slot_id;
+    }
+
     public int getCourse_id() {
         return course_id;
     }

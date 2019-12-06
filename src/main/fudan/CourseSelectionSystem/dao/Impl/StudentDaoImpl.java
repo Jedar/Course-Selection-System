@@ -14,26 +14,28 @@ import java.util.List;
  * @Version 1.0
  **/
 public class StudentDaoImpl implements StudentDao {
-    private BaseDao<Student> dao = new JDBCDao<>();
+    private BaseDao<Student> studentDao = new JDBCDao<>();
+    private BaseDao<Request> requestDao = new JDBCDao<>();
+    private BaseDao<SectionWithGrade> sectionWithGradeDao = new JDBCDao<>();
 
     @Override
     public boolean addStudent(Student student) throws Exception{
         String sql = "insert into student (student_id, student_name, school_abbr) values (?,?,?)";
-        return dao.update(sql, student.getStudent_id(), student.getStudent_name(), student.getSchool_abbr());
+        return studentDao.update(sql, student.getStudent_id(), student.getStudent_name(), student.getSchool_abbr());
     }
 
     @Override
-    public boolean deleteStudent(int studentID) {
+    public boolean deleteStudent(String studentID) {
         return false;
     }
 
     @Override
-    public boolean updateStudent(int studentID) {
+    public boolean updateStudent(String studentID) {
         return false;
     }
 
     @Override
-    public Student getStudentByID(int studentID) {
+    public Student getStudentByID(String studentID) {
         return null;
     }
 
@@ -43,22 +45,30 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<SectionWithGrade> getSectionWithGradeList(int studentID) {
+    public List<SectionWithGrade> getSectionWithGradeList(String studentID) {
+        String sql = "select course_id, section_id, year, semester, course_name, credits, level " +
+                     "from takes natural join course " +
+                     "where student_id = ?";
+        return sectionWithGradeDao.getForList(SectionWithGrade.class, sql, studentID);
+    }
+
+    @Override
+    public double getGPA(String studentID) {
+        String sql = "select sum(grade * credits) / sum(credits) " +
+                "from takes natural join level_to_grade natural join course " +
+                "where student_id = ?";
+        return studentDao.getForValue(sql, studentID);
+    }
+
+    @Override
+    public List<CompleteSection> getSelectedSectionList(String studentID) {
+        String sql = "select * from ";
         return null;
     }
 
     @Override
-    public float getGPA(int studentID) {
-        return 0;
-    }
-
-    @Override
-    public List<CompleteSection> getSelectedSectionList(int studentID) {
-        return null;
-    }
-
-    @Override
-    public List<Request> getRequestList(int studentID) {
-        return null;
+    public List<Request> getRequestList(String studentID) {
+        String sql = "select * from request where student_id = ?";
+        return requestDao.getForList(Request.class, sql, studentID);
     }
 }
