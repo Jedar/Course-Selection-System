@@ -24,6 +24,6 @@ public class LevelToGradeDaoImpl implements LevelToGradeDao {
     @Override
     public boolean updateLevelToGrade(LevelToGrade levelToGrade) throws SQLException {
         String sql = "update level_to_grade set grade = ? where level = ?";
-        return dao.update(sql, levelToGrade.getGrade(), levelToGrade.getLevel());  
+        return dao.update(sql, levelToGrade.getGrade(), levelToGrade.getLevel());
     }
 }
