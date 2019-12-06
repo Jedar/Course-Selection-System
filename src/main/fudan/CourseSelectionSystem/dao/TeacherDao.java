@@ -10,9 +10,9 @@ import java.util.List;
 public interface TeacherDao {
     public boolean addTeacher(Teacher teacher) throws SQLException;
     /* 插入教师的数据并且初始化老师用户基本信息 */
-    public boolean addTeacherWithProfile(Teacher teacher, Profile profile);
-    public boolean deleteTeacher(int teacherID);
-    public boolean updateTeacher(int teacherID) throws SQLException;
+    public boolean addTeacherWithProfile(Teacher teacher, Profile profile) throws SQLException;
+    public boolean deleteTeacher(int teacherID) throws SQLException;
+    public boolean updateTeacher(Teacher teacher) throws SQLException;
     public List<Teacher> getTeacherList();
 
     /*得到上课时间冲突的课程*/

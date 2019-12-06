@@ -4,7 +4,7 @@ import main.fudan.CourseSelectionSystem.entity.Student;
 
 public interface StudentService {
     /* 导入学生数据,出错时抛出错误 */
-    public boolean insertStudent(Student student);
+    public boolean insertStudent(Student student) throws Exception;
 
 
     /* 通过excel文件导入学生数据 */

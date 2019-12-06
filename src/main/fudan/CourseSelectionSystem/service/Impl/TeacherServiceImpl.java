@@ -9,13 +9,14 @@ import main.fudan.CourseSelectionSystem.entity.Teacher;
 import main.fudan.CourseSelectionSystem.service.TeacherService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class TeacherServiceImpl implements TeacherService {
     private TeacherDao teacherDao = DaoRepository.getTeacherDao();
 
     @Override
-    public boolean insertTeacher(Teacher teacher) {
+    public boolean insertTeacher(Teacher teacher) throws SQLException {
         Profile profile = new Profile();
         profile.setProfile_id(teacher.getTeacher_id());
         profile.setPassword(Constant.DEFAULT_PASSWORD);

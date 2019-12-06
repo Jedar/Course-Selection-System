@@ -3,6 +3,7 @@ package main.fudan.CourseSelectionSystem.dao;
 import main.fudan.CourseSelectionSystem.dao.Impl.*;
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,11 +95,36 @@ public class DaoRepository {
             public Student getStudentsBySection(Section section) {
                 return null;
             }
+
+            @Override
+            public List<SectionWithGrade> getSectionWithGradeList(int studentID) {
+                return null;
+            }
+
+            @Override
+            public float getGPA(int studentID) {
+                return 0;
+            }
+
+            @Override
+            public List<CompleteSection> getSelectedSectionList(int studentID) {
+                return null;
+            }
+
+            @Override
+            public List<Request> getRequestList(int studentID) {
+                return null;
+            }
         };
     }
 
     public static TakesDao getTakeDao(){
         return new TakesDao(){
+
+            @Override
+            public Takes getTakes(int studentID, int courseID, int sectionID, int year, String semester) {
+                return null;
+            }
 
             @Override
             public boolean updateTakes(Takes takes) {
@@ -116,7 +142,12 @@ public class DaoRepository {
             }
 
             @Override
-            public List<Takes> getTakesListByStudent(int StudentID) {
+            public List<Section> getTimeConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
+                return null;
+            }
+
+            @Override
+            public List<Section> getExamConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
                 return null;
             }
         };
@@ -143,12 +174,27 @@ public class DaoRepository {
             }
 
             @Override
-            public boolean updateTeacher(int teacherID) {
-                return true;
+            public boolean updateTeacher(Teacher teacher) throws SQLException {
+                return false;
             }
 
             @Override
             public List<Teacher> getTeacherList() {
+                return null;
+            }
+
+            @Override
+            public List<Section> getTimeConflictSections(CompleteSection section, String teacherID) {
+                return null;
+            }
+
+            @Override
+            public List<Student> getStudentOf(Teaches teaches) {
+                return null;
+            }
+
+            @Override
+            public List<Request> getRequestList(String teacherID, int year, String semester) {
                 return null;
             }
         };

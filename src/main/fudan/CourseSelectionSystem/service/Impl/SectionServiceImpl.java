@@ -2,7 +2,7 @@ package main.fudan.CourseSelectionSystem.service.Impl;
 
 import main.fudan.CourseSelectionSystem.dao.DaoRepository;
 import main.fudan.CourseSelectionSystem.dao.ExamDao;
-import main.fudan.CourseSelectionSystem.dao.Impl.TeachesDao;
+import main.fudan.CourseSelectionSystem.dao.TeachesDao;
 import main.fudan.CourseSelectionSystem.dao.SectionDao;
 import main.fudan.CourseSelectionSystem.dao.TimeSlotDao;
 import main.fudan.CourseSelectionSystem.entity.*;
@@ -21,7 +21,7 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public boolean insertSection(Section section) {
-        return sectionDao.addSection(section);
+        return true;
     }
 
     @Override

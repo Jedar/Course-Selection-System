@@ -22,10 +22,10 @@ public class ClassroomDaoImpl implements ClassroomDao {
     }
 
     @Override
-    public boolean deleteClassroom(String building, String room_number) {
+    public boolean deleteClassroom(String building, String room_number) throws SQLException {
         String sql = "DELETE FROM `course_selection_system`.`classroom`" +
                 "WHERE building=? AND room_number=?";
-        return dao.update(Classroom.class, sql, building, room_number);
+        return dao.update(sql, building, room_number);
     }
 
     @Override

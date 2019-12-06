@@ -50,6 +50,7 @@ public class JDBCDao<T> implements BaseDao<T> {
         ResultSet resultSet = null;
         try {
             /* 获取连接 */
+            conn = dataSource.getConnection();
             ps = conn.prepareStatement(sql);
             conn = dataSource.getConnection();
 
