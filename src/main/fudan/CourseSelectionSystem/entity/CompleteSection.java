@@ -24,6 +24,8 @@ public class CompleteSection {
     private String exam_date;
     private String exam_type;
     private String exam_time;
+    private String exam_building;
+    private String exam_room_number;
     private String teachers;
 
     public int getCourse_id() {
@@ -162,6 +164,22 @@ public class CompleteSection {
         this.teachers = teachers;
     }
 
+    public String getExam_building() {
+        return exam_building;
+    }
+
+    public void setExam_building(String exam_building) {
+        this.exam_building = exam_building;
+    }
+
+    public String getExam_room_number() {
+        return exam_room_number;
+    }
+
+    public void setExam_room_number(String exam_room_number) {
+        this.exam_room_number = exam_room_number;
+    }
+
     @Override
     public String toString() {
         return "CompleteSection{" +
@@ -169,6 +187,7 @@ public class CompleteSection {
                 ", section_id=" + section_id +
                 ", year=" + year +
                 ", semester='" + semester + '\'' +
+                ", current_student_num='" + current_student_num + '\'' +
                 ", section_capacity=" + section_capacity +
                 ", course_name='" + course_name + '\'' +
                 ", credits=" + credits +
@@ -176,6 +195,13 @@ public class CompleteSection {
                 ", school_abbr='" + school_abbr + '\'' +
                 ", building='" + building + '\'' +
                 ", room_number='" + room_number + '\'' +
+                ", course_time='" + course_time + '\'' +
+                ", exam_date='" + exam_date + '\'' +
+                ", exam_type='" + exam_type + '\'' +
+                ", exam_time='" + exam_time + '\'' +
+                ", exam_building='" + exam_building + '\'' +
+                ", exam_room_number='" + exam_room_number + '\'' +
+                ", teachers='" + teachers + '\'' +
                 '}';
     }
 }

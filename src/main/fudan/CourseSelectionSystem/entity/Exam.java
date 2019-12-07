@@ -10,6 +10,8 @@ public class Exam {
     private int section_id;
     private int year;
     private String semester;
+    private String exam_building;
+    private String exam_room_number;
 
     public Exam() {
 
@@ -81,16 +83,34 @@ public class Exam {
         this.semester = semester;
     }
 
+    public String getExam_building() {
+        return exam_building;
+    }
+
+    public void setExam_building(String exam_building) {
+        this.exam_building = exam_building;
+    }
+
+    public String getExam_room_number() {
+        return exam_room_number;
+    }
+
+    public void setExam_room_number(String exam_room_number) {
+        this.exam_room_number = exam_room_number;
+    }
+
     @Override
     public String toString() {
         return "Exam{" +
                 "exam_time_slot_id=" + exam_time_slot_id +
-                ", exam_date=" + exam_date +
+                ", exam_date='" + exam_date + '\'' +
                 ", exam_type='" + exam_type + '\'' +
                 ", course_id=" + course_id +
                 ", section_id=" + section_id +
                 ", year=" + year +
                 ", semester='" + semester + '\'' +
+                ", exam_building='" + exam_building + '\'' +
+                ", exam_room_number='" + exam_room_number + '\'' +
                 '}';
     }
 }
