@@ -5,6 +5,7 @@ import main.fudan.CourseSelectionSystem.dao.SchoolDao;
 import main.fudan.CourseSelectionSystem.entity.School;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName SchoolDaoImpl
@@ -29,5 +30,18 @@ public class SchoolDaoImpl implements SchoolDao {
     @Override
     public boolean deleteSchool(String abbr) {
         return false;
+    }
+
+    @Override
+    public boolean updateSchool(School school) throws SQLException {
+        String sql = "update school " +
+                "set name = ? " +
+                "where abbr = ?";
+        return dao.update(sql, school.getName(), school.getAbbr());
+    }
+
+    @Override
+    public List<School> getSchoolList() {
+        return null;
     }
 }

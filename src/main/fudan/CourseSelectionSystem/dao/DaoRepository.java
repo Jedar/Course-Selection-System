@@ -8,28 +8,7 @@ import java.util.List;
 
 public class DaoRepository {
     public static CourseDao getCourseDao(){
-        return new CourseDao() {
-            @Override
-            public boolean addCourse(Course course) {
-                System.out.println(course.toString());
-                return true;
-            }
-
-            @Override
-            public boolean deleteCourse(int courseID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateCourse(int courseID) {
-                return true;
-            }
-
-            @Override
-            public List<Course> getCourseList() {
-                return new ArrayList<>();
-            }
-        };
+        return new CourseDaoImpl();
     }
 
     public static RequestDao getRequestDao(){

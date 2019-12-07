@@ -31,4 +31,12 @@ public class ClassroomDaoImpl implements ClassroomDao {
     public Classroom getClassroom(String building, String room_number) {
         return null;
     }
+
+    @Override
+    public boolean updateClassroom(Classroom classroom) throws SQLException {
+        String sql = "update classroom " +
+                "set classroom_capacity = ? " +
+                "where building = ? and room_number = ?";
+        return dao.update(sql, classroom.getClassroom_capacity(), classroom.getBuilding(), classroom.getRoom_number());
+    }
 }

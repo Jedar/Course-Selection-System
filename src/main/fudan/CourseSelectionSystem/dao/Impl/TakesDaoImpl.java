@@ -20,7 +20,7 @@ public class TakesDaoImpl implements TakesDao {
     BaseDao<Takes> dao = new JDBCDao<>();
 
     @Override
-    public Takes getTakes(int studentID, int courseID, int sectionID, int year, String semester) {
+    public Takes getTakes(String studentID, int courseID, int sectionID, int year, String semester) {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class TakesDaoImpl implements TakesDao {
 
     @Override
     public boolean addTakes(Takes takes) throws SQLException {
-        String sql = "insert into takes (student_id, course_id, section_id, year, semester) values (?,?,?,?,?)";
-        return dao.update(sql, takes.getStudent_id(), takes.getCourse_id(), takes.getSection_id(), takes.getYear(), takes.getSemester());
+        String sql = "insert into takes (student_id, course_id, section_id, year, semester, level, drop_flag) values (?,?,?,?,?,?,?)";
+        return dao.update(sql, takes.getStudent_id(), takes.getCourse_id(), takes.getSection_id(), takes.getYear(), takes.getSemester(), takes.getLevel(), takes.isDrop_flag());
     }
 
     @Override
-    public boolean dropSection(int studentID, int courseID, int sectionID, int year, String semester) throws SQLException{
+    public boolean dropSection(String studentID, int courseID, int sectionID, int year, String semester) throws SQLException{
         String sql = "update takes " +
                      "set drop_flag = ? " +
                      "where (student_id, course_id, section_id, year, semester) = (?, ?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class TakesDaoImpl implements TakesDao {
     }
 
     @Override
-    public List<Section> getTimeConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
+    public List<Section> getTimeConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
         String timeSlotSql = "select time_slot_id, day, start_time, end_time " +
                 "from section natural time_slot " +
                 "where (course_id, section_id, year, semester) = (?, ?, ?, ?)";
@@ -62,7 +62,7 @@ public class TakesDaoImpl implements TakesDao {
     }
 
     @Override
-    public List<Section> getExamConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
+    public List<Section> getExamConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
         String timeSlotIDSql = "select time_slot_id" +
                 "from section natural exam " +
                 "where (course_id, section_id, year, semester) = (?, ?, ?, ?)";

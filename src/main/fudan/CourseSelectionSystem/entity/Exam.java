@@ -10,12 +10,14 @@ public class Exam {
     private int section_id;
     private int year;
     private String semester;
+    private String exam_building;
+    private String exam_room_number;
 
     public Exam() {
 
     }
 
-    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester) {
+    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester, String exam_building, String exam_room_number) {
         this.exam_time_slot_id = exam_time_slot_id;
         this.exam_date = exam_date;
         this.exam_type = exam_type;
@@ -23,6 +25,8 @@ public class Exam {
         this.section_id = section_id;
         this.year = year;
         this.semester = semester;
+        this.exam_building = exam_building;
+        this.exam_room_number = exam_room_number;
     }
 
     public int getExam_time_slot_id() {
@@ -79,6 +83,22 @@ public class Exam {
 
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    public String getExam_building() {
+        return exam_building;
+    }
+
+    public void setExam_building(String exam_building) {
+        this.exam_building = exam_building;
+    }
+
+    public String getExam_room_number() {
+        return exam_room_number;
+    }
+
+    public void setExam_room_number(String exam_room_number) {
+        this.exam_room_number = exam_room_number;
     }
 
     @Override

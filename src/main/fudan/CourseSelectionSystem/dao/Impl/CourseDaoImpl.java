@@ -33,7 +33,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean updateCourse(int courseID) {
+    public boolean updateCourse(Course course) {
         return false;
     }
 
