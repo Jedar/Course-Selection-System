@@ -68,136 +68,15 @@ public class DaoRepository {
     }
 
     public static StudentDao getStudentDao(){
-        return new StudentDao(){
-
-            @Override
-            public boolean addStudent(Student student) {
-                System.out.println(student);
-                return true;
-            }
-
-            @Override
-            public boolean deleteStudent(int studentID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateStudent(int studentID) {
-                return true;
-            }
-
-            @Override
-            public Student getStudentByID(int studentID) {
-                return null;
-            }
-
-            @Override
-            public Student getStudentsBySection(Section section) {
-                return null;
-            }
-
-            @Override
-            public List<SectionWithGrade> getSectionWithGradeList(int studentID) {
-                return null;
-            }
-
-            @Override
-            public float getGPA(int studentID) {
-                return 0;
-            }
-
-            @Override
-            public List<CompleteSection> getSelectedSectionList(int studentID) {
-                return null;
-            }
-
-            @Override
-            public List<Request> getRequestList(int studentID) {
-                return null;
-            }
-        };
+        return new StudentDaoImpl();
     }
 
     public static TakesDao getTakeDao(){
-        return new TakesDao(){
-
-            @Override
-            public Takes getTakes(int studentID, int courseID, int sectionID, int year, String semester) {
-                return null;
-            }
-
-            @Override
-            public boolean updateTakes(Takes takes) {
-                return true;
-            }
-
-            @Override
-            public boolean addTakes(Takes takes) {
-                return true;
-            }
-
-            @Override
-            public boolean dropSection(int studentID, int courseID, int sectionID, int year, String semester) {
-                return true;
-            }
-
-            @Override
-            public List<Section> getTimeConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
-                return null;
-            }
-
-            @Override
-            public List<Section> getExamConflictSectionList(int studentID, int courseID, int sectionID, int year, String semester) {
-                return null;
-            }
-        };
+        return new TakesDaoImpl();
     }
 
     public static TeacherDao getTeacherDao(){
-        return new TeacherDao(){
-
-            @Override
-            public boolean addTeacher(Teacher teacher) {
-                return true;
-            }
-
-            @Override
-            public boolean addTeacherWithProfile(Teacher teacher, Profile profile) {
-                System.out.println(teacher);
-                System.out.println(profile);
-                return true;
-            }
-
-            @Override
-            public boolean deleteTeacher(int teacherID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateTeacher(Teacher teacher) throws SQLException {
-                return false;
-            }
-
-            @Override
-            public List<Teacher> getTeacherList() {
-                return null;
-            }
-
-            @Override
-            public List<Section> getTimeConflictSections(CompleteSection section, String teacherID) {
-                return null;
-            }
-
-            @Override
-            public List<Student> getStudentOf(Teaches teaches) {
-                return null;
-            }
-
-            @Override
-            public List<Request> getRequestList(String teacherID, int year, String semester) {
-                return null;
-            }
-        };
+        return new TeacherDaoImpl();
     }
 
     public static TimeSlotDao getTimeSlotDao() {

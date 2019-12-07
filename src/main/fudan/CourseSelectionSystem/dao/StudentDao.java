@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface StudentDao {
     public boolean addStudent(Student student) throws Exception;
-    public boolean deleteStudent(int studentID);
-    public boolean updateStudent(int studentID);
-    public Student getStudentByID(int studentID);
+    public boolean deleteStudent(String studentID);
+    public boolean updateStudent(String studentID);
+    public Student getStudentByID(String studentID);
     public Student getStudentsBySection(Section section);
-    public List<SectionWithGrade> getSectionWithGradeList(int studentID);
-    public float getGPA(int studentID);
-    public List<CompleteSection> getSelectedSectionList(int studentID);
+    public List<SectionWithGrade> getSectionWithGradeList(String studentID);
+    public double getGPA(String studentID);
+    public List<CompleteSection> getSelectedSectionList(String studentID);
 
     /*查看我的申请列表*/
-    public List<Request> getRequestList(int studentID);
+    public List<Request> getRequestList(String studentID);
 }

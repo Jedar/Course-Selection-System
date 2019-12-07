@@ -11,6 +11,20 @@ public class Exam {
     private int year;
     private String semester;
 
+    public Exam() {
+
+    }
+
+    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester) {
+        this.exam_time_slot_id = exam_time_slot_id;
+        this.exam_date = exam_date;
+        this.exam_type = exam_type;
+        this.course_id = course_id;
+        this.section_id = section_id;
+        this.year = year;
+        this.semester = semester;
+    }
+
     public int getExam_time_slot_id() {
         return exam_time_slot_id;
     }

@@ -5,6 +5,7 @@ import main.fudan.CourseSelectionSystem.dao.SectionDao;
 import main.fudan.CourseSelectionSystem.entity.*;
 
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,10 +21,11 @@ public class SectionDaoImpl implements SectionDao {
     BaseDao<Section> dao = new JDBCDao<>();
 
     @Override
-    public boolean addSection(Section section, Exam exam, List<TimeSlot> classTimeSlots, TimeSlot examTimeSlot, List<Teaches> teachesList) throws Exception{
+    public boolean addSection(Section section, Exam exam, List<TimeSlot> classTimeSlots, TimeSlot examTimeSlot, List<Teaches> teachesList) throws SQLException {
         String timeSlotsSql = "insert into time_slot (time_slot_id, day, start_time, end_time) values (?, ?, ?, ?)";
         String sectionSql = "insert into section (course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id) values (?,?,?,?,?,?,?,?)";
-        String teachesSql = "insert into teaches (teacher_id, course_id, section_id, year, semester)";
+        String examSql = "insert into exam (exam_date, course_id, section_id, year, semester, exam_time_slot_id, exam_type) values (?,?,?,?,?,?,?)";
+        String teachesSql = "insert into teaches (teacher_id, course_id, section_id, year, semester) values (?,?,?,?,?)";
         List<String> sqlList = new LinkedList<>();
         List<List<Object>> argList = new LinkedList<>();
         /*插入上课时间的time_slot*/
@@ -39,6 +41,10 @@ public class SectionDaoImpl implements SectionDao {
         /*插入section*/
         sqlList.add(sectionSql);
         argList.add(Arrays.asList(section.getCourse_id(), section.getSection_id(), section.getYear(), section.getSemester(), section.getSection_capacity(), section.getBuilding(), section.getRoom_number(), section.getTime_slot_id()));
+
+        /*插入exam*/
+        sqlList.add(examSql);
+        argList.add(Arrays.asList(exam.getExam_date(), exam.getCourse_id(), exam.getSection_id(), exam.getYear(), exam.getSemester(), exam.getExam_time_slot_id(), exam.getExam_type()));
 
         /*插入teaches*/
         for(Teaches teaches : teachesList) {
