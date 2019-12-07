@@ -28,16 +28,32 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean deleteCourse(int courseID) {
-        return false;
+    public boolean deleteCourse(int courseID) throws SQLException {
+        String sql = "DELETE FROM `course_selection_system`.`course`\n" +
+                "WHERE course_id = ?";
+        return dao.update(sql, courseID);
     }
 
     @Override
-    public boolean updateCourse(int courseID) {
-        return false;
+    public boolean updateCourse(Course course) throws SQLException {
+        String sql = "UPDATE `course_selection_system`.`course`\n" +
+                "SET\n" +
+                "`course_name` = ?,\n" +
+                "`credits` = ?,\n" +
+                "`credit_hours` = ?,\n" +
+                "`school_abbr` = ?\n" +
+                "WHERE `course_id` = ?;\n";
+        return dao.update(sql, course.getCourse_name(), course.getCredits(), course.getCredit_hours(), course.getSchool_abbr(), course.getCourse_id());
     }
 
-    public List<Course> getCourseList() {
-        return null;
+    public List<Course> getCourseList(int courseID) {
+        String sql = "SELECT `course`.`course_id`,\n" +
+                "    `course`.`course_name`,\n" +
+                "    `course`.`credits`,\n" +
+                "    `course`.`credit_hours`,\n" +
+                "    `course`.`school_abbr`\n" +
+                "FROM `course_selection_system`.`course`" +
+                "WHERE course_id = ?";
+        return dao.getForList(Course.class, sql, courseID);
     }
 }

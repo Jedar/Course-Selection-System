@@ -23,7 +23,10 @@ import java.util.List;
  **/
 public class TeacherDaoImpl implements TeacherDao {
     private BaseDao<Teacher> dao = new JDBCDao<>();
+    /* 下面是设计的问题 */
     private BaseDao<Section> sectionBaseDao = new JDBCDao<>();
+    private BaseDao<Student> studentBaseDao = new JDBCDao<>();
+    private BaseDao<Request> requestBaseDao = new JDBCDao<>();
 
     @Override
     public boolean addTeacher(Teacher teacher) throws SQLException {
@@ -106,12 +109,21 @@ public class TeacherDaoImpl implements TeacherDao {
 
     @Override
     public List<Student> getStudentOf(Teaches teaches) {
-        return null;
+        String sql = "SELECT student_id,student_name,school_abbr FROM (\n" +
+                "\tSELECT * FROM teaches natural join takes WHERE teacher_id = ? AND course_id = ? \n" +
+                "    AND section_id = ? AND semester = ? AND year = ?\n" +
+                ") AS stu natural join student;";
+        return studentBaseDao.getForList(Student.class, sql, teaches.getTeacher_id(),
+                teaches.getCourse_id(), teaches.getSection_id(), teaches.getSemester(), teaches.getYear());
     }
 
     @Override
     public List<Request> getRequestList(String teacherID, int year, String semester) {
-        return null;
+        /* 注意： 暂时使用 pass_or_not = 0 标识未处理的请求 */
+        String sql = "SELECT student_id, course_id, section_id, year, semester, request_content, pass_or_not, reply_content FROM (\n" +
+                "\tSELECT * FROM teaches WHERE teacher_id = ? AND semester = ? AND year = ?\n" +
+                ") AS C natural join sec_request WHERE pass_or_not = 0 ";
+        return requestBaseDao.getForList(Request.class, sql, teacherID, semester, year);
     }
 
 

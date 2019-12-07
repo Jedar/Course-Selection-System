@@ -15,11 +15,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao = DaoRepository.getStudentDao();
 
     @Override
-<<<<<<< HEAD
     public boolean insertStudent(Student student) throws Exception {
-=======
-    public boolean insertStudent(Student student) throws Exception{
->>>>>>> 024d4add580f8f2de95d2f3de7ff311769ce000f
         Profile profile = new Profile();
         profile.setProfile_id(student.getStudent_id());
         profile.setPassword(Constant.DEFAULT_PASSWORD);

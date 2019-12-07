@@ -9,58 +9,11 @@ import java.util.List;
 
 public class DaoRepository {
     public static CourseDao getCourseDao(){
-        return new CourseDao() {
-            @Override
-            public boolean addCourse(Course course) {
-                System.out.println(course.toString());
-                return true;
-            }
-
-            @Override
-            public boolean deleteCourse(int courseID) {
-                return true;
-            }
-
-            @Override
-            public boolean updateCourse(int courseID) {
-                return true;
-            }
-
-            @Override
-            public List<Course> getCourseList() {
-                return new ArrayList<>();
-            }
-        };
+        return new CourseDaoImpl();
     }
 
     public static RequestDao getRequestDao(){
-        return new RequestDao(){
-
-            @Override
-            public boolean addRequest(Request request) {
-                return true;
-            }
-
-            @Override
-            public boolean deleteRequest(int studentID, int courseID, int sectionID, int year, String semester) {
-                return true;
-            }
-
-            @Override
-            public boolean updateRequest(Request request) {
-                return true;
-            }
-
-            @Override
-            public List<Request> getRequestListBySection(int courseID, int sectionID, int year, String semester) {
-                return null;
-            }
-
-            @Override
-            public List<Request> getRequestListByStudent(int studentID) {
-                return null;
-            }
-        };
+        return new RequestDaoImpl();
     }
 
     public static SectionDao getSectionDao(){

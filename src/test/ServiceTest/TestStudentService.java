@@ -1,4 +1,4 @@
-package test;
+package test.ServiceTest;
 
 import main.fudan.CourseSelectionSystem.service.Impl.StudentServiceImpl;
 import main.fudan.CourseSelectionSystem.service.StudentService;

@@ -1,4 +1,4 @@
-package test;
+package test.UtilTest;
 
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 

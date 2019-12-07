@@ -21,12 +21,8 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public boolean insertSection(Section section) {
-<<<<<<< HEAD
-        return true;
-=======
 //        return sectionDao.addSection(section);
         return false;
->>>>>>> 024d4add580f8f2de95d2f3de7ff311769ce000f
     }
 
     @Override

@@ -1,12 +1,9 @@
-package test;
+package test.DaoTest;
 
 import main.fudan.CourseSelectionSystem.consts.Constant;
 import main.fudan.CourseSelectionSystem.dao.Impl.TeacherDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
-import main.fudan.CourseSelectionSystem.entity.CompleteSection;
-import main.fudan.CourseSelectionSystem.entity.Profile;
-import main.fudan.CourseSelectionSystem.entity.Section;
-import main.fudan.CourseSelectionSystem.entity.Teacher;
+import main.fudan.CourseSelectionSystem.entity.*;
 
 import java.util.List;
 
@@ -15,7 +12,12 @@ public class TestTeacherDao {
 
     public static void main(String[] args) {
 //        test_insert();
-        test_slot_time_conflict();
+
+//        test_slot_time_conflict();
+
+//        test_get_stu_list();
+
+        test_get_req_list();
     }
 
     private static void test_insert(){
@@ -46,6 +48,32 @@ public class TestTeacherDao {
         complete_section.setCourse_time("星期一,1-3");
         try {
             List<Section> res = teacherDao.getTimeConflictSections(complete_section,teacher_id);
+            System.out.println(res);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void test_get_stu_list(){
+        Teaches teaches = new Teaches();
+        teaches.setTeacher_id("T10000001");
+        teaches.setCourse_id(102536);
+        teaches.setSemester("春季");
+        teaches.setSection_id(6);
+        teaches.setYear(2019);
+        try {
+            List<Student> res = teacherDao.getStudentOf(teaches);
+            System.out.println(res);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void test_get_req_list(){
+        try {
+            List<Request> res = teacherDao.getRequestList("T10000001",2019,"春季");
             System.out.println(res);
         }
         catch (Exception e){
