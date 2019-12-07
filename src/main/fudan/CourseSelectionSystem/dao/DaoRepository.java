@@ -3,6 +3,7 @@ package main.fudan.CourseSelectionSystem.dao;
 import main.fudan.CourseSelectionSystem.dao.Impl.*;
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,33 +13,7 @@ public class DaoRepository {
     }
 
     public static RequestDao getRequestDao(){
-        return new RequestDao(){
-
-            @Override
-            public boolean addRequest(Request request) {
-                return true;
-            }
-
-            @Override
-            public boolean deleteRequest(int studentID, int courseID, int sectionID, int year, String semester) {
-                return true;
-            }
-
-            @Override
-            public boolean updateRequest(Request request) {
-                return true;
-            }
-
-            @Override
-            public List<Request> getRequestListBySection(int courseID, int sectionID, int year, String semester) {
-                return null;
-            }
-
-            @Override
-            public List<Request> getRequestListByStudent(int studentID) {
-                return null;
-            }
-        };
+        return new RequestDaoImpl();
     }
 
     public static SectionDao getSectionDao(){

@@ -105,12 +105,14 @@ public class Exam {
     public String toString() {
         return "Exam{" +
                 "exam_time_slot_id=" + exam_time_slot_id +
-                ", exam_date=" + exam_date +
+                ", exam_date='" + exam_date + '\'' +
                 ", exam_type='" + exam_type + '\'' +
                 ", course_id=" + course_id +
                 ", section_id=" + section_id +
                 ", year=" + year +
                 ", semester='" + semester + '\'' +
+                ", exam_building='" + exam_building + '\'' +
+                ", exam_room_number='" + exam_room_number + '\'' +
                 '}';
     }
 }

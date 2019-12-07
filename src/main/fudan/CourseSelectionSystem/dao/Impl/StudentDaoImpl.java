@@ -61,7 +61,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<CompleteSection> getSelectedSectionList(String studentID) { //Todo 
+    public List<CompleteSection> getSelectedSectionList(String studentID) { //Todo
         String sql = "";
         return null;
     }

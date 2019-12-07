@@ -40,11 +40,16 @@ public class SectionDaoImpl implements SectionDao {
 
         /*插入section*/
         sqlList.add(sectionSql);
-        argList.add(Arrays.asList(section.getCourse_id(), section.getSection_id(), section.getYear(), section.getSemester(), section.getSection_capacity(), section.getBuilding(), section.getRoom_number(), section.getTime_slot_id()));
+        argList.add(Arrays.asList(section.getCourse_id(), section.getSection_id(),
+                section.getYear(), section.getSemester(), section.getSection_capacity(),
+                section.getBuilding(), section.getRoom_number(), section.getTime_slot_id()));
 
         /*插入exam*/
         sqlList.add(examSql);
-        argList.add(Arrays.asList(exam.getExam_date(), exam.getCourse_id(), exam.getSection_id(), exam.getYear(), exam.getSemester(), exam.getExam_time_slot_id(), exam.getExam_type(), exam.getExam_building(), exam.getExam_room_number()));
+        argList.add(Arrays.asList(exam.getExam_date(), exam.getCourse_id(),
+                exam.getSection_id(), exam.getYear(), exam.getSemester(),
+                exam.getExam_time_slot_id(), exam.getExam_type(),
+                exam.getExam_building(), exam.getExam_room_number()));
 
         /*插入teaches*/
         for(Teaches teaches : teachesList) {
@@ -55,13 +60,22 @@ public class SectionDaoImpl implements SectionDao {
     }
 
     @Override
-    public boolean deleteSection(int courseID, int sectionID, int year, String semester) {
-        return false;
+    public boolean deleteSection(int courseID, int sectionID, int year, String semester) throws SQLException {
+        String sql = "DELETE FROM `course_selection_system`.`section`\n" +
+                "WHERE course_id = ? AND section_id = ? AND year = ? AND semester = ?;\n";
+        return dao.update(sql, courseID, sectionID, year, semester);
     }
 
     @Override
-    public boolean updateSection(Section section) {
-        return false;
+    public boolean updateSection(Section section) throws SQLException {
+        String sql = "UPDATE `course_selection_system`.`section`\n" +
+                "SET \n" +
+                "`section_capacity` = ?,\n" +
+                "`building` = ?,\n" +
+                "`room_number` = ?,\n" +
+                "WHERE `course_id` = ? AND `section_id` = ? AND `year` = ? AND `semester` = ?;\n";
+        return dao.update(sql, section.getSection_capacity(), section.getBuilding(),section.getRoom_number(),
+                section.getCourse_id(), section.getSection_id(), section.getYear(), section.getSemester());
     }
 
     @Override
