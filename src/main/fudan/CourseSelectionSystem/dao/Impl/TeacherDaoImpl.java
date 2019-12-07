@@ -5,9 +5,11 @@ import main.fudan.CourseSelectionSystem.dao.TeacherDao;
 import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.entity.Profile;
 import main.fudan.CourseSelectionSystem.entity.Teacher;
+import main.fudan.CourseSelectionSystem.util.Utils;
 
 import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
  **/
 public class TeacherDaoImpl implements TeacherDao {
     private BaseDao<Teacher> dao = new JDBCDao<>();
+    private BaseDao<Section> sectionBaseDao = new JDBCDao<>();
 
     @Override
     public boolean addTeacher(Teacher teacher) throws SQLException {
@@ -85,6 +88,19 @@ public class TeacherDaoImpl implements TeacherDao {
 
     @Override
     public List<Section> getTimeConflictSections(CompleteSection section, String teacherID) {
+        List<TimeSlot> timeSlotList = Utils.getTimeSlotListByString(section.getCourse_time());
+        List<Section> sections = new ArrayList<>();
+        String sql = "SELECT secs.course_id,secs.section_id,secs.year,secs.section_capacity,secs.building,secs.room_number,secs.semester,secs.time_slot_id \n" +
+                "                FROM (\n" +
+                "                   SELECT * FROM (SELECT * FROM teaches as t natural join section as s WHERE t.teacher_id = ?) as temp natural join time_slot as ts \n" +
+                "                   WHERE temp.time_slot_id = ts.time_slot_id\n" +
+                "                   ) as secs \n" +
+                "WHERE secs.day = ? AND ? >= secs.start_time AND ? <= secs.end_time;";
+        for (TimeSlot timeSlot : timeSlotList){
+            List<Section> res = sectionBaseDao.getForList(Section.class,sql, teacherID, timeSlot.getDay(), timeSlot.getEnd_time(), timeSlot.getStart_time());
+            sections.addAll(res);
+        }
+        return sections;
 
     }
 

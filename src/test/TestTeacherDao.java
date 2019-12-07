@@ -3,7 +3,9 @@ package test;
 import main.fudan.CourseSelectionSystem.consts.Constant;
 import main.fudan.CourseSelectionSystem.dao.Impl.TeacherDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
+import main.fudan.CourseSelectionSystem.entity.CompleteSection;
 import main.fudan.CourseSelectionSystem.entity.Profile;
+import main.fudan.CourseSelectionSystem.entity.Section;
 import main.fudan.CourseSelectionSystem.entity.Teacher;
 
 import java.util.List;
@@ -12,7 +14,8 @@ public class TestTeacherDao {
     private static TeacherDao teacherDao = new TeacherDaoImpl();
 
     public static void main(String[] args) {
-        test_insert();
+//        test_insert();
+        test_slot_time_conflict();
     }
 
     private static void test_insert(){
@@ -31,6 +34,19 @@ public class TestTeacherDao {
             teacherDao.updateTeacher(teacher);
             List<Teacher> teacherList = teacherDao.getTeacherList();
             System.out.println(teacherList);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void test_slot_time_conflict(){
+        String teacher_id = "T10000001";
+        CompleteSection complete_section = new CompleteSection();
+        complete_section.setCourse_time("星期一,1-3");
+        try {
+            List<Section> res = teacherDao.getTimeConflictSections(complete_section,teacher_id);
+            System.out.println(res);
         }
         catch (Exception e){
             e.printStackTrace();
