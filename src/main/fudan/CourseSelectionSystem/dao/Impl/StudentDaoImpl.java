@@ -15,7 +15,6 @@ import java.util.List;
  **/
 public class StudentDaoImpl implements StudentDao {
     private BaseDao<Student> studentDao = new JDBCDao<>();
-    private BaseDao<Request> requestDao = new JDBCDao<>();
     private BaseDao<SectionWithGrade> sectionWithGradeDao = new JDBCDao<>();
 
     @Override
@@ -64,11 +63,5 @@ public class StudentDaoImpl implements StudentDao {
     public List<CompleteSection> getSelectedSectionList(String studentID) { //Todo
         String sql = "";
         return null;
-    }
-
-    @Override
-    public List<Request> getRequestList(String studentID) {
-        String sql = "select * from request where student_id = ?";
-        return requestDao.getForList(Request.class, sql, studentID);
     }
 }

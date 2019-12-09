@@ -39,33 +39,33 @@ public class TakesDaoImpl implements TakesDao {
     public boolean dropSection(String studentID, int courseID, int sectionID, int year, String semester) throws SQLException{
         String sql = "update takes " +
                      "set drop_flag = ? " +
-                     "where (student_id, course_id, section_id, year, semester) = (?, ?, ?, ?, ?)";
+                     "where student_id = ? and course_id = ? and section_id = ? and year = ? and semester = ?";
         return dao.update(sql, true, studentID, courseID, sectionID, year, semester);
     }
 
     @Override
     public List<Section> getTimeConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
         String timeSlotSql = "select time_slot_id, day, start_time, end_time " +
-                "from section natural time_slot " +
-                "where (course_id, section_id, year, semester) = (?, ?, ?, ?)";
+                "from section natural join time_slot " +
+                "where course_id = ? and section_id = ? and year = ? and semester = ?";
         BaseDao<TimeSlot> timeSlotDao = new JDBCDao<>();
         List<TimeSlot> timeSlotList = timeSlotDao.getForList(TimeSlot.class, timeSlotSql, courseID, sectionID, year, semester);
         BaseDao<Section> sectionDao = new JDBCDao<>();
         List<Section> sectionList = new LinkedList<>();
         String sectionSql = "select distinct course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id " +
-                "from takes natural join section natural time_slot " +
-                "where (student_id, day) = (?, ?) and (start_time between (?, ?) or ? between (start_time, end_time))";
+                "from takes natural join section natural join time_slot " +
+                "where student_id = ? and day = ? and ((start_time >= ? and start_time <= ?) or (? >= start_time and ? <= end_time))";
         for(TimeSlot timeSlot : timeSlotList) {
-            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql, studentID, timeSlot.getDay(), timeSlot.getStart_time(), timeSlot.getEnd_time(), timeSlot.getStart_time()));
+            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql, studentID, timeSlot.getDay(), timeSlot.getStart_time(), timeSlot.getEnd_time(), timeSlot.getStart_time(), timeSlot.getStart_time()));
         }
         return sectionList;
     }
 
     @Override
     public List<Section> getExamConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
-        String timeSlotIDSql = "select time_slot_id" +
-                "from section natural exam " +
-                "where (course_id, section_id, year, semester) = (?, ?, ?, ?)";
+        String timeSlotIDSql = "select time_slot_id " +
+                "from section natural join exam " +
+                "where course_id = ? and section_id = ? and year = ? and semester = ?";
         int examTimeSlotID = dao.getForValue(timeSlotIDSql, courseID, sectionID, year, semester);
         String timeSlotSql = "select time_slot_id, day, start_time, end_time " +
                 "from time_slot " +
@@ -75,11 +75,11 @@ public class TakesDaoImpl implements TakesDao {
         BaseDao<Section> sectionDao = new JDBCDao<>();
         List<Section> sectionList = new LinkedList<>();
         String sectionSql = "select distinct course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id " +
-                "from takes natural join section natural time_slot " +
-                "where (student_id, day) = (?, ?) and (start_time between (?, ?) or ? between (start_time, end_time))";
+                "from takes natural join section natural join time_slot " +
+                "where student_id = ? and day = ? and ((start_time >= ? and start_time <= ?) or (? >= start_time and ? <= end_time))";
         for(TimeSlot timeSlot : timeSlotList) {
-            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql, studentID, timeSlot.getDay(), timeSlot.getStart_time(), timeSlot.getEnd_time(), timeSlot.getStart_time()));
+            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql, studentID, timeSlot.getDay(), timeSlot.getStart_time(), timeSlot.getEnd_time(), timeSlot.getStart_time(), timeSlot.getStart_time()));
         }
-        return null;
+        return sectionList;
     }
 }
