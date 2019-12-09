@@ -8,7 +8,7 @@ package main.fudan.CourseSelectionSystem.entity;
  * @Version 1.0
  **/
 public class Takes {
-    private int student_id;
+    private String student_id;
     private int course_id;
     private int section_id;
     private int year;
@@ -20,7 +20,7 @@ public class Takes {
 
     }
 
-    public Takes(int student_id, int course_id, int section_id, int year, String semester, String level, boolean drop_flag) {
+    public Takes( String student_id, int course_id, int section_id, int year, String semester, String level, boolean drop_flag) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.section_id = section_id;
@@ -30,11 +30,11 @@ public class Takes {
         this.drop_flag = drop_flag;
     }
 
-    public int getStudent_id() {
+    public String getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(int student_id) {
+    public void setStudent_id( String student_id) {
         this.student_id = student_id;
     }
 

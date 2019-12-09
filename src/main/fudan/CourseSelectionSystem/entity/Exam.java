@@ -17,7 +17,7 @@ public class Exam {
 
     }
 
-    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester) {
+    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester, String exam_building, String exam_room_number) {
         this.exam_time_slot_id = exam_time_slot_id;
         this.exam_date = exam_date;
         this.exam_type = exam_type;
@@ -25,6 +25,8 @@ public class Exam {
         this.section_id = section_id;
         this.year = year;
         this.semester = semester;
+        this.exam_building = exam_building;
+        this.exam_room_number = exam_room_number;
     }
 
     public int getExam_time_slot_id() {

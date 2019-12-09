@@ -27,7 +27,7 @@ public class SectionDaoImpl implements SectionDao {
     public boolean addSection(Section section, Exam exam, List<TimeSlot> classTimeSlots, TimeSlot examTimeSlot, List<Teaches> teachesList) throws SQLException {
         String timeSlotsSql = "insert into time_slot (time_slot_id, day, start_time, end_time) values (?, ?, ?, ?)";
         String sectionSql = "insert into section (course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id) values (?,?,?,?,?,?,?,?)";
-        String examSql = "insert into exam (exam_date, course_id, section_id, year, semester, exam_time_slot_id, exam_type, exam_building, exam_room_number) values (?,?,?,?,?,?,?)";
+        String examSql = "insert into exam (exam_date, course_id, section_id, year, semester, exam_time_slot_id, exam_type, exam_building, exam_room_number) values (?,?,?,?,?,?,?,?,?)";
         String teachesSql = "insert into teaches (teacher_id, course_id, section_id, year, semester) values (?,?,?,?,?)";
         List<String> sqlList = new LinkedList<>();
         List<List<Object>> argList = new LinkedList<>();

@@ -35,8 +35,6 @@ public class TestSectionDao {
     }
 
     public static void testAddSection() {
-
-        Exam exam = new Exam(4, "2019-06-25", "开卷", 102536, 2, 2019, "春季");
         List<TimeSlot> classTimeSlotList = new LinkedList<>();
         TimeSlot classTimeSlot = new TimeSlot(3, "星期三", 2, 4);
         classTimeSlotList.add(classTimeSlot);
@@ -44,10 +42,10 @@ public class TestSectionDao {
         List<Teaches> teachesList = new LinkedList<>();
         Teaches teaches = new Teaches(102536, 2, 2019, "春季", "T10000001");
         teachesList.add(teaches);
-
         try{
+            Exam exam = new Exam(4, "2019-06-25", "开卷", 102536, 2, 2019, "春季","z2","201");
             sectionDao.addSection(section, exam, classTimeSlotList, examTimeSlot, teachesList);
-        }catch (SQLException e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -112,4 +110,22 @@ public class TestSectionDao {
             e.printStackTrace();
         }
     }
+
+//    public static void testAddSection() {
+//        Section section = new Section(102537, 1, 2019, "春季", 30, "Z2", "203", 5);
+//        Exam exam = new Exam(6, "2019-06-25", "开卷", 102536, 2, 2019, "春季", );
+//        List<TimeSlot> classTimeSlotList = new LinkedList<>();
+//        TimeSlot classTimeSlot = new TimeSlot(3, "星期三", 2, 4);
+//        classTimeSlotList.add(classTimeSlot);
+//        TimeSlot examTimeSlot = new TimeSlot(4, "星期五", 2, 4);
+//        List<Teaches> teachesList = new LinkedList<>();
+//        Teaches teaches = new Teaches(102536, 2, 2019, "春季", "T10000001");
+//        teachesList.add(teaches);
+//        SectionDao sectionDao = new SectionDaoImpl();
+//        try{
+//            sectionDao.addSection(section, exam, classTimeSlotList, examTimeSlot, teachesList);
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
