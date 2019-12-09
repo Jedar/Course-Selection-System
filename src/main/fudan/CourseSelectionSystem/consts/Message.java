@@ -7,4 +7,6 @@ public class Message {
     public static final String MSG_LOGIN_SUCCESS = "Login success";
     /* 未知登录错误 */
     public static final String MSG_LOGIN_UNKNOWN = "Unknown login error";
+    /* 插入数据成功 */
+    public static final String MSG_INSERT_SUCCESS = "Insert success";
 }

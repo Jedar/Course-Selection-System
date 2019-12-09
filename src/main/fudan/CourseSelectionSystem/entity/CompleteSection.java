@@ -1,5 +1,7 @@
 package main.fudan.CourseSelectionSystem.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * @ClassName CompleteSection
  * @Description TODO
@@ -8,24 +10,61 @@ package main.fudan.CourseSelectionSystem.entity;
  * @Version 1.0
  **/
 public class CompleteSection {
+    @JSONField(name="course_id")
     private int course_id;
+
+    @JSONField(name="section_id")
     private int section_id;
+
+    @JSONField(name="year")
     private int year;
+
+    @JSONField(name="semester")
     private String semester;
+
+    @JSONField(name="current_student_num")
     private int current_student_num;
+
+    @JSONField(name="section_capacity")
     private int section_capacity;
+
+    @JSONField(name="course_name")
     private String course_name;
+
+    @JSONField(name="credits")
     private int credits;
+
+    @JSONField(name="credit_hours")
     private int credit_hours;
+
+    @JSONField(name="school_abbr")
     private String school_abbr;
+
+    @JSONField(name="building")
     private String building;
+
+    @JSONField(name="room_number")
     private String room_number;
+
+    @JSONField(name="course_time")
     private String course_time;
+
+    @JSONField(name="exam_date")
     private String exam_date;
+
+    @JSONField(name="exam_type")
     private String exam_type;
+
+    @JSONField(name="exam_time")
     private String exam_time;
+
+    @JSONField(name="exam_building")
     private String exam_building;
+
+    @JSONField(name="exam_room_number")
     private String exam_room_number;
+
+    @JSONField(name="teachers")
     private String teachers;
 
     public int getCourse_id() {
