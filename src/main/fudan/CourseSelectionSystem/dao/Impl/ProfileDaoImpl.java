@@ -17,7 +17,7 @@ public class ProfileDaoImpl implements ProfileDao {
                 "`password`,\n" +
                 "`permission`)\n" +
                 "VALUES\n" +
-                "(?,?,?);\n";
+                "(?,MD5(?),?);\n";
         return dao.update(profileSql, profile.getProfile_id(),profile.getPassword(),profile.getPermission());
     }
 

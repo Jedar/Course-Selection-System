@@ -48,7 +48,7 @@ public class TeacherDaoImpl implements TeacherDao {
                 "`password`,\n" +
                 "`permission`)\n" +
                 "VALUES\n" +
-                "(?,?,?);\n";
+                "(?,MD5(?),?);\n";
         List<String> sqlList = new LinkedList<>();
         List<List<Object>> argList = new LinkedList<>();
 

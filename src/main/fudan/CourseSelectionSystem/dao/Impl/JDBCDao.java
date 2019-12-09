@@ -183,7 +183,15 @@ public class JDBCDao<T> implements BaseDao<T> {
 
             /*提交执行*/
             conn.commit();
-        }finally {
+        }
+        catch (Exception e){
+            /* 回滚 */
+            if(conn != null){
+                conn.rollback();
+            }
+            throw e;
+        }
+        finally {
             release(null,ps,conn);
         }
         return exeNum > 0;

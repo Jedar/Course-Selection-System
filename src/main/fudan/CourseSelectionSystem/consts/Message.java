@@ -1,0 +1,10 @@
+package main.fudan.CourseSelectionSystem.consts;
+
+public class Message {
+    /* 登录失败 */
+    public static final String MSG_LOGIN_FAILED = "Login failed. wrong password or id";
+    /* 登录成功信息 */
+    public static final String MSG_LOGIN_SUCCESS = "Login success";
+    /* 未知登录错误 */
+    public static final String MSG_LOGIN_UNKNOWN = "Unknown login error";
+}

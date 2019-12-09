@@ -1,7 +1,9 @@
 package main.fudan.CourseSelectionSystem.dao;
 
 import main.fudan.CourseSelectionSystem.dao.Impl.CompleteSectionDaoImpl;
+import main.fudan.CourseSelectionSystem.dao.Impl.ProfileDaoImpl;
 import main.fudan.CourseSelectionSystem.entity.CompleteSection;
+import main.fudan.CourseSelectionSystem.entity.Profile;
 
 /**
  * @ClassName DaoFactory
@@ -13,9 +15,11 @@ import main.fudan.CourseSelectionSystem.entity.CompleteSection;
 public class DaoFactory {
     private static DaoFactory daoFactory = new DaoFactory();
     private CompleteSectionDao completeSectionDao;
+    private ProfileDao profileDao;
 
     private DaoFactory() {
         completeSectionDao = new CompleteSectionDaoImpl();
+        profileDao = new ProfileDaoImpl();
     }
 
     public static DaoFactory getInstance() {
@@ -24,5 +28,9 @@ public class DaoFactory {
 
     public CompleteSectionDao getCompleteSectionDao() {
         return completeSectionDao;
+    }
+
+    public ProfileDao getProfileDao(){
+        return profileDao;
     }
 }

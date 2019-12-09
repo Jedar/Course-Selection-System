@@ -3,4 +3,44 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/jsp/error.jsp</location>
+    </error-page>
+
+    <context-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+    <!--检测用户是否登录的过滤器配置-->
+    <!--用户信息存放到session中的键的名字-->
+    <context-param>
+        <param-name>userSessionKey</param-name>
+        <param-value>user</param-value>
+    </context-param>
+    <!--若未登录，需要重定向的页面-->
+    <context-param>
+        <param-name>redirectPage</param-name>
+        <param-value>/jsp/login.jsp</param-value>
+    </context-param>
+    <!--不需要拦截的URL列表-->
+    <context-param>
+        <param-name>uncheckedUrls</param-name>
+        <param-value>/index.jsp,/jsp/login.jsp</param-value>
+    </context-param>
+    <!--错误页面-->
+    <context-param>
+        <param-name>errorPage</param-name>
+        <param-value>/WEB-INF/jsp/error.jsp</param-value>
+    </context-param>
+    <!--首页-->
+    <context-param>
+        <param-name>homePage</param-name>
+        <param-value>/jsp/login.jsp</param-value>
+    </context-param>
+
 </web-app>

@@ -9,4 +9,10 @@ public class Constant {
     public static final String PERM_STUDENT = "Student";
     /* 管理员权限 */
     public static final String PERM_MANAGER = "Manager";
+    /* 拦截前的界面 */
+    public static final String SESSION_BLOCK_PAGE = "block_page";
+    /* 用户字段 */
+    public static final String SESSION_USER = "user";
+    /* 用户权限字段 */
+    public static final String SESSION_PERMISSION = "permission";
 }
