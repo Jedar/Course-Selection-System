@@ -3,9 +3,11 @@ package main.fudan.CourseSelectionSystem.dao.Impl;
 import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.SectionDao;
 import main.fudan.CourseSelectionSystem.entity.*;
+import main.fudan.CourseSelectionSystem.util.Utils;
 
 import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
  **/
 public class SectionDaoImpl implements SectionDao {
     BaseDao<Section> dao = new JDBCDao<>();
+    BaseDao<CompleteSection> completeSectionBaseDao = new JDBCDao<>();
 
     @Override
     public boolean addSection(Section section, Exam exam, List<TimeSlot> classTimeSlots, TimeSlot examTimeSlot, List<Teaches> teachesList) throws SQLException {
@@ -72,8 +75,8 @@ public class SectionDaoImpl implements SectionDao {
                 "SET \n" +
                 "`section_capacity` = ?,\n" +
                 "`building` = ?,\n" +
-                "`room_number` = ?,\n" +
-                "WHERE `course_id` = ? AND `section_id` = ? AND `year` = ? AND `semester` = ?;\n";
+                "`room_number` = ?\n" +
+                "WHERE `course_id` = ? AND `section_id` = ? AND `year` = ? AND `semester` = ?\n";
         return dao.update(sql, section.getSection_capacity(), section.getBuilding(),section.getRoom_number(),
                 section.getCourse_id(), section.getSection_id(), section.getYear(), section.getSemester());
     }
@@ -85,16 +88,102 @@ public class SectionDaoImpl implements SectionDao {
 
     @Override
     public List<CompleteSection> getSectionList() {
-        return null;
+        String sql = "SELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, exam_time, \n" +
+                "teachers, course_time, section_capacity, course_name, credits, credit_hours, school_abbr, building, room_number, current_student_num\n" +
+                "FROM (\n" +
+                "\tsection JOIN (\n" +
+                "\t\tSELECT time_slot_id, group_concat(item separator ' ') AS course_time FROM (\n" +
+                "\t\t\tSELECT time_slot_id, CONCAT_WS(',',day,CONCAT_WS('-',start_time,end_time)) AS item FROM time_slot\n" +
+                "\t\t) AS temp GROUP BY time_slot_id\n" +
+                "\t) AS slots on section.time_slot_id = slots.time_slot_id\n" +
+                "    NATURAL JOIN course\n" +
+                "    NATURAL JOIN (\n" +
+                "\t\tSELECT course_id, section_id, year, semester, group_concat(teacher_name separator ',') AS teachers FROM \n" +
+                "\t\tteacher natural join teaches GROUP BY course_id, section_id, year, semester\n" +
+                "\t) AS teacher_t\n" +
+                "    NATURAL JOIN (\n" +
+                "\t\tSELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, \n" +
+                "\t\tCONCAT_WS(',',day,CONCAT_WS('-',start_time,end_time)) AS exam_time \n" +
+                "\t\tFROM exam join time_slot ON exam.exam_time_slot_id = time_slot.time_slot_id\n" +
+                "    ) AS exam_slot_t\n" +
+                "    NATURAL JOIN (\n" +
+                "\t\tSELECT course_id, section_id, year, semester, COUNT(student_id) AS current_student_num\n" +
+                "\t\tFROM takes NATURAL RIGHT JOIN section\n" +
+                "        WHERE drop_flag = false OR drop_flag IS NULL\n" +
+                "        GROUP BY course_id, section_id, year, semester \n" +
+                "    ) AS student_num_t\n" +
+                ")";
+        return completeSectionBaseDao.getForList(CompleteSection.class, sql);
     }
 
     @Override
-    public int getStudentNum(Section section) {
-        return 0;
+    public int getStudentNum(Section section) throws Exception {
+        String sql = "SELECT course_id, section_id, year, semester, COUNT(student_id) AS current_student_num\n" +
+                "FROM takes NATURAL RIGHT JOIN (\n" +
+                "   SELECT * FROM section WHERE course_id=? AND section_id=? AND year=? AND semester=? \n" +
+                ") AS sec_t GROUP BY course_id, section_id, year, semester";
+        List<CompleteSection> list = completeSectionBaseDao.getForList(CompleteSection.class, sql,
+                section.getCourse_id(),section.getSection_id(), section.getYear(), section.getSemester());
+        /* 错误查询 */
+        if (list.size() != 1){
+            throw new Exception("section information error");
+        }
+        return list.get(0).getCurrent_student_num();
     }
 
     @Override
+    public List<Section> getCourseConflictSectionList(CompleteSection section) {
+        String sql = "SELECT distinct course_id, section_id, year, semester, building, room_number\n" +
+                "FROM section JOIN time_slot ON section.time_slot_id = time_slot.time_slot_id\n" +
+                "WHERE (building = ? AND room_number = ? AND day = ? AND ? <= end_time AND ? >= start_time)\n";
+        List<TimeSlot> slots = Utils.getTimeSlotListByString(section.getCourse_time());
+        List<Section> sections = new ArrayList<>();
+        TimeSlot exam = Utils.getTimeSlotByString(section.getExam_time());
+        for (TimeSlot ts: slots){
+            sections.addAll(dao.getForList(Section.class, sql, section.getBuilding(), section.getRoom_number(),
+                    ts.getDay(), ts.getStart_time(), ts.getEnd_time()));
+        }
+        return sections;
+    }
+
+    @Override
+    public List<Section> getExamConflictSectionList(CompleteSection section) {
+        String sql = "SELECT distinct course_id, section_id, year, semester, building, room_number\n" +
+                "FROM section \n" +
+                "NATURAL JOIN (\n" +
+                "\tSELECT course_id, section_id, year, semester,exam_building,exam_room_number,day AS exam_day, start_time AS exam_start, end_time AS exam_end \n" +
+                "    FROM exam JOIN time_slot ON exam.exam_time_slot_id = time_slot.time_slot_id\n" +
+                ") AS exam_t\n" +
+                "WHERE exam_building = ? AND exam_room_number = ? AND exam_day = ? AND ? <= exam_end AND ? >= exam_start";
+        List<TimeSlot> slots = Utils.getTimeSlotListByString(section.getCourse_time());
+        List<Section> sections = new ArrayList<>();
+        TimeSlot exam = Utils.getTimeSlotByString(section.getExam_time());
+        for (TimeSlot ts: slots){
+            sections.addAll(dao.getForList(Section.class, sql,
+                    section.getExam_building(), section.getExam_room_number(),
+                    exam.getDay(),exam.getStart_time(),exam.getEnd_time()));
+        }
+        return sections;
+    }
+
     public List<Section> getConflictSectionList(CompleteSection section) {
+        String sql = "SELECT distinct course_id, section_id, year, semester, building, room_number\n" +
+                "FROM section JOIN time_slot ON section.time_slot_id = time_slot.time_slot_id\n" +
+                "NATURAL JOIN (\n" +
+                "   SELECT course_id, section_id, year, semester,exam_building,exam_room_number,day AS exam_day, start_time AS exam_start, end_time AS exam_end \n" +
+                "    FROM exam JOIN time_slot ON exam.exam_time_slot_id = time_slot.time_slot_id\n" +
+                ") AS exam_t\n" +
+                "WHERE (building = ? AND room_number = ? AND day = ? AND ? <= end_time AND ? >= start_time)\n" +
+                "OR (exam_building = ? AND exam_room_number = ? AND exam_day = ? AND ? <= exam_end AND ? >= exam_start)";
+        List<TimeSlot> slots = Utils.getTimeSlotListByString(section.getCourse_time());
+        List<Section> sections = new ArrayList<>();
+        TimeSlot exam = Utils.getTimeSlotByString(section.getExam_time());
+        for (TimeSlot ts: slots){
+            sections.addAll(dao.getForList(Section.class, sql, section.getBuilding(), section.getRoom_number(),
+                    ts.getDay(), ts.getStart_time(), ts.getEnd_time(),
+                    section.getExam_building(), section.getExam_room_number(),
+                    exam.getDay(),exam.getStart_time(),exam.getEnd_time()));
+        }
         return null;
     }
 }

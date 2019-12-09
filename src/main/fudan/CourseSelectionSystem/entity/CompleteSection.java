@@ -12,7 +12,7 @@ public class CompleteSection {
     private int section_id;
     private int year;
     private String semester;
-    private String current_student_num;
+    private int current_student_num;
     private int section_capacity;
     private String course_name;
     private int credits;
@@ -58,14 +58,6 @@ public class CompleteSection {
 
     public void setSemester(String semester) {
         this.semester = semester;
-    }
-
-    public String getCurrent_student_num() {
-        return current_student_num;
-    }
-
-    public void setCurrent_student_num(String current_student_num) {
-        this.current_student_num = current_student_num;
     }
 
     public int getSection_capacity() {
@@ -178,6 +170,14 @@ public class CompleteSection {
 
     public void setExam_room_number(String exam_room_number) {
         this.exam_room_number = exam_room_number;
+    }
+
+    public int getCurrent_student_num() {
+        return current_student_num;
+    }
+
+    public void setCurrent_student_num(int current_student_num) {
+        this.current_student_num = current_student_num;
     }
 
     @Override

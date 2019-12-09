@@ -1,0 +1,69 @@
+.a-white:link { text-decoration: none;color: #ffffff
+}
+
+.a-white:active { text-decoration:blink}
+
+.a-white:hover { text-decoration:none;color: #ffffff
+}
+
+.a-white:visited { text-decoration: none;color: #ffffff
+}
+
+.a-black:link { text-decoration: none;color: #000000
+}
+
+.a-black:active { text-decoration:blink}
+
+.a-black:hover { text-decoration:none;color: #000000
+}
+
+.a-black:visited { text-decoration: none;color: #000000
+}
+
+.dropdown-item:hover{
+    background: #8795a2;
+}
+
+/* handle jquery validate */
+.error{
+    color:red;
+}
+
+.conflictDiv{
+    color: red;
+}
+
+.row-fix{
+    padding-top: 1em;
+}
+
+main{
+    /* sure context have enough space */
+    min-height: 700px;
+}
+
+/*tip part*/
+#tip, #error{
+    position: fixed;
+    top: 20%;
+    left: 47%;
+    right: 47%;
+    width: fit-content;
+    padding: 0.5em;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 0.3em 0.3em;
+    z-index: 1060;
+}
+
+/*login part*/
+.login-img{
+    background:url(../img/019070.jpg) no-repeat center;
+    background-size:100%;
+    margin: 0;
+}
+.login-img .card{
+    padding: 0;
+    margin-top: 5em;
+    margin-bottom: 12em;
+}

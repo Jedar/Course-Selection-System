@@ -13,8 +13,11 @@ public interface SectionDao {
     public List<CompleteSection> getSectionList();
 
     //选课人数
-    public int getStudentNum(Section section);
+    public int getStudentNum(Section section) throws Exception;
 
-    /*检查课程时间，地点冲突*/
-    public List<Section> getConflictSectionList(CompleteSection section);
+    /* 检查课程时间，地点冲突 */
+    public List<Section> getCourseConflictSectionList(CompleteSection section);
+
+    /* 检查考试冲突 */
+    public List<Section> getExamConflictSectionList(CompleteSection section);
 }
