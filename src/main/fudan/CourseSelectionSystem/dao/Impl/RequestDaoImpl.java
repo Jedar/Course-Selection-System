@@ -68,16 +68,7 @@ public class RequestDaoImpl implements RequestDao{
 
     @Override
     public List<Request> getRequestListByStudent(String studentID) {
-        String sql = "SELECT `sec_request`.`student_id`,\n" +
-                "    `sec_request`.`course_id`,\n" +
-                "    `sec_request`.`section_id`,\n" +
-                "    `sec_request`.`year`,\n" +
-                "    `sec_request`.`semester`,\n" +
-                "    `sec_request`.`request_content`,\n" +
-                "    `sec_request`.`pass_or_not`,\n" +
-                "    `sec_request`.`reply_content`\n" +
-                "FROM `course_selection_system`.`sec_request`" +
-                "WHERE `student_id` = ?";
+        String sql = "select * from request where student_id = ?";
         return dao.getForList(Request.class, sql, studentID);
     }
 }

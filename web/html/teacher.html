@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" rel="script" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" rel="script" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <!--<li>-->
+                        <!--<a class="nav-link active " id="v-pills-receivedMessage-tab" data-toggle="pill" href="#v-pills-receivedMessage" role="tab" aria-controls="v-pills-receivedMessage" aria-selected="true">选课</a>-->
+                    <!--</li>-->
+                    <!--<li class="mx-auto">-->
+                        <!--<a class="nav-link" id="v-pills-readMessage-tab" data-toggle="pill" href="#v-pills-readMessage" role="tab" aria-controls="v-pills-readMessage" aria-selected="false">已读 <span class="badge badge-pill badge-secondary">4</span></a>-->
+                    <!--</li>-->
+                    <!--<li class="mx-auto">-->
+                        <!--<a class="nav-link" id="v-pills-unreadMessage-tab" data-toggle="pill" href="#v-pills-unreadMessage" role="tab" aria-controls="v-pills-unreadMessage" aria-selected="false">未读 <span class="badge badge-pill badge-secondary">4</span></a>-->
+                    <!--</li>-->
+                    <li>
+                        <a class="nav-link" id="v-pills-myCourse-tab" data-toggle="pill" href="#v-pills-myCourse" role="tab" aria-controls="v-pills-sendMessage" aria-selected="false">开设课程</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-courseRequest-tab" data-toggle="pill" href="#v-pills-courseRequest" role="tab" aria-controls="v-pills-writeMessage" aria-selected="false">选课事务申请</a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a class="nav-link" id="v-pills-myScore-tab" data-toggle="pill" href="#v-pills-myScore" role="tab" aria-controls="v-pills-addFriend" aria-selected="false">我的成绩</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="nav-link" id="v-pills-myExam-tab" data-toggle="pill" href="#v-pills-myExam" role="tab" aria-controls="v-pills-request" aria-selected="false">我的考试</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-readMessage" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card">
+                                    <div class="card-header">
+                                        From: username
+                                    </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-unreadMessage" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="unreadMessage" id="unreadMessage">
+                            <div class="card">
+                                <div class="card-header" id="heading1">
+                                    <div class="row">
+                                        <figure class="col-2">
+                                            <img src="../resource/019010.jpg" class="figure-img rounded" width="50" height="50" alt="" />
+                                        </figure>
+                                        <div class="col-4 offset-1 align-self-center">
+                                            <h4>From: Admin</h4>
+                                        </div>
+                                        <div class="col-2 offset-2 align-self-center">
+                                            <div class="justify-content-center">
+                                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">阅读</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#unreadMessage">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="message">Content</label>
+                                                <textarea class="form-control" readonly id="message" rows="3"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading2">
+                                    <div class="row">
+                                        <figure class="col-2">
+                                            <img src="../resource/019010.jpg" class="figure-img rounded" width="50" height="50" alt="" />
+                                        </figure>
+                                        <div class="col-4 offset-1 align-self-center">
+                                            <h4>From: Admin</h4>
+                                        </div>
+                                        <div class="col-2 offset-2 align-self-center">
+                                            <div class="justify-content-center">
+                                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">阅读</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="collapse2" class="collapse show" aria-labelledby="heading1" data-parent="#unreadMessage">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="message">Content</label>
+                                                <textarea class="form-control" readonly id="message1" rows="3"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-myCourse" role="tabpanel" aria-labelledby="v-pills-myCourse-tab">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">课程代码</th>
+                                            <th scope="col">课程序号</th>
+                                            <th scope="col">上课地点</th>
+                                            <th scope="col">上课时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">102536</th>
+                                            <td>102536.01</td>
+                                            <td>Z2201</td>
+                                            <td>周一2 — 4</td>
+                                            <td><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseFriend" aria-expanded="false" aria-controls="collapseFriend">选课名单</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="collapseFriend" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect2"></label>
+                                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                                    <option>贾宝玉</option>
+                                                    <option>林黛玉</option>
+                                                    <option>元春</option>
+                                                    <option>袭人</option>
+                                                    <option>惜春</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-courseRequest" role="tabpanel" aria-labelledby="v-pills-courseRequest-tab">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card">
+                                    <div class="card-header">
+                                        To: username
+                                    </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card">
+                                    <div class="card-header">
+                                        To: username
+                                    </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card">
+                                    <div class="card-header">
+                                        To: username
+                                    </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-myScore" role="tabpanel" aria-labelledby="v-pills-myScore-tab">
+                        <form>
+                            <div class="form-group">
+                                <label for="requestName">Name</label>
+                                <input type="text" class="form-control" id="requestName" placeholder="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="requestContent">Content</label>
+                                <textarea class="form-control" id="requestContent" rows="3"></textarea>
+                            </div>
+                            <button class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-myExam" role="tabpanel" aria-labelledby="v-pills-myExam-tab">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <figure class="col-2">
+                                        <img src="../resource/019010.jpg" class="figure-img rounded" width="100" height="100" alt="" />
+                                    </figure>
+                                    <div class="col-4 offset-1 align-self-center">
+                                        <h4>Admin</h4>
+                                        <p>我是来自XX群聊的XXX</p>
+                                    </div>
+                                    <div class="col-2 offset-2 align-self-center">
+                                        <div class="justify-content-center">
+                                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">同意</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

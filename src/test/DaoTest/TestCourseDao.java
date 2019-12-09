@@ -58,7 +58,7 @@ public class TestCourseDao {
 
     private static void test_get_course_list(){
         try {
-            System.out.println(dao.getCourseList(course.getCourse_id()));
+            System.out.println(dao.getCourseList());
         }
         catch (Exception e){
             e.printStackTrace();

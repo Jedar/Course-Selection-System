@@ -13,7 +13,4 @@ public interface StudentDao {
     public List<SectionWithGrade> getSectionWithGradeList(String studentID);
     public double getGPA(String studentID);
     public List<CompleteSection> getSelectedSectionList(String studentID);
-
-    /*查看我的申请列表*/
-    public List<Request> getRequestList(String studentID);
 }
