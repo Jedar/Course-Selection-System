@@ -33,4 +33,12 @@
             <span>管理</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           id="v-pills-import-tab"
+           href="${pageContext.request.contextPath}/jsp/manager_import.jsp">
+            <i class="fa fa-fw fa-tasks"></i>
+            <span>导入</span>
+        </a>
+    </li>
 </ul>

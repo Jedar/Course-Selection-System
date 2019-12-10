@@ -4,6 +4,9 @@ import main.fudan.CourseSelectionSystem.dao.BaseDao;
 import main.fudan.CourseSelectionSystem.dao.StudentDao;
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,6 +27,28 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
+    public boolean addStudentWithProfile(Student student, Profile profile) throws SQLException {
+        String sql = "insert into student (student_id, student_name, school_abbr) values (?,?,?)";
+        String profileSql = "INSERT INTO `course_selection_system`.`profile`\n" +
+                "(`profile_id`,\n" +
+                "`password`,\n" +
+                "`permission`)\n" +
+                "VALUES\n" +
+                "(?,MD5(?),?);\n";
+        List<String> sqlList = new LinkedList<>();
+        List<List<Object>> argList = new LinkedList<>();
+
+        sqlList.add(profileSql);
+        argList.add(Arrays.asList(profile.getProfile_id(),profile.getPassword(),profile.getPermission()));
+//        System.out.println(profile);
+
+        sqlList.add(sql);
+        argList.add(Arrays.asList(student.getStudent_id(),student.getStudent_name(),student.getSchool_abbr()));
+
+        return studentDao.transactionUpdate(sqlList,argList);
+    }
+
+    @Override
     public boolean deleteStudent(String studentID) {
         return false;
     }
@@ -36,6 +61,15 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student getStudentByID(String studentID) {
         return null;
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        String sql = "SELECT `student`.`student_id`,\n" +
+                "    `student`.`student_name`,\n" +
+                "    `student`.`school_abbr`\n" +
+                "FROM `course_selection_system`.`student`;\n";
+        return studentDao.getForList(Student.class, sql);
     }
 
     @Override
@@ -64,4 +98,6 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "";
         return null;
     }
+
+
 }

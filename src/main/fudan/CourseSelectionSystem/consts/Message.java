@@ -9,4 +9,8 @@ public class Message {
     public static final String MSG_LOGIN_UNKNOWN = "Unknown login error";
     /* 插入数据成功 */
     public static final String MSG_INSERT_SUCCESS = "Insert success";
+    /* 删除课程成功 */
+    public static final String MSG_DELETE_SUCCESS = "Delete success";
+    /* 删除课程失败 */
+    public static final String MSG_DELETE_FAILED = "Delete failed";
 }

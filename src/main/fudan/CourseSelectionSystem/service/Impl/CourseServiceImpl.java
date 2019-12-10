@@ -13,7 +13,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public boolean insertCourse(Course course) throws Exception{
-        /* 底层报错 */
+        courseDao.addCourse(course);
         return true;
     }
 

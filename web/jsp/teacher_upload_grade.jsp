@@ -1,26 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="main.fudan.CourseSelectionSystem.service.StudentService" %>
-<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.StudentServiceImpl" %>
-<%@ page import="java.util.List" %>
-<%@ page import="main.fudan.CourseSelectionSystem.entity.Student" %><%--
-  Created by IntelliJ IDEA.
-  User: 38403
-  Date: 2019/12/9
-  Time: 22:03
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    StudentService studentService = new StudentServiceImpl();
-    List<Student> list = studentService.getStudentList();
-    request.setAttribute("studentList",list);
-%>
-<jsp:useBean id="studentList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.Student>" scope="request"/>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,6 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
+    <link href="../css/util.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -47,38 +30,56 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <jsp:include page="../inc/manager_slidebar.inc.jsp"/>
+    <jsp:include page="../inc/teacher_slidebar.inc.jsp"/>
 
     <div id="content-wrapper">
 
         <div class="container-fluid">
 
-            <div>
-                <!--学生列表-->
-                <div class="container">
-                    <div>
-                        <h1>学生列表</h1>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">学生编号</th>
-                                <th scope="col">学生姓名</th>
-                                <th scope="col">学生所在学院</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="item" items="${studentList}">
-                                <tr>
-                                    <th scope="row">${item.student_id}</th>
-                                    <td>${item.student_name}</td>
-                                    <td>${item.school_abbr}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="container">
+                <%--内容填充在这里--%>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>导入课程成绩信息</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <form>
+                                    <div class="form-row justify-content-center">
+                                        <div class="offset-1"><h3>课程信息：</h3></div>
+                                        <div class="col-2">
+                                            <input id="c_id" type="text" class="form-control" placeholder="课程编号">
+                                        </div>
+                                        <div class="col-2">
+                                            <input id="c_sec" type="text" class="form-control" placeholder="节数编号">
+                                        </div>
+                                        <div class="col-2">
+                                            <input id="c_year" type="text" class="form-control" placeholder="开课年份">
+                                        </div>
+                                        <div class="col-3">
+                                            <input id="c_semester" type="text" class="form-control" placeholder="开课学期">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <br/>
+                            <div class="row justify-content-center">
+                                <div class="offset-1"></div>
+                                <div class="col-7">
+                                    <input accept="*/*"
+                                           type="file"
+                                           class="form-control"
+                                           name="image"
+                                           id="import-upload-grade"
+                                           value="">
+                                </div>
+                                <div class="col-4">
+                                    <button id="btn_upload_grade" type="button" class="btn btn-primary">导入课程成绩</button>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
             </div>
 
         </div>
@@ -131,8 +132,10 @@
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin.js"></script>
 
-<script src="../js/manager.js"></script>
+<script src="../js/teacher.js"></script>
+
 <script src="../js/util.js"></script>
 </body>
 
 </html>
+

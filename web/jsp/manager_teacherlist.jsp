@@ -1,4 +1,7 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Teacher" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.TeacherService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.TeacherServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -6,43 +9,37 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    TeacherService service = new TeacherServiceImpl();
+    List<Teacher> list = service.getTeacherList();
+    request.setAttribute("teacherList",list);
+%>
+<jsp:useBean id="teacherList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.Teacher>" scope="request"/>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Course Selection System</title>
-
     <!-- Custom fonts for this template-->
     <link href="../font/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
-
     <!-- Page level plugin CSS-->
     <link href="../css/dataTables.bootstrap4.css" rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
-
 </head>
-
 <body id="page-top">
-
 <jsp:include page="../inc/frame_header.inc.jsp"/>
-
 <div id="wrapper">
-
     <!-- Sidebar -->
     <jsp:include page="../inc/manager_slidebar.inc.jsp"/>
-
     <div id="content-wrapper">
-
         <div class="container-fluid">
-
             <div>
                 <!--教师列表-->
                 <div class="container">
@@ -58,12 +55,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">T10000001</th>
-                                <td>Otto</td>
-                                <td>教授</td>
-                                <td>SOFT</td>
-                            </tr>
+                            <c:forEach var="item" items="${teacherList}">
+                                <tr>
+                                    <th scope="row">${item.teacher_id}</th>
+                                    <td>${item.teacher_name}</td>
+                                    <td>${item.title}</td>
+                                    <td>${item.school_abbr}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

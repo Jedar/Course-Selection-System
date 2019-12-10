@@ -9,6 +9,7 @@ import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.service.SectionService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -82,6 +83,17 @@ public class SectionServiceImpl implements SectionService {
             throw new Exception(errMsg.toString());
         }
         return allCorrect;
+    }
+
+    @Override
+    public boolean deleteSection(Section section) throws SQLException {
+        return sectionDao.deleteSection(section.getCourse_id(),section.getSection_id(),section.getYear(),section.getSemester());
+    }
+
+    @Override
+    public List<CompleteSection> getCourseList() {
+        List<CompleteSection> res = sectionDao.getSectionList();
+        return res;
     }
 
     private List<TimeSlot> turnStringIntoTimeSlotList(String slots, int id){
