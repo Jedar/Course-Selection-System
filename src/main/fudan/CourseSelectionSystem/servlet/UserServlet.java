@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 profile.setPermission(profileService.getPermission(profile.getProfile_id()));
                 session.setAttribute(Constant.SESSION_USER,profile.getProfile_id());
-                session.setAttribute(Constant.SESSION_USER,profile.getPermission());
+                session.setAttribute(Constant.SESSION_PERMISSION,profile.getPermission());
                 json.put("success", true);
                 json.put("message", Message.MSG_LOGIN_SUCCESS);
                 json.put("link",request.getContextPath()+url);

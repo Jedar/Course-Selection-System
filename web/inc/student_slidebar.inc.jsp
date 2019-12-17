@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" rel="script" src="../js/student.js"></script>
+<script type="text/javascript" rel="script" src="../js/util.js"></script>
 <!-- Sidebar -->
 <ul class="sidebar navbar-nav">
     <li class="nav-item">

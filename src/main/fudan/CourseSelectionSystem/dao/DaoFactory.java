@@ -1,7 +1,6 @@
 package main.fudan.CourseSelectionSystem.dao;
 
-import main.fudan.CourseSelectionSystem.dao.Impl.CompleteSectionDaoImpl;
-import main.fudan.CourseSelectionSystem.dao.Impl.ProfileDaoImpl;
+import main.fudan.CourseSelectionSystem.dao.Impl.*;
 import main.fudan.CourseSelectionSystem.entity.CompleteSection;
 import main.fudan.CourseSelectionSystem.entity.Profile;
 
@@ -16,10 +15,18 @@ public class DaoFactory {
     private static DaoFactory daoFactory = new DaoFactory();
     private CompleteSectionDao completeSectionDao;
     private ProfileDao profileDao;
+    private TakesDao takesDao;
+    private RequestDao requestDao;
+    private StudentDao studentDao;
+    private SectionDao sectionDao;
 
     private DaoFactory() {
         completeSectionDao = new CompleteSectionDaoImpl();
         profileDao = new ProfileDaoImpl();
+        takesDao = new TakesDaoImpl();
+        requestDao = new RequestDaoImpl();
+        studentDao = new StudentDaoImpl();
+        sectionDao = new SectionDaoImpl();
     }
 
     public static DaoFactory getInstance() {
@@ -32,5 +39,21 @@ public class DaoFactory {
 
     public ProfileDao getProfileDao(){
         return profileDao;
+    }
+
+    public TakesDao getTakesDao() {
+        return takesDao;
+    }
+
+    public RequestDao getRequestDao() {
+        return requestDao;
+    }
+
+    public StudentDao getStudentDao() {
+        return studentDao;
+    }
+
+    public SectionDao getSectionDao() {
+        return sectionDao;
     }
 }

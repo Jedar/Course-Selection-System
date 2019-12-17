@@ -83,20 +83,15 @@ public class SectionDaoImpl implements SectionDao {
 
     @Override
     public List<CompleteSection> getCriteriaSectionList(CriteriaSection criteriaSection) {
-        return null;
-    }
-
-    @Override
-    public List<CompleteSection> getSectionList() {
         String sql = "SELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, exam_time, \n" +
                 "teachers, course_time, section_capacity, course_name, credits, credit_hours, school_abbr, building, room_number, current_student_num\n" +
                 "FROM (\n" +
-                "\tsection JOIN (\n" +
+                "\t(select * from section where course_id like ? and section_id like ?) as section_t JOIN (\n" +
                 "\t\tSELECT time_slot_id, group_concat(item separator ' ') AS course_time FROM (\n" +
                 "\t\t\tSELECT time_slot_id, CONCAT_WS(',',day,CONCAT_WS('-',start_time,end_time)) AS item FROM time_slot\n" +
                 "\t\t) AS temp GROUP BY time_slot_id\n" +
-                "\t) AS slots on section.time_slot_id = slots.time_slot_id\n" +
-                "    NATURAL JOIN course\n" +
+                "\t) AS slots on section_t.time_slot_id = slots.time_slot_id\n" +
+                "    NATURAL JOIN (select * from course where course_name like ?) as course_t\n" +
                 "    NATURAL JOIN (\n" +
                 "\t\tSELECT course_id, section_id, year, semester, group_concat(teacher_name separator ',') AS teachers FROM \n" +
                 "\t\tteacher natural join teaches GROUP BY course_id, section_id, year, semester\n" +
@@ -113,7 +108,12 @@ public class SectionDaoImpl implements SectionDao {
                 "        GROUP BY course_id, section_id, year, semester \n" +
                 "    ) AS student_num_t\n" +
                 ")";
-        return completeSectionBaseDao.getForList(CompleteSection.class, sql);
+        return completeSectionBaseDao.getForList(CompleteSection.class, sql, criteriaSection.getCourseID(), criteriaSection.getSectionID(), criteriaSection.getName());
+    }
+
+    @Override
+    public List<CompleteSection> getSectionList() {
+        return getCriteriaSectionList(new CriteriaSection());
     }
 
     @Override
@@ -164,6 +164,12 @@ public class SectionDaoImpl implements SectionDao {
                     exam.getDay(),exam.getStart_time(),exam.getEnd_time()));
         }
         return sections;
+    }
+
+    @Override
+    public Section getSection(int courseID, int sectionID, int year, String semester) {
+        String sql = "select from * section where course_id = ? and section_id = ? and year = ? and semester = ?";
+        return dao.get(Section.class, sql, courseID, sectionID, year, semester);
     }
 
     public List<Section> getConflictSectionList(CompleteSection section) {

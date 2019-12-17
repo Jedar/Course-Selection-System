@@ -1,11 +1,24 @@
-<%--
+<%@ page import="main.fudan.CourseSelectionSystem.service.SectionService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.SectionServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CompleteSection" %>
+<%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CriteriaSection" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
   Time: 22:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+//    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
+    String studentID = "S10000001";
+    SectionService service = new SectionServiceImpl();
+    List<CompleteSection> sections = service.searchSections(new CriteriaSection());
+    request.setAttribute("sectionList", sections);
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +46,7 @@
 <body id="page-top">
 
 <jsp:include page="../inc/frame_header.inc.jsp"/>
+<jsp:useBean id="sectionList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.CompleteSection>" scope="request"/>
 
 <div id="wrapper">
 
@@ -40,11 +54,29 @@
     <jsp:include page="../inc/student_slidebar.inc.jsp"/>
 
     <div id="content-wrapper">
-
         <div class="container-fluid">
-
-            <%--内容填充在这里--%>
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">课程代码</th>
+                    <th scope="col">课程名</th>
+                    <th scope="col">任课老师</th>
+                    <th scope="col">上课地点</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="section" items="${sectionList}">
+                    <c:set var="i" value="${sectionList.indexOf(section)}">
+                        <tr>
+                            <th scope="row">${sectionList.get(i).course_id}</th>
+                            <td>${sectionList.get(i).course_name}</td>
+                            <td>${sectionList.get(i).teachers}</td>
+                            <td>${sectionList.get(i).exam_building}</td>
+                        </tr>
+                    </c:set>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
         <!-- /.container-fluid -->
 

@@ -5,6 +5,7 @@ import main.fudan.CourseSelectionSystem.dao.DaoRepository;
 import main.fudan.CourseSelectionSystem.dao.StudentDao;
 import main.fudan.CourseSelectionSystem.entity.Course;
 import main.fudan.CourseSelectionSystem.entity.Profile;
+import main.fudan.CourseSelectionSystem.entity.SectionWithGrade;
 import main.fudan.CourseSelectionSystem.entity.Student;
 import main.fudan.CourseSelectionSystem.service.StudentService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
@@ -21,6 +22,11 @@ public class StudentServiceImpl implements StudentService {
         profile.setPassword(Constant.DEFAULT_PASSWORD);
         profile.setPermission(Constant.PERM_STUDENT);
         return studentDao.addStudent(student);
+    }
+
+    @Override
+    public List<SectionWithGrade> getGradeList() {
+        return null;
     }
 
     @Override

@@ -21,7 +21,8 @@ public class TakesDaoImpl implements TakesDao {
 
     @Override
     public Takes getTakes(String studentID, int courseID, int sectionID, int year, String semester) {
-        return null;
+        String sql = "select * from takes where student_id = ? and course_id = ? and section_id = ? and year = ? and semester = ?";
+        return dao.get(Takes.class, sql, studentID, courseID, sectionID, year, semester);
     }
 
     @Override
@@ -63,10 +64,10 @@ public class TakesDaoImpl implements TakesDao {
 
     @Override
     public List<Section> getExamConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
-        String timeSlotIDSql = "select time_slot_id " +
-                "from section natural join exam " +
+        String timeSlotIDSql = "select exam_time_slot_id " +
+                "from exam " +
                 "where course_id = ? and section_id = ? and year = ? and semester = ?";
-        int examTimeSlotID = dao.getForValue(timeSlotIDSql, courseID, sectionID, year, semester);
+        Integer examTimeSlotID = dao.getForValue(timeSlotIDSql, courseID, sectionID, year, semester);
         String timeSlotSql = "select time_slot_id, day, start_time, end_time " +
                 "from time_slot " +
                 "where time_slot_id = ?";

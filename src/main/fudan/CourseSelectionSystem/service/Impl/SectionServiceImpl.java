@@ -1,10 +1,6 @@
 package main.fudan.CourseSelectionSystem.service.Impl;
 
-import main.fudan.CourseSelectionSystem.dao.DaoRepository;
-import main.fudan.CourseSelectionSystem.dao.ExamDao;
-import main.fudan.CourseSelectionSystem.dao.TeachesDao;
-import main.fudan.CourseSelectionSystem.dao.SectionDao;
-import main.fudan.CourseSelectionSystem.dao.TimeSlotDao;
+import main.fudan.CourseSelectionSystem.dao.*;
 import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.service.SectionService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
@@ -18,6 +14,7 @@ public class SectionServiceImpl implements SectionService {
     private TimeSlotDao timeSlotDao = DaoRepository.getTimeSlotDao();
     private ExamDao examDao = DaoRepository.getExamDao();
     private TeachesDao teachesDao = DaoRepository.getTeachesDao();
+    private StudentDao studentDao = DaoFactory.getInstance().getStudentDao();
 
     @Override
     public boolean insertSection(Section section) {
@@ -82,6 +79,16 @@ public class SectionServiceImpl implements SectionService {
             throw new Exception(errMsg.toString());
         }
         return allCorrect;
+    }
+
+    @Override
+    public List<CompleteSection> searchSections(CriteriaSection criteriaSection) {
+        return sectionDao.getCriteriaSectionList(criteriaSection);
+    }
+
+    @Override
+    public List<CompleteSection> getCourseListOfStudent(String studentID) {
+        return studentDao.getSelectedSectionList(studentID);
     }
 
     private List<TimeSlot> turnStringIntoTimeSlotList(String slots, int id){

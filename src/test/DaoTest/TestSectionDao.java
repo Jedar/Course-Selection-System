@@ -19,13 +19,14 @@ import java.util.List;
  **/
 public class TestSectionDao {
     private static SectionDao sectionDao = new SectionDaoImpl();
-    private static Section section = new Section(102536, 2, 2019, "春季", 30, "Z2", "202", 3);
+    private static Section section = new Section(10001, 1, 2019, "春季", 30, "Z2", "202", 3);
     public static void main(String[] args) {
 //       testAddSection();
 
-        test_section_list();
+//        test_section_list();
+        test_delete();
 
-        test_conflict();
+//        test_conflict();
 //
 
 
