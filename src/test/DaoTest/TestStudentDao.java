@@ -2,6 +2,9 @@ package test.DaoTest;
 
 import main.fudan.CourseSelectionSystem.dao.Impl.StudentDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.StudentDao;
+import main.fudan.CourseSelectionSystem.entity.CompleteSection;
+
+import java.util.List;
 
 /**
  * @ClassName TestStudentDao
@@ -17,5 +20,7 @@ public class TestStudentDao {
     public static void testGetGPA(String studentID) {
         StudentDao studentDao = new StudentDaoImpl();
         System.out.println(studentDao.getGPA(studentID));
+        List<CompleteSection> list = studentDao.getSelectedSectionList("S10000001");
+        System.out.println(list);
     }
 }

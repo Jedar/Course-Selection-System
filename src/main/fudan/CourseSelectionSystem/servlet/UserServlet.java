@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.stream.events.Characters;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "UserServlet", value = "*.us")
 public class UserServlet extends HttpServlet {
@@ -23,6 +26,7 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String servletPath = request.getServletPath();
         String methodName = servletPath.substring(5, servletPath.length() - 3);
         try {
@@ -46,6 +50,9 @@ public class UserServlet extends HttpServlet {
         Profile profile = new Profile();
         profile.setProfile_id(name);
         profile.setPassword(pwd);
+//        System.out.println(name);
+//        name = URLDecoder.decode(name, Charact);
+//        System.out.println(name);
 
         /* 获取登陆后跳转的页面 */
         String url = getServletConfig().getInitParameter("homePage");
