@@ -78,22 +78,7 @@ public class DaoRepository {
     }
 
     public static ProfileDao getProfileDao(){
-        return new ProfileDao() {
-            @Override
-            public boolean addProfile(Profile profile) {
-                return true;
-            }
-
-            @Override
-            public Profile getProfile(String ID) {
-                return null;
-            }
-
-            @Override
-            public boolean checkExist(String ID, String passwd) {
-                return false;
-            }
-        };
+        return new ProfileDaoImpl();
     }
 
     public static ManagerDao getManagerDao(){

@@ -16,4 +16,7 @@ public interface StudentService {
 
     /* 查看成绩 */
     public List<SectionWithGrade> getGradeList();
+
+    /* 得到所有学生列表 */
+    public List<Student> getStudentList();
 }

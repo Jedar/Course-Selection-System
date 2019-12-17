@@ -28,6 +28,8 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
+    <link href="../css/util.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -75,7 +77,7 @@
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-8">
-                                            <input accept="application/vnd.ms-excel"
+                                            <input accept="*/*"
                                                    type="file"
                                                    class="form-control"
                                                    name="image"
@@ -89,6 +91,7 @@
                                 </div>
                             </div>
                         </li>
+
                         <!--管理学生数据-->
                         <li class="list-group-item">
                             <h1>学生数据管理</h1>
@@ -98,16 +101,16 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col-4">
-                                                    <input type="text" class="form-control" placeholder="学生编号">
+                                                    <input id="s_id" type="text" class="form-control" placeholder="学生编号">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control" placeholder="学生姓名">
+                                                    <input id="s_name" type="text" class="form-control" placeholder="学生姓名">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control" placeholder="所属学院">
+                                                    <input id="s_abbr" type="text" class="form-control" placeholder="所属学院">
                                                 </div>
                                                 <div class="col">
-                                                    <button type="button" class="btn btn-primary">插入学生数据</button>
+                                                    <button id="s_insert" type="button" class="btn btn-primary">插入学生数据</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -122,12 +125,13 @@
                                                    value="">
                                         </div>
                                         <div class="col-4">
-                                            <button type="button" class="btn btn-primary">插入学生数据列表</button>
+                                            <button id="s_insert_table" type="button" class="btn btn-primary">插入学生数据列表</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
+
                         <!--课程信息管理-->
                         <li class="list-group-item">
                             <h1>课程数据管理</h1>
@@ -137,26 +141,26 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col-4">
-                                                    <input type="text" class="form-control" placeholder="课程编号">
+                                                    <input id="c_id" type="text" class="form-control" placeholder="课程编号">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control" placeholder="节数编号">
+                                                    <input id="c_sec" type="text" class="form-control" placeholder="节数编号">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control" placeholder="开课年份">
+                                                    <input id="c_year" type="text" class="form-control" placeholder="开课年份">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control" placeholder="开课学期">
+                                                    <input id="c_semester" type="text" class="form-control" placeholder="开课学期">
                                                 </div>
                                                 <div class="col">
-                                                    <button type="button" class="btn btn-danger">删除课程</button>
+                                                    <button id="s_delete" type="button" class="btn btn-danger">删除课程</button>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-8">
-                                            <input accept="application/vnd.ms-excel"
+                                            <input accept="*/*"
                                                    type="file"
                                                    class="form-control"
                                                    name="image"
@@ -164,7 +168,7 @@
                                                    value="">
                                         </div>
                                         <div class="col-4">
-                                            <button type="button" class="btn btn-primary">插入课程数据列表</button>
+                                            <button id="c_insert_table" type="button" class="btn btn-primary">插入课程数据列表</button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,6 +231,10 @@
 <script src="../js/manager.js"></script>
 
 <script src="../js/util.js"></script>
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/popper.min.js"></script>
 
 </body>
 

@@ -2,10 +2,13 @@ $(function () {
     checkIsSign();
     $("#btn-login").on("click",function () {
         var pwd = md5($("#user-psw").val());
+        var name = $("#user-name").val();
+        // name = encodeURI(name);
         // alert(pwd+"\n"+$("#user-psw").val());
-        $.post( "./login.us", {
-            username:$("#user-name").val(),
+        $.get( "./login.us", {
+            username:name,
             password:pwd
+
         },function (result) {
             result = JSON.parse(result);
             if(result.success){

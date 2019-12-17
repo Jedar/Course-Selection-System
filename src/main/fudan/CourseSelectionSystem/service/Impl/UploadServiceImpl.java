@@ -83,8 +83,6 @@ public class UploadServiceImpl implements UploadService {
                 fileName = UUID.randomUUID().toString() + postfix;
                 /* 文件暂存路径 */
                 String realPath = request.getServletContext().getRealPath("/WEB-INF/files");
-
-                String childDirectory = genChildDirectory(realPath,fileName);
                 /* 创造新的存放目录 */
                 File storeDirectory = new File(realPath+putDir);
                 /* 如果目录不存在，那么就创建它 */
@@ -124,20 +122,6 @@ public class UploadServiceImpl implements UploadService {
         return !"".equals(fieldValue);
     }
 
-    /* 随机生成子文件名 */
-    private String genChildDirectory(String realPath, String fileName) {
-        int hashCode = fileName.hashCode();
-        int dir1 = hashCode&0xf;
-        int dir2 = (hashCode&0xf0)>>4;
-
-        String str = dir1+File.separator+dir2;
-
-        File file = new File(realPath,str);
-        if(!file.exists()){
-            file.mkdirs();
-        }
-        return str;
-    }
 }
 
 

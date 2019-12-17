@@ -1,4 +1,8 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.SectionService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.SectionServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CompleteSection" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -6,6 +10,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    SectionService sectionService = new SectionServiceImpl();
+    List<CompleteSection> list = sectionService.getCourseList();
+    request.setAttribute("courseList",list);
+%>
+<jsp:useBean id="courseList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.CompleteSection>" scope="request"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,21 +53,44 @@
     <div id="content-wrapper">
 
         <div class="container-fluid">
-
-            <div>
-                <!--课程列表-->
+            <!--课程列表-->
+            <div class="container">
                 <div>
-                    <form>
-                        <div class="form-group">
-                            <label for="requestName">Name</label>
-                            <input type="text" class="form-control" id="requestName" placeholder="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="requestContent">Content</label>
-                            <textarea class="form-control" id="requestContent" rows="3"></textarea>
-                        </div>
-                        <button class="btn btn-primary">Send</button>
-                    </form>
+                    <h1>课程列表</h1>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">课程编号</th>
+                            <th scope="col">课程名称</th>
+                            <th scope="col">课程学期</th>
+                            <th scope="col">上课教室</th>
+                            <th scope="col">上课时间</th>
+                            <th scope="col">任课老师</th>
+                            <th scope="col">考试时间</th>
+                            <th scope="col">考试形式</th>
+                            <th scope="col">考试教室</th>
+                            <th scope="col">容量</th>
+                            <th scope="col">已选人数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="item" items="${courseList}">
+                            <tr>
+                                <th scope="row">${item.course_id}.${item.section_id}</th>
+                                <td>${item.course_name}</td>
+                                <td>${item.semester}</td><!--应该有年份，但是不知道为什么sql读不出来T_T-->
+                                <td>${item.building}${item.room_number}</td>
+                                <td>${item.course_time}</td>
+                                <td>${item.teachers}</td>
+                                <td>${item.exam_time}</td>
+                                <td>${item.exam_type}</td>
+                                <td>${item.exam_building}${item.exam_room_number}</td>
+                                <td>${item.section_capacity}</td>
+                                <td>${item.current_student_num}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

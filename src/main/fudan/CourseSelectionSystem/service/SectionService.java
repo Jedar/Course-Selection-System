@@ -4,6 +4,10 @@ import main.fudan.CourseSelectionSystem.entity.CompleteSection;
 import main.fudan.CourseSelectionSystem.entity.CriteriaSection;
 import main.fudan.CourseSelectionSystem.entity.Section;
 
+
+import main.fudan.CourseSelectionSystem.entity.Section;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface SectionService {
@@ -18,4 +22,9 @@ public interface SectionService {
 
     /* 查看课表 */
     public List<CompleteSection> getCourseListOfStudent(String studentID);
+
+    public boolean deleteSection(Section section) throws SQLException;
+
+    public List<CompleteSection> getCourseList();
+
 }

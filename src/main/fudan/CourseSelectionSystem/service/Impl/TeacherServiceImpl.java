@@ -57,4 +57,9 @@ public class TeacherServiceImpl implements TeacherService {
         }
         return allCorrect;
     }
+
+    @Override
+    public List<Teacher> getTeacherList() {
+        return teacherDao.getTeacherList();
+    }
 }

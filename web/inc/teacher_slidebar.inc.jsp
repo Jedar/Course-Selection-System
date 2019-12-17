@@ -18,4 +18,9 @@
             <i class="fa fa-fw fa-tasks"></i>选课事务申请
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="v-pills-gradeUpload-tab" href="${pageContext.request.contextPath}/jsp/teacher_upload_grade.jsp">
+            <i class="fa fa-fw fa-tasks"></i>导入课程成绩
+        </a>
+    </li>
 </ul>

@@ -21,7 +21,7 @@ public class StudentServiceImpl implements StudentService {
         profile.setProfile_id(student.getStudent_id());
         profile.setPassword(Constant.DEFAULT_PASSWORD);
         profile.setPermission(Constant.PERM_STUDENT);
-        return studentDao.addStudent(student);
+        return studentDao.addStudentWithProfile(student,profile);
     }
 
     @Override
@@ -60,5 +60,10 @@ public class StudentServiceImpl implements StudentService {
             throw new Exception(errMsg.toString());
         }
         return allCorrect;
+    }
+
+    @Override
+    public List<Student> getStudentList() {
+        return studentDao.getStudents();
     }
 }
