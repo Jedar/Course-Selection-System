@@ -1,6 +1,9 @@
 package main.fudan.CourseSelectionSystem.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.annotation.JSONType;
+
+import java.sql.Date;
 
 /**
  * @ClassName CompleteSection
@@ -17,7 +20,7 @@ public class CompleteSection {
     private int section_id;
 
     @JSONField(name="year")
-    private int year;
+    private Date year;
 
     @JSONField(name="semester")
     private String semester;
@@ -83,11 +86,11 @@ public class CompleteSection {
         this.section_id = section_id;
     }
 
-    public int getYear() {
+    public Date getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Date year) {
         this.year = year;
     }
 

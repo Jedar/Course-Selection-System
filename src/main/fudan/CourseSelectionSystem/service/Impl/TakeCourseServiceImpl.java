@@ -13,6 +13,7 @@ import main.fudan.CourseSelectionSystem.entity.Teaches;
 import main.fudan.CourseSelectionSystem.service.TakeCourseService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     }
 
     @Override
-    public boolean updateGradeByExcel(String path, int courseID, int sectionID, int year, String semester) throws Exception {
+    public boolean updateGradeByExcel(String path, int courseID, int sectionID, Date year, String semester) throws Exception {
         /* |studentID|grade| */
         boolean allCorrect = true;
         boolean ret = true;
@@ -62,12 +63,12 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     }
 
     @Override
-    public Takes getTakeData(String studentID, int courseID, int sectionID, int year, String semester) {
+    public Takes getTakeData(String studentID, int courseID, int sectionID, Date year, String semester) {
         return takesDao.getTakes(studentID,courseID,sectionID,year,semester);
     }
 
     @Override
-    public boolean selectCourse(String studentID, int courseID, int sectionID, int year, String semester) {
+    public boolean selectCourse(String studentID, int courseID, int sectionID, Date year, String semester) {
         /* 检查上课人数限制 */
         Section section = sectionDao.getSection(courseID, sectionID, year, semester);
         int takesNum;
@@ -106,7 +107,7 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     }
 
     @Override
-    public boolean dropCourse(String studentID, int courseID, int sectionID, int year, String semester) {
+    public boolean dropCourse(String studentID, int courseID, int sectionID, Date year, String semester) {
         try {
             return takesDao.dropSection(studentID, courseID, sectionID, year, semester);
         }catch (SQLException e) {

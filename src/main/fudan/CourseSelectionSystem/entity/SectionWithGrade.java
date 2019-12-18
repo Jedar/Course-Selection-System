@@ -1,5 +1,7 @@
 package main.fudan.CourseSelectionSystem.entity;
 
+import java.sql.Date;
+
 /**
  * @ClassName SectionWithGrade
  * @Description TODO
@@ -10,7 +12,7 @@ package main.fudan.CourseSelectionSystem.entity;
 public class SectionWithGrade {
     private int course_id;
     private int section_id;
-    private int year;
+    private Date year;
     private String semester;
     private String course_name;
     private int credits;
@@ -36,11 +38,11 @@ public class SectionWithGrade {
         this.section_id = section_id;
     }
 
-    public int getYear() {
+    public Date getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Date year) {
         this.year = year;
     }
 

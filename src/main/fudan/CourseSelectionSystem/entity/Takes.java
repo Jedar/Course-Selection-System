@@ -1,5 +1,7 @@
 package main.fudan.CourseSelectionSystem.entity;
 
+import java.sql.Date;
+
 /**
  * @ClassName Takes
  * @Description TODO
@@ -11,7 +13,7 @@ public class Takes {
     private String student_id;
     private int course_id;
     private int section_id;
-    private int year;
+    private Date year;
     private String semester;
     private String level;
     private boolean drop_flag;
@@ -20,7 +22,7 @@ public class Takes {
 
     }
 
-    public Takes( String student_id, int course_id, int section_id, int year, String semester, String level, boolean drop_flag) {
+    public Takes( String student_id, int course_id, int section_id, Date year, String semester, String level, boolean drop_flag) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.section_id = section_id;
@@ -54,11 +56,11 @@ public class Takes {
         this.section_id = section_id;
     }
 
-    public int getYear() {
+    public Date getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Date year) {
         this.year = year;
     }
 

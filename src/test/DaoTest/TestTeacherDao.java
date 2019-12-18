@@ -5,6 +5,7 @@ import main.fudan.CourseSelectionSystem.dao.Impl.TeacherDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import java.sql.Date;
 import java.util.List;
 
 public class TestTeacherDao {
@@ -61,7 +62,7 @@ public class TestTeacherDao {
         teaches.setCourse_id(102536);
         teaches.setSemester("春季");
         teaches.setSection_id(6);
-        teaches.setYear(2019);
+        teaches.setYear(new Date(2019));
         try {
             List<Student> res = teacherDao.getStudentOf(teaches);
             System.out.println(res);

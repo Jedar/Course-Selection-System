@@ -4,6 +4,8 @@ import main.fudan.CourseSelectionSystem.dao.Impl.RequestDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.RequestDao;
 import main.fudan.CourseSelectionSystem.entity.Request;
 
+import java.sql.Date;
+
 public class TestRequestDao {
 
     private static RequestDao dao = new RequestDaoImpl();
@@ -28,7 +30,7 @@ public class TestRequestDao {
         request.setCourse_id(102536);
         request.setSection_id(1);
         request.setSemester("春季");
-        request.setYear(2019);
+        request.setYear(new Date(2019));
         request.setReply_content("hello");
     }
 

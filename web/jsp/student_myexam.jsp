@@ -1,4 +1,8 @@
-<%--
+<%@ page import="main.fudan.CourseSelectionSystem.service.SectionService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CompleteSection" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CriteriaSection" %>
+<%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.SectionServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -6,6 +10,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    //    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
+    String studentID = "S10000001";
+    SectionService service = new SectionServiceImpl();
+    List<CompleteSection> sections = service.searchSections(new CriteriaSection());
+    request.setAttribute("sectionList", sections);
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +45,7 @@
 <body id="page-top">
 
 <jsp:include page="../inc/frame_header.inc.jsp"/>
+<jsp:useBean id="sectionList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.CompleteSection>" scope="request"/>
 
 <div id="wrapper">
 
@@ -42,9 +55,28 @@
     <div id="content-wrapper">
 
         <div class="container-fluid">
-
-            <%--内容填充在这里--%>
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">课程代码</th>
+                    <th scope="col">课程名</th>
+                    <th scope="col">考试时间</th>
+                    <th scope="col">考试地点</th>
+                    <th scope="col">考试形式</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="section" items="${sectionList}">
+                    <tr>
+                        <th scope="row">${section.course_id}</th>
+                        <td>${section.course_name}</td>
+                        <td>${section.exam_date}${section.exam_time}</td>
+                        <td>${section.exam_building}${section.exam_room_number}</td>
+                        <td>${section.exam_type}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
         <!-- /.container-fluid -->
 

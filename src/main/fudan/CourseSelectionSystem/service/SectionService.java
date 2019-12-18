@@ -1,8 +1,6 @@
 package main.fudan.CourseSelectionSystem.service;
 
-import main.fudan.CourseSelectionSystem.entity.CompleteSection;
-import main.fudan.CourseSelectionSystem.entity.CriteriaSection;
-import main.fudan.CourseSelectionSystem.entity.Section;
+import main.fudan.CourseSelectionSystem.entity.*;
 
 
 import main.fudan.CourseSelectionSystem.entity.Section;
@@ -22,6 +20,9 @@ public interface SectionService {
 
     /* 查看课表 */
     public List<CompleteSection> getCourseListOfStudent(String studentID);
+
+    /* 查看学生课程成绩 */
+    public List<SectionWithGrade> getSectionWithGradeList(String studentID);
 
     public boolean deleteSection(Section section) throws SQLException;
 

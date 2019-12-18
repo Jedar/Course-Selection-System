@@ -43,7 +43,37 @@
 
         <div class="container-fluid">
 
-            <%--内容填充在这里--%>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="request-courseID">课程代码</label>
+                        <input type="number" class="form-control" id="request-courseID">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="request-sectionID">课程序号</label>
+                        <input type="number" class="form-control" id="request-sectionID">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="request-section-year">学年</label>
+                        <input type="text" class="form-control" id="request-section-year">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="request-section-semester">学期</label>
+                        <select id="request-section-semester" class="form-control">
+                            <option selected>春季</option>
+                            <option>秋季</option>
+                            <option>暑期学期</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="request-content">申请原因:</label>
+                    <textarea class="form-control" id="request-content" rows="3"></textarea>
+                </div>
+                <button type="button" id="submit-request" class="btn btn-primary">提交</button>
+            </form>
 
         </div>
         <!-- /.container-fluid -->

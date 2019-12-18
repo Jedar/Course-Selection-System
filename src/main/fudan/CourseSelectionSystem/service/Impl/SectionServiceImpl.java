@@ -5,9 +5,9 @@ import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.service.SectionService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SectionServiceImpl implements SectionService {
@@ -41,7 +41,7 @@ public class SectionServiceImpl implements SectionService {
                 section.setCourse_id(Integer.parseInt(list.get(0)));
                 section.setSection_id(Integer.parseInt(list.get(1)));
                 section.setSemester(list.get(2));
-                section.setYear(Integer.parseInt(list.get(3)));
+                section.setYear(Date.valueOf(list.get(3)));
                 section.setSection_capacity(Integer.parseInt(list.get(4)));
                 section.setBuilding(list.get(5));
                 section.setRoom_number(list.get(6));
@@ -90,6 +90,11 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public List<CompleteSection> getCourseListOfStudent(String studentID) {
         return studentDao.getSelectedSectionList(studentID);
+    }
+
+    @Override
+    public List<SectionWithGrade> getSectionWithGradeList(String studentID) {
+        return studentDao.getSectionWithGradeList(studentID);
     }
 
     public boolean deleteSection(Section section) throws SQLException {

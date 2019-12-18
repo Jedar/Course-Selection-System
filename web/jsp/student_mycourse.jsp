@@ -16,7 +16,7 @@
 //    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
     String studentID = "S10000001";
     SectionService service = new SectionServiceImpl();
-    List<CompleteSection> sections = service.searchSections(new CriteriaSection());
+    List<CompleteSection> sections = service.getCourseListOfStudent(studentID);
     request.setAttribute("sectionList", sections);
 %>
 <!DOCTYPE html>
@@ -62,18 +62,18 @@
                     <th scope="col">课程名</th>
                     <th scope="col">任课老师</th>
                     <th scope="col">上课地点</th>
+                    <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="section" items="${sectionList}">
-                    <c:set var="i" value="${sectionList.indexOf(section)}">
-                        <tr>
-                            <th scope="row">${sectionList.get(i).course_id}</th>
-                            <td>${sectionList.get(i).course_name}</td>
-                            <td>${sectionList.get(i).teachers}</td>
-                            <td>${sectionList.get(i).exam_building}</td>
-                        </tr>
-                    </c:set>
+                    <tr>
+                        <th scope="row">${section.course_id}</th>
+                        <td>${section.course_name}</td>
+                        <td>${section.teachers}</td>
+                        <td>${section.exam_building}${section.room_number}</td>
+                        <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>\n
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>

@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.rmi.MarshalException;
+import java.sql.Date;
 
 /* 这个servlet专门处理上传数据事务 */
 @WebServlet(name = "UploadServlet", value = "*.upld")
@@ -134,7 +135,7 @@ public class UploadServlet extends HttpServlet {
             int year = Integer.parseInt(request.getParameter("c_year"));
             String semester = request.getParameter("c_semester");
             System.out.println(courseID);
-            takeCourseService.updateGradeByExcel(path,courseID,sectionID,year,semester);
+            takeCourseService.updateGradeByExcel(path,courseID,sectionID,new Date(year),semester);
             responseMessage(request,response,true, Message.MSG_INSERT_SUCCESS);
         }
         catch (Exception e){

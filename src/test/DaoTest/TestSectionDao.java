@@ -6,6 +6,7 @@ import main.fudan.CourseSelectionSystem.dao.Impl.SectionDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.SectionDao;
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,12 +20,12 @@ import java.util.List;
  **/
 public class TestSectionDao {
     private static SectionDao sectionDao = new SectionDaoImpl();
-    private static Section section = new Section(10001, 1, 2019, "春季", 30, "Z2", "202", 3);
+    private static Section section = new Section(10001, 1, new Date(2019), "春季", 30, "Z2", "202", 3);
     public static void main(String[] args) {
 //       testAddSection();
 
-//        test_section_list();
-        test_delete();
+        test_section_list();
+//        test_delete();
 
 //        test_conflict();
 //
@@ -41,7 +42,7 @@ public class TestSectionDao {
         classTimeSlotList.add(classTimeSlot);
         TimeSlot examTimeSlot = new TimeSlot(4, "星期五", 2, 4);
         List<Teaches> teachesList = new LinkedList<>();
-        Teaches teaches = new Teaches(102536, 2, 2019, "春季", "T10000001");
+        Teaches teaches = new Teaches(102536, 2, new Date(2019), "春季", "T10000001");
         teachesList.add(teaches);
         try{
             Exam exam = new Exam(4, "2019-06-25", "开卷", 102536, 2, 2019, "春季","z2","201");

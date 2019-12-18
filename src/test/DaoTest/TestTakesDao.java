@@ -4,6 +4,7 @@ import main.fudan.CourseSelectionSystem.dao.Impl.TakesDaoImpl;
 import main.fudan.CourseSelectionSystem.dao.TakesDao;
 import main.fudan.CourseSelectionSystem.entity.Takes;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -20,7 +21,7 @@ public class TestTakesDao {
     }
 
     public static void testAddTakes(){
-        Takes takes = new Takes("S10000002", 102536, 2, 2019, "春季", "A", false);
+        Takes takes = new Takes("S10000002", 102536, 2, new Date(2019), "春季", "A", false);
         TakesDao takesDao = new TakesDaoImpl();
         try {
             takesDao.addTakes(takes);
@@ -32,7 +33,7 @@ public class TestTakesDao {
     public static void testDropSection() {
         TakesDao takesDao = new TakesDaoImpl();
         try {
-            takesDao.dropSection("S10000003", 102536, 2, 2019, "春季");
+            takesDao.dropSection("S10000003", 102536, 2, new Date(2019), "春季");
         }catch (SQLException e) {
             e.printStackTrace();
         }

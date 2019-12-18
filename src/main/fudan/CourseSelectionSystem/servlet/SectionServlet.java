@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.Date;
 
 @WebServlet(name = "SectionServlet", value = "*.sec")
 public class SectionServlet extends HttpServlet {
@@ -45,7 +46,7 @@ public class SectionServlet extends HttpServlet {
         try {
             section.setCourse_id(Integer.parseInt(request.getParameter("c_id")));
             section.setSection_id(Integer.parseInt(request.getParameter("c_sec")));
-            section.setYear(Integer.parseInt(request.getParameter("c_year")));
+            section.setYear(Date.valueOf(request.getParameter("c_year")));
             section.setSemester(request.getParameter("c_semester"));
             System.out.println(section);
             boolean flag = sectionService.deleteSection(section);

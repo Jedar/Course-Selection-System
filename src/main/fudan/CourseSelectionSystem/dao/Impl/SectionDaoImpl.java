@@ -6,11 +6,9 @@ import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.util.Utils;
 
 import java.lang.reflect.Array;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName SectionDaoImpl
@@ -63,7 +61,7 @@ public class SectionDaoImpl implements SectionDao {
     }
 
     @Override
-    public boolean deleteSection(int courseID, int sectionID, int year, String semester) throws SQLException {
+    public boolean deleteSection(int courseID, int sectionID, Date year, String semester) throws SQLException {
         String sql = "DELETE FROM `course_selection_system`.`section`\n" +
                 "WHERE course_id = ? AND section_id = ? AND year = ? AND semester = ?;\n";
         return dao.update(sql, courseID, sectionID, year, semester);
@@ -167,7 +165,7 @@ public class SectionDaoImpl implements SectionDao {
     }
 
     @Override
-    public Section getSection(int courseID, int sectionID, int year, String semester) {
+    public Section getSection(int courseID, int sectionID, Date year, String semester) {
         String sql = "select from * section where course_id = ? and section_id = ? and year = ? and semester = ?";
         return dao.get(Section.class, sql, courseID, sectionID, year, semester);
     }

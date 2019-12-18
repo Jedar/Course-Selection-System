@@ -5,6 +5,7 @@ import main.fudan.CourseSelectionSystem.entity.Section;
 import main.fudan.CourseSelectionSystem.entity.Takes;
 import main.fudan.CourseSelectionSystem.entity.TimeSlot;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class TakesDaoImpl implements TakesDao {
     BaseDao<Takes> dao = new JDBCDao<>();
 
     @Override
-    public Takes getTakes(String studentID, int courseID, int sectionID, int year, String semester) {
+    public Takes getTakes(String studentID, int courseID, int sectionID, Date year, String semester) {
         String sql = "select * from takes where student_id = ? and course_id = ? and section_id = ? and year = ? and semester = ?";
         return dao.get(Takes.class, sql, studentID, courseID, sectionID, year, semester);
     }
@@ -37,7 +38,7 @@ public class TakesDaoImpl implements TakesDao {
     }
 
     @Override
-    public boolean dropSection(String studentID, int courseID, int sectionID, int year, String semester) throws SQLException{
+    public boolean dropSection(String studentID, int courseID, int sectionID, Date year, String semester) throws SQLException{
         String sql = "update takes " +
                      "set drop_flag = ? " +
                      "where student_id = ? and course_id = ? and section_id = ? and year = ? and semester = ?";
@@ -45,7 +46,7 @@ public class TakesDaoImpl implements TakesDao {
     }
 
     @Override
-    public List<Section> getTimeConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
+    public List<Section> getTimeConflictSectionList(String studentID, int courseID, int sectionID, Date year, String semester) {
         String timeSlotSql = "select time_slot_id, day, start_time, end_time " +
                 "from section natural join time_slot " +
                 "where course_id = ? and section_id = ? and year = ? and semester = ?";
@@ -63,7 +64,7 @@ public class TakesDaoImpl implements TakesDao {
     }
 
     @Override
-    public List<Section> getExamConflictSectionList(String studentID, int courseID, int sectionID, int year, String semester) {
+    public List<Section> getExamConflictSectionList(String studentID, int courseID, int sectionID, Date year, String semester) {
         String timeSlotIDSql = "select exam_time_slot_id " +
                 "from exam " +
                 "where course_id = ? and section_id = ? and year = ? and semester = ?";

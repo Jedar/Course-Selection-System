@@ -28,8 +28,6 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
-    <script type="text/javascript" rel="script" src="../js/jquery-3.3.1.min.js"></script>
-
 </head>
 
 <body id="page-top">
@@ -67,27 +65,6 @@
             </div>
             <table class="table" id="search-result">
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-link">选课</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><button type="button" class="btn btn-link">选课</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><button type="button" class="btn btn-link">选课</button></td>
-                </tr>
                 </tbody>
             </table>
 

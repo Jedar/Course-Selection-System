@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
 import java.util.List;
 
 @WebServlet(name = "StudentServlet", value="*.ss")
@@ -52,20 +53,20 @@ public class StudentServlet extends HttpServlet {
         String courseIDStr = request.getParameter("courseID");
         String sectionIDStr = request.getParameter("sectionID");
         String courseName = request.getParameter("courseName");
-        int courseID = 0;
-        int sectionID = 1;
+        int courseID = -1;
+        int sectionID = -1;
         if(courseIDStr != null) {
             try {
                 courseID = Integer.parseInt(courseIDStr);
             }catch (Exception e) {
-                courseID = 0;
+                courseID = -1;
             }
         }
         if(sectionIDStr != null) {
             try{
                 sectionID = Integer.parseInt(sectionIDStr);
             }catch (Exception e) {
-                sectionID = 1;
+                sectionID = -1;
             }
         }
         if(courseName == null) {
@@ -104,7 +105,8 @@ public class StudentServlet extends HttpServlet {
         String yearStr = request.getParameter("year");
         String semester = request.getParameter("semester");
         String content = request.getParameter("content");
-        int courseID, sectionID, year;
+        int courseID, sectionID;
+        Date year;
         JSONObject object = new JSONObject();
         if(courseIDStr == null || sectionIDStr == null || yearStr == null || semester == null || content == null) {
             object.put("success", false);
@@ -112,7 +114,7 @@ public class StudentServlet extends HttpServlet {
             try{
                 courseID = Integer.parseInt(courseIDStr);
                 sectionID = Integer.parseInt(sectionIDStr);
-                year = Integer.parseInt(yearStr);
+                year = new Date(Integer.parseInt(yearStr));
                 HttpSession session = request.getSession();
                 String studentID = (String) session.getAttribute(Constant.SESSION_USER);
                 RequestService service = new RequestServiceImpl();
@@ -130,7 +132,8 @@ public class StudentServlet extends HttpServlet {
         String sectionIDStr = request.getParameter("sectionID");
         String yearStr = request.getParameter("year");
         String semester = request.getParameter("semester");
-        int courseID, sectionID, year;
+        int courseID, sectionID;
+        Date year;
         JSONObject object = new JSONObject();
         if(courseIDStr == null || sectionIDStr == null || yearStr == null || semester == null) {
             object.put("success", false);
@@ -138,16 +141,13 @@ public class StudentServlet extends HttpServlet {
             try{
                 courseID = Integer.parseInt(courseIDStr);
                 sectionID = Integer.parseInt(sectionIDStr);
-                year = Integer.parseInt(yearStr);
-                year = 2019;
-                System.out.println(courseID + " " + sectionID + " " + year + " " + semester);
+                year = Date.valueOf(yearStr);
                 String studentID = "S10000001";
 
                 TakeCourseService service = new TakeCourseServiceImpl();
                 boolean success;
                 if(flag) {
                     success = service.selectCourse(studentID, courseID, sectionID, year, semester);
-                    System.out.println(success);
                 }else {
                     success = service.dropCourse(studentID, courseID, sectionID, year, semester);
                 }
