@@ -15,4 +15,8 @@ public class Constant {
     public static final String SESSION_USER = "user";
     /* 用户权限字段 */
     public static final String SESSION_PERMISSION = "permission";
+    /* 选课事务申请常数 */
+    public static final String REQ_UNHANDLE = "unhandle";
+    public static final String REQ_PASS = "pass";
+    public static final String REQ_FAIL = "fail";
 }

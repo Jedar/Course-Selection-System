@@ -1,11 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 38403
-  Date: 2019/12/9
-  Time: 22:33
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.RequestService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Request" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    RequestService service = new RequestServiceImpl();
+    List<Request> list = service.getRequestOf("T10000001");
+    request.setAttribute("rlist",list);
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +23,8 @@
 
     <title>Course Selection System</title>
 
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom fonts for this template-->
     <link href="../font/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -27,6 +33,10 @@
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <link href="../css/util.css" rel="stylesheet">
+
+
 
 </head>
 
@@ -44,7 +54,68 @@
         <div class="container-fluid">
 
             <div class="container">
-                <%--内容填充在这里--%>
+                <!--申请列表-->
+                <div class="container">
+                    <div>
+                        <h1>申请列表</h1>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">课程编号</th>
+                                <th scope="col">课程名称</th>
+                                <th scope="col">课程年份</th>
+                                <th scope="col">课程学期</th>
+                                <th scope="col">学生学号</th>
+                                <th scope="col">学生姓名</th>
+                                <th scope="col">申请内容</th>
+                                <th scope="col">处理状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="item" items="${rlist}">
+                                <tr>
+                                    <th scope="row">${item.course_id}.${item.section_id}</th>
+                                    <td>${item.course_name}</td>
+                                    <td>${item.year}</td>
+                                    <td>${item.semester}</td>
+                                    <td>${item.student_id}</td>
+                                    <td>${item.student_name}</td>
+                                    <td>${item.request_content}</td>
+                                    <td>
+                                        <c:if test="${item.pass_or_not == 'unhandle'}">
+                                            <button class="btn btn-primary btn-accept-request"
+                                                    data-course-id="${item.course_id}"
+                                                    data-section-id="${item.section_id}"
+                                                    data-year="${item.year}"
+                                                    data-semester="${item.semester}"
+                                                    data-student-id="${item.student_id}"
+                                            >
+                                                通过申请
+                                            </button>
+                                            <button class="btn btn-danger btn-refuse-request"
+                                                    data-course-id="${item.course_id}"
+                                                    data-section-id="${item.section_id}"
+                                                    data-year="${item.year}"
+                                                    data-semester="${item.semester}"
+                                                    data-student-id="${item.student_id}"
+                                            >
+                                                拒绝申请
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${item.pass_or_not == 'pass'}">
+                                            <span class="label label-success">已通过</span>
+                                        </c:if>
+                                        <c:if test="${item.pass_or_not == 'fail'}">
+                                            <span class="label label-warning">已通过</span>
+                                        </c:if>
+                                    </td>
+                                    <%--<td>${item.pass_or_not}</td>--%>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -96,6 +167,10 @@
 
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin.js"></script>
+
+<script src="../js/util.js"></script>
+
+<script src="../js/teacher.js"></script>
 
 </body>
 

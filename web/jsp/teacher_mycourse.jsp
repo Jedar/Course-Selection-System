@@ -1,4 +1,9 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Teaches" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.TeacherService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.TeacherServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Student" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -6,6 +11,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    TeacherService service = new TeacherServiceImpl();
+    List<Teaches> teachesList = service.getTeachesListOf("T10000001");
+    request.setAttribute("tlist",teachesList);
+    for (Teaches t : teachesList){
+        t.setStudentList(service.getStudentsList(t));
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +58,58 @@
         <div class="container-fluid">
 
             <div class="container">
+                <h1>课程名单</h1>
                 <%--内容填充在这里--%>
+                <div class="row">
+                    <%--侧边栏--%>
+                    <div class="col-3">
+                        <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <c:forEach var="course" items="${tlist}">
+                                <li>
+                                    <a class="nav-link"
+                                       id="pill-${course.course_id}-${course.section_id}-${course.year}-${course.semester}"
+                                       data-toggle="pill"
+                                       href="#v-${course.course_id}-${course.section_id}-${course.year}-${course.semester}"
+                                       role="tab"
+                                       aria-controls="v-pills-myCourse"
+                                       aria-selected="false">${course.course_name}-${course.year}-${course.semester}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+
+                    <%--学生列表--%>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <c:forEach var="course" items="${tlist}">
+                                    <div class="tab-pane fade"
+                                         id="v-${course.course_id}-${course.section_id}-${course.year}-${course.semester}"
+                                         role="tabpanel"
+                                         aria-labelledby="v-pills-messages-tab">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">学生编号</th>
+                                                        <th scope="col">学生姓名</th>
+                                                        <th scope="col">学生所在学院</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <c:forEach var="item" items="${course.studentList}">
+                                                    <tr>
+                                                        <th scope="row">${item.student_id}</th>
+                                                        <td>${item.student_name}</td>
+                                                        <td>${item.school_abbr}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                    </div>
+
+                                </c:forEach>
+                            </div>
+                        </div>
+                </div>
             </div>
 
         </div>

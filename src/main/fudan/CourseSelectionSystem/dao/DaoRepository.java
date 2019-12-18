@@ -63,18 +63,7 @@ public class DaoRepository {
     }
 
     public static TeachesDao getTeachesDao() {
-        return new TeachesDao() {
-            @Override
-            public boolean addTeaches(Teaches teaches) {
-                System.out.println(teaches);
-                return true;
-            }
-
-            @Override
-            public List<Teaches> getTeaches() {
-                return new ArrayList<>();
-            }
-        };
+        return new TeachesDaoImpl();
     }
 
     public static ProfileDao getProfileDao(){

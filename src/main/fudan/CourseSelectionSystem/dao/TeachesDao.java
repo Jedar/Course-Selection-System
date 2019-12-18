@@ -8,4 +8,6 @@ public interface TeachesDao {
     public boolean addTeaches(Teaches teaches);
 
     public List<Teaches> getTeaches();
+
+    public List<Teaches> getTeachesListOf(String teacher_id);
 }

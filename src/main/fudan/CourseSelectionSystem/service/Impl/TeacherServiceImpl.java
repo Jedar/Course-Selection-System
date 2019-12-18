@@ -3,9 +3,11 @@ package main.fudan.CourseSelectionSystem.service.Impl;
 import main.fudan.CourseSelectionSystem.consts.Constant;
 import main.fudan.CourseSelectionSystem.dao.DaoRepository;
 import main.fudan.CourseSelectionSystem.dao.TeacherDao;
+import main.fudan.CourseSelectionSystem.dao.TeachesDao;
 import main.fudan.CourseSelectionSystem.entity.Profile;
 import main.fudan.CourseSelectionSystem.entity.Student;
 import main.fudan.CourseSelectionSystem.entity.Teacher;
+import main.fudan.CourseSelectionSystem.entity.Teaches;
 import main.fudan.CourseSelectionSystem.service.TeacherService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 public class TeacherServiceImpl implements TeacherService {
     private TeacherDao teacherDao = DaoRepository.getTeacherDao();
+    private TeachesDao teachesDao = DaoRepository.getTeachesDao();
 
     @Override
     public boolean insertTeacher(Teacher teacher) throws SQLException {
@@ -61,5 +64,15 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> getTeacherList() {
         return teacherDao.getTeacherList();
+    }
+
+    @Override
+    public List<Teaches> getTeachesListOf(String id) {
+        return teachesDao.getTeachesListOf(id);
+    }
+
+    @Override
+    public List<Student> getStudentsList(Teaches teaches) {
+        return teacherDao.getStudentOf(teaches);
     }
 }

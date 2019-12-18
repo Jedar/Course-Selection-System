@@ -9,6 +9,7 @@ package main.fudan.CourseSelectionSystem.entity;
  **/
 public class Request {
     private String student_id;
+    private String student_name;
     private int course_id;
     private int section_id;
     private int year;
@@ -16,6 +17,7 @@ public class Request {
     private String request_content;
     private String pass_or_not;
     private String reply_content;
+    private String course_name;
 
     public Request() {
 
@@ -94,6 +96,22 @@ public class Request {
 
     public void setReply_content(String reply_content) {
         this.reply_content = reply_content;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public String getStudent_name() {
+        return student_name;
+    }
+
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
     }
 
     @Override
