@@ -8,6 +8,7 @@ import main.fudan.CourseSelectionSystem.entity.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,11 +21,15 @@ import java.util.List;
  **/
 public class TestSectionDao {
     private static SectionDao sectionDao = new SectionDaoImpl();
-    private static Section section = new Section(10001, 1, new Date(2019), "春季", 30, "Z2", "202", 3);
+    private static Section section = new Section(102536, 2, 2019, "春季", 30, "Z2", "202", 3);
     public static void main(String[] args) {
-//       testAddSection();
+//         testAddSection();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2019, 1, 1);
+        Date date = (Date) calendar.getTime();
+        System.out.println(date);
 
-        test_section_list();
+//        test_section_list();
 //        test_delete();
 
 //        test_conflict();

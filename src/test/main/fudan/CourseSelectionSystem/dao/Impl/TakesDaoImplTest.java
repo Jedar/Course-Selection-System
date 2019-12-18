@@ -69,8 +69,8 @@ public void testAddTakes() throws Exception {
 @Test
 public void testDropSection() throws Exception { 
     TakesDao takesDao = new TakesDaoImpl();
-    Takes takes = new Takes("S10000001", 102537, 1, new Date(2019), "春季", "U", false);
-    takesDao.dropSection("S10000001", 102536, 1, new Date(2019), "春季");
+    Takes takes = new Takes("S10000001", 102537, 1, 2019, "春季", "U", false);
+    takesDao.dropSection("S10000001", 102536, 1, 2019, "春季");
 } 
 
 /** 
@@ -81,7 +81,7 @@ public void testDropSection() throws Exception {
 @Test
 public void testGetTimeConflictSectionList() throws Exception {
     TakesDao takesDao = new TakesDaoImpl();
-    System.out.println(takesDao.getTimeConflictSectionList("S10000001", 102537, 1, new Date(2019), "春季"));
+    System.out.println(takesDao.getTimeConflictSectionList("S10000001", 102537, 1, 2019, "春季"));
 } 
 
 /** 
@@ -92,7 +92,7 @@ public void testGetTimeConflictSectionList() throws Exception {
 @Test
 public void testGetExamConflictSectionList() throws Exception {
     TakesDao takesDao = new TakesDaoImpl();
-    System.out.println(takesDao.getExamConflictSectionList("S10000001", 102537, 1, new Date(2019), "春季"));
+    System.out.println(takesDao.getExamConflictSectionList("S10000001", 102537, 1, 2019, "春季"));
 } 
 
 

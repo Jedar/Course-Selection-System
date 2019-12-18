@@ -14,15 +14,16 @@ public class TestRequestDao {
 
     public static void main(String[] args) {
         init();
-        test_add();
-        test_get_by_course();
+//        test_add();
+//        test_get_by_course();
+//        test_get_by_stuID();
+//        test_update();
+//        test_get_by_course();
+//        test_get_by_stuID();
+//        test_delete();
+//        test_get_by_course();
         test_get_by_stuID();
-        test_update();
-        test_get_by_course();
-        test_get_by_stuID();
-        test_delete();
-        test_get_by_course();
-        test_get_by_stuID();
+        test_get_request_by_teacher();
     }
 
     private static void init(){
@@ -75,6 +76,15 @@ public class TestRequestDao {
     private static void test_get_by_stuID(){
         try {
             System.out.println(dao.getRequestListByStudent(request.getStudent_id()));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void test_get_request_by_teacher(){
+        try {
+            System.out.println(dao.getRequestOf("T10000001"));
         }
         catch (Exception e){
             e.printStackTrace();

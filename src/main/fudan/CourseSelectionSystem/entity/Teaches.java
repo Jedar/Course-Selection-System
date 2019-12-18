@@ -1,6 +1,8 @@
 package main.fudan.CourseSelectionSystem.entity;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * @ClassName Teaches
@@ -15,6 +17,8 @@ public class Teaches {
     private Date year;
     private String semester;
     private String teacher_id;
+    private String course_name;
+    private List<Student> studentList;
 
     public Teaches() {
 
@@ -48,8 +52,12 @@ public class Teaches {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(java.sql.Date year) {
         this.year = year;
+    }
+
+    public void setYear(int year) {
+        this.year = new Date(year);
     }
 
     public String getSemester() {
@@ -68,6 +76,22 @@ public class Teaches {
         this.teacher_id = teacher_id;
     }
 
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
     @Override
     public String toString() {
         return "Teaches{" +
@@ -76,6 +100,7 @@ public class Teaches {
                 ", year=" + year +
                 ", semester='" + semester + '\'' +
                 ", teacher_id='" + teacher_id + '\'' +
+                ", course_name='" + course_name + '\'' +
                 '}';
     }
 }

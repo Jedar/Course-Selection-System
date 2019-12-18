@@ -55,13 +55,13 @@ public class SectionDaoImpl implements SectionDao {
         /*插入teaches*/
         for(Teaches teaches : teachesList) {
             sqlList.add(teachesSql);
-            argList.add(Arrays.asList(teaches.getTeacher_id(), teaches.getCourse_id(), teaches.getSection_id(), teaches.getYear(), teaches.getSemester()));
+            argList.add(Arrays.asList(teaches.getTeacher_id(), teaches.getCourse_id(), teaches.getSection_id(), teaches.getYear().toString().substring(0, 4), teaches.getSemester()));
         }
         return dao.transactionUpdate(sqlList, argList);
     }
 
     @Override
-    public boolean deleteSection(int courseID, int sectionID, Date year, String semester) throws SQLException {
+    public boolean deleteSection(int courseID, int sectionID, int year, String semester) throws SQLException {
         String sql = "DELETE FROM `course_selection_system`.`section`\n" +
                 "WHERE course_id = ? AND section_id = ? AND year = ? AND semester = ?;\n";
         return dao.update(sql, courseID, sectionID, year, semester);
@@ -165,7 +165,7 @@ public class SectionDaoImpl implements SectionDao {
     }
 
     @Override
-    public Section getSection(int courseID, int sectionID, Date year, String semester) {
+    public Section getSection(int courseID, int sectionID, int year, String semester) {
         String sql = "select from * section where course_id = ? and section_id = ? and year = ? and semester = ?";
         return dao.get(Section.class, sql, courseID, sectionID, year, semester);
     }

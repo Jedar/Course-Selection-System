@@ -1,6 +1,6 @@
 package main.fudan.CourseSelectionSystem.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Exam {
     private int exam_time_slot_id;
@@ -8,7 +8,7 @@ public class Exam {
     private String exam_type;
     private int course_id;
     private int section_id;
-    private int year;
+    private Date year;
     private String semester;
     private String exam_building;
     private String exam_room_number;
@@ -17,13 +17,25 @@ public class Exam {
 
     }
 
-    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester, String exam_building, String exam_room_number) {
+    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, Date year, String semester, String exam_building, String exam_room_number) {
         this.exam_time_slot_id = exam_time_slot_id;
         this.exam_date = exam_date;
         this.exam_type = exam_type;
         this.course_id = course_id;
         this.section_id = section_id;
         this.year = year;
+        this.semester = semester;
+        this.exam_building = exam_building;
+        this.exam_room_number = exam_room_number;
+    }
+
+    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester, String exam_building, String exam_room_number) {
+        this.exam_time_slot_id = exam_time_slot_id;
+        this.exam_date = exam_date;
+        this.exam_type = exam_type;
+        this.course_id = course_id;
+        this.section_id = section_id;
+        this.year = new Date(year);
         this.semester = semester;
         this.exam_building = exam_building;
         this.exam_room_number = exam_room_number;
@@ -70,11 +82,15 @@ public class Exam {
     }
 
     public int getYear() {
-        return year;
+        return Integer.parseInt(year.toString().substring(0,4));
+    }
+
+    public void setYear(Date year) {
+        this.year = year;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        this.year = new Date(year);
     }
 
     public String getSemester() {

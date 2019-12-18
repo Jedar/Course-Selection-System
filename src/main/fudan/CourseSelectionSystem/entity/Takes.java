@@ -32,6 +32,16 @@ public class Takes {
         this.drop_flag = drop_flag;
     }
 
+    public Takes( String student_id, int course_id, int section_id, int year, String semester, String level, boolean drop_flag) {
+        this.student_id = student_id;
+        this.course_id = course_id;
+        this.section_id = section_id;
+        this.year = new Date(year);
+        this.semester = semester;
+        this.level = level;
+        this.drop_flag = drop_flag;
+    }
+
     public String getStudent_id() {
         return student_id;
     }
@@ -56,8 +66,8 @@ public class Takes {
         this.section_id = section_id;
     }
 
-    public Date getYear() {
-        return year;
+    public int getYear() {
+        return Integer.parseInt(year.toString().substring(0, 4));
     }
 
     public void setYear(Date year) {

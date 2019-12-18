@@ -1,4 +1,16 @@
+<%@ page import="main.fudan.CourseSelectionSystem.service.TeacherService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.TeacherServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Teaches" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    TeacherService service = new TeacherServiceImpl();
+    List<Teaches> teachesList = service.getTeachesListOf("T10000001");
+    request.setAttribute("tlist",teachesList);
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,21 +55,44 @@
                             <h3>导入课程成绩信息</h3>
                         </div>
                         <div class="card-body">
+                            <div><h3>课程信息：</h3></div>
                             <div class="row">
                                 <form>
                                     <div class="form-row justify-content-center">
-                                        <div class="offset-1"><h3>课程信息：</h3></div>
+
                                         <div class="col-2">
-                                            <input id="c_id" type="text" class="form-control" placeholder="课程编号">
+                                            <input id="c_id" type="text" class="form-control" placeholder="课程编号" disabled>
                                         </div>
                                         <div class="col-2">
-                                            <input id="c_sec" type="text" class="form-control" placeholder="节数编号">
+                                            <input id="c_sec" type="text" class="form-control" placeholder="节数编号" disabled>
                                         </div>
                                         <div class="col-2">
-                                            <input id="c_year" type="text" class="form-control" placeholder="开课年份">
+                                            <input id="c_year" type="text" class="form-control" placeholder="开课年份" disabled>
                                         </div>
                                         <div class="col-3">
-                                            <input id="c_semester" type="text" class="form-control" placeholder="开课学期">
+                                            <input id="c_semester" type="text" class="form-control" placeholder="开课学期" disabled>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn dropdown-toggle" id="CourseDropdownMenu"
+                                                    data-toggle="dropdown">
+                                                选择课程
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="CourseDropdownMenu">
+                                                <c:forEach var="item" items="${tlist}">
+                                                    <li role="presentation">
+                                                        <a href="#"
+                                                           role="menuitem"
+                                                           tabindex="-1"
+                                                           data-course-id="${item.course_id}"
+                                                           data-section-id="${item.section_id}"
+                                                           data-year="${item.year}"
+                                                           data-semester="${item.semester}"
+                                                           class="course-select"
+                                                        data->${item.course_name}${item.section_id}-${item.year}-${item.semester}</a>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
                                         </div>
                                     </div>
                                 </form>

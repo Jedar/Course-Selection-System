@@ -33,7 +33,7 @@ public class TestTakesDao {
     public static void testDropSection() {
         TakesDao takesDao = new TakesDaoImpl();
         try {
-            takesDao.dropSection("S10000003", 102536, 2, new Date(2019), "春季");
+            takesDao.dropSection("S10000003", 102536, 2, 2019, "春季");
         }catch (SQLException e) {
             e.printStackTrace();
         }

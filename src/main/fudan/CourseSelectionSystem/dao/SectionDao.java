@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface SectionDao {
     public boolean addSection(Section section, Exam exam, List<TimeSlot> timeSlots, TimeSlot timeSlot, List<Teaches> teachesList) throws SQLException;
-    public boolean deleteSection(int courseID, int sectionID, Date year, String semester) throws SQLException;
+    public boolean deleteSection(int courseID, int sectionID, int year, String semester) throws SQLException;
     public boolean updateSection(Section section) throws SQLException;
-    public Section getSection(int courseID, int sectionID, Date year, String semester);
+    public Section getSection(int courseID, int sectionID, int year, String semester);
     public List<CompleteSection> getCriteriaSectionList(CriteriaSection criteriaSection);
     public List<CompleteSection> getSectionList();
 

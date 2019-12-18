@@ -12,4 +12,5 @@ public interface RequestDao {
     public boolean updateRequest(Request request) throws SQLException;
     public List<Request> getRequestListBySection(int courseID, int sectionID, Date year, String semester);
     public List<Request> getRequestListByStudent(String studentID);
+    public List<Request> getRequestOf(String teacherID);
 }

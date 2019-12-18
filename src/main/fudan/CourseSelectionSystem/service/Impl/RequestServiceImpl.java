@@ -6,6 +6,7 @@ import main.fudan.CourseSelectionSystem.entity.Request;
 import main.fudan.CourseSelectionSystem.service.RequestService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName RequestServiceImpl
@@ -34,5 +35,10 @@ public class RequestServiceImpl implements RequestService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<Request> getRequestOf(String id) {
+        return requestDao.getRequestOf(id);
     }
 }

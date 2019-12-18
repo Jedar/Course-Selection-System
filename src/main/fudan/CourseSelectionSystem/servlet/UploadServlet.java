@@ -135,7 +135,7 @@ public class UploadServlet extends HttpServlet {
             int year = Integer.parseInt(request.getParameter("c_year"));
             String semester = request.getParameter("c_semester");
             System.out.println(courseID);
-            takeCourseService.updateGradeByExcel(path,courseID,sectionID,new Date(year),semester);
+            takeCourseService.updateGradeByExcel(path,courseID,sectionID,year,semester);
             responseMessage(request,response,true, Message.MSG_INSERT_SUCCESS);
         }
         catch (Exception e){

@@ -10,12 +10,12 @@
 <ul class="sidebar navbar-nav">
     <li class="nav-item">
         <a class="nav-link" id="v-pills-myCourse-tab" href="${pageContext.request.contextPath}/jsp/teacher_mycourse.jsp">
-            <i class="fa fa-fw fa-tasks"></i>开设课程
+            <i class="fa fa-fw fa-tasks"></i>开设课程花名册
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="v-pills-courseRequest-tab" href="${pageContext.request.contextPath}/jsp/teacher_sec_req.jsp">
-            <i class="fa fa-fw fa-tasks"></i>选课事务申请
+            <i class="fa fa-fw fa-tasks"></i>处理选课事务
         </a>
     </li>
     <li class="nav-item">

@@ -132,8 +132,7 @@ public class StudentServlet extends HttpServlet {
         String sectionIDStr = request.getParameter("sectionID");
         String yearStr = request.getParameter("year");
         String semester = request.getParameter("semester");
-        int courseID, sectionID;
-        Date year;
+        int courseID, sectionID, year;
         JSONObject object = new JSONObject();
         if(courseIDStr == null || sectionIDStr == null || yearStr == null || semester == null) {
             object.put("success", false);
@@ -141,7 +140,7 @@ public class StudentServlet extends HttpServlet {
             try{
                 courseID = Integer.parseInt(courseIDStr);
                 sectionID = Integer.parseInt(sectionIDStr);
-                year = Date.valueOf(yearStr);
+                year = Integer.parseInt(yearStr);
                 String studentID = "S10000001";
 
                 TakeCourseService service = new TakeCourseServiceImpl();
