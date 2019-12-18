@@ -33,6 +33,10 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
+    <link href="../css/util.css" rel="stylesheet">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">

@@ -19,7 +19,7 @@ $(function () {
                 showTip("插入成功");
             }
             else{
-                alert(result.message);
+                showMessage(result.message);
             }
         });
     });
@@ -44,11 +44,18 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    alert(data.message);
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data.message);
             }
         });
     });
@@ -71,7 +78,7 @@ $(function () {
                 showTip("插入成功");
             }
             else{
-                alert(result.message);
+                showMessage(result.message);
             }
         });
     });
@@ -96,11 +103,17 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data);
             }
         });
     });
@@ -125,7 +138,7 @@ $(function () {
                 showTip("删除成功");
             }
             else{
-                showError(result.message);
+                showMessage(result.message);
             }
         });
     });
@@ -150,11 +163,17 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data.message);
             }
         });
     });
@@ -180,11 +199,17 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data.message);
             }
         });
     });
@@ -209,11 +234,17 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data);
             }
         });
     });
@@ -238,11 +269,17 @@ $(function () {
             contentType: false,
             success: function (data) {
                 element.removeClass("disabled");
-                alert(data);
+                data = JSON.parse(data);
+                if(data.success){
+                    showTip("插入成功");
+                }
+                else{
+                    showMessage(data.message);
+                }
             },
             error: function () {
                 element.removeClass("disabled");
-                alert(data);
+                showMessage(data);
             }
         });
     });

@@ -30,6 +30,8 @@
 
     <link href="../css/util.css" rel="stylesheet">
 
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -117,7 +119,7 @@
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-8">
-                                            <input accept="application/vnd.ms-excel"
+                                            <input accept="*/*"
                                                    type="file"
                                                    class="form-control"
                                                    name="image"

@@ -42,6 +42,10 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
+    <link href="../css/util.css" rel="stylesheet">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -161,6 +165,10 @@
 
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin.js"></script>
+
+<script src="../js/teacher.js"></script>
+
+<script src="../js/util.js"></script>
 
 </body>
 
