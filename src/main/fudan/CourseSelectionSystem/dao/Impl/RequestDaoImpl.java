@@ -34,7 +34,7 @@ public class RequestDaoImpl implements RequestDao{
     }
 
     @Override
-    public boolean deleteRequest(String studentID, int courseID, int sectionID, Date year, String semester) throws SQLException {
+    public boolean deleteRequest(String studentID, int courseID, int sectionID, int year, String semester) throws SQLException {
         String sql = "DELETE FROM `course_selection_system`.`sec_request`\n" +
                 "WHERE student_id = ? AND course_id = ? AND section_id = ? AND year = ? AND semester = ?";
         return dao.update(sql, studentID, courseID, sectionID, year, semester);
@@ -53,7 +53,7 @@ public class RequestDaoImpl implements RequestDao{
     }
 
     @Override
-    public List<Request> getRequestListBySection(int courseID, int sectionID, Date year, String semester) {
+    public List<Request> getRequestListBySection(int courseID, int sectionID, int year, String semester) {
         String sql = "SELECT `sec_request`.`student_id`,\n" +
                 "    `sec_request`.`course_id`,\n" +
                 "    `sec_request`.`section_id`,\n" +

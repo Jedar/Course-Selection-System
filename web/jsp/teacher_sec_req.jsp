@@ -76,7 +76,7 @@
                                 <tr>
                                     <th scope="row">${item.course_id}.${item.section_id}</th>
                                     <td>${item.course_name}</td>
-                                    <td>${item.year.toString().substring(0,4)}</td>
+                                    <td>${item.year}</td>
                                     <td>${item.semester}</td>
                                     <td>${item.student_id}</td>
                                     <td>${item.student_name}</td>

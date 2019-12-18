@@ -12,7 +12,7 @@ import java.sql.Date;
 public class SectionWithGrade {
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private String course_name;
     private int credits;
@@ -36,14 +36,6 @@ public class SectionWithGrade {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
-    }
-
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
     }
 
     public String getSemester() {
@@ -76,5 +68,13 @@ public class SectionWithGrade {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

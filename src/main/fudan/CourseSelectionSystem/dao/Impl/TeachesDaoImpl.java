@@ -7,7 +7,7 @@ import main.fudan.CourseSelectionSystem.entity.Teaches;
 import java.util.List;
 
 public class TeachesDaoImpl implements TeachesDao {
-    BaseDao<Teaches> teachesBaseDao = new JDBCDao<>();
+    private BaseDao<Teaches> teachesBaseDao = new JDBCDao<>();
     @Override
     public boolean addTeaches(Teaches teaches) {
         return false;

@@ -62,7 +62,7 @@ public class TestTeacherDao {
         teaches.setCourse_id(102536);
         teaches.setSemester("春季");
         teaches.setSection_id(6);
-        teaches.setYear(new Date(2019));
+        teaches.setYear(2019);
         try {
             List<Student> res = teacherDao.getStudentOf(teaches);
             System.out.println(res);

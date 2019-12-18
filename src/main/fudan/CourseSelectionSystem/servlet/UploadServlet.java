@@ -51,7 +51,7 @@ public class UploadServlet extends HttpServlet {
 
         try {
             String path = uploadService.handleUploadFile(request);
-//            teacherService.insertTeachersByExcel(path);
+            teacherService.insertTeachersByExcel(path);
             responseMessage(request,response,true, Message.MSG_INSERT_SUCCESS);
         }
         catch (Exception e){

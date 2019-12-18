@@ -57,7 +57,7 @@ public void testUpdateTakes() throws Exception {
 public void testAddTakes() throws Exception { 
 //TODO: Test goes here...
     TakesDao takesDao = new TakesDaoImpl();
-    Takes takes = new Takes("S10000001", 102537, 1, new Date(2019), "春季", "U", false);
+    Takes takes = new Takes("S10000001", 102537, 1, 2019, "春季", "U", false);
     takesDao.addTakes(takes);
 } 
 

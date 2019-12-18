@@ -13,7 +13,7 @@ public class Takes {
     private String student_id;
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private String level;
     private boolean drop_flag;
@@ -22,21 +22,12 @@ public class Takes {
 
     }
 
-    public Takes( String student_id, int course_id, int section_id, Date year, String semester, String level, boolean drop_flag) {
-        this.student_id = student_id;
-        this.course_id = course_id;
-        this.section_id = section_id;
-        this.year = year;
-        this.semester = semester;
-        this.level = level;
-        this.drop_flag = drop_flag;
-    }
 
     public Takes( String student_id, int course_id, int section_id, int year, String semester, String level, boolean drop_flag) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.section_id = section_id;
-        this.year = new Date(year);
+        this.year = year;
         this.semester = semester;
         this.level = level;
         this.drop_flag = drop_flag;
@@ -66,14 +57,6 @@ public class Takes {
         this.section_id = section_id;
     }
 
-    public int getYear() {
-        return Integer.parseInt(year.toString().substring(0, 4));
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
-    }
-
     public String getSemester() {
         return semester;
     }
@@ -96,6 +79,14 @@ public class Takes {
 
     public void setDrop_flag(boolean drop_flag) {
         this.drop_flag = drop_flag;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

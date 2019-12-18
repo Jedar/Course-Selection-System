@@ -80,7 +80,9 @@ public class TakesDaoImpl implements TakesDao {
                 "from takes natural join section natural join time_slot " +
                 "where student_id = ? and day = ? and ((start_time >= ? and start_time <= ?) or (? >= start_time and ? <= end_time))";
         for(TimeSlot timeSlot : timeSlotList) {
-            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql, studentID, timeSlot.getDay(), timeSlot.getStart_time(), timeSlot.getEnd_time(), timeSlot.getStart_time(), timeSlot.getStart_time()));
+            sectionList.addAll(sectionDao.getForList(Section.class, sectionSql,
+                    studentID, timeSlot.getDay(), timeSlot.getStart_time(),
+                    timeSlot.getEnd_time(), timeSlot.getStart_time(), timeSlot.getStart_time()));
         }
         return sectionList;
     }

@@ -47,7 +47,7 @@ public class TestSectionDao {
         classTimeSlotList.add(classTimeSlot);
         TimeSlot examTimeSlot = new TimeSlot(4, "星期五", 2, 4);
         List<Teaches> teachesList = new LinkedList<>();
-        Teaches teaches = new Teaches(102536, 2, new Date(2019), "春季", "T10000001");
+        Teaches teaches = new Teaches(102536, 2, 2019, "春季", "T10000001");
         teachesList.add(teaches);
         try{
             Exam exam = new Exam(4, "2019-06-25", "开卷", 102536, 2, 2019, "春季","z2","201");

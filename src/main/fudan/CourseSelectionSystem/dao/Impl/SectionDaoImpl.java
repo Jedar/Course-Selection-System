@@ -18,8 +18,8 @@ import java.util.*;
  * @Version 1.0
  **/
 public class SectionDaoImpl implements SectionDao {
-    BaseDao<Section> dao = new JDBCDao<>();
-    BaseDao<CompleteSection> completeSectionBaseDao = new JDBCDao<>();
+    private BaseDao<Section> dao = new JDBCDao<>();
+    private BaseDao<CompleteSection> completeSectionBaseDao = new JDBCDao<>();
 
     @Override
     public boolean addSection(Section section, Exam exam, List<TimeSlot> classTimeSlots, TimeSlot examTimeSlot, List<Teaches> teachesList) throws SQLException {
@@ -55,7 +55,7 @@ public class SectionDaoImpl implements SectionDao {
         /*插入teaches*/
         for(Teaches teaches : teachesList) {
             sqlList.add(teachesSql);
-            argList.add(Arrays.asList(teaches.getTeacher_id(), teaches.getCourse_id(), teaches.getSection_id(), teaches.getYear().toString().substring(0, 4), teaches.getSemester()));
+            argList.add(Arrays.asList(teaches.getTeacher_id(), teaches.getCourse_id(), teaches.getSection_id(), teaches.getYear(), teaches.getSemester()));
         }
         return dao.transactionUpdate(sqlList, argList);
     }

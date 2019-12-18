@@ -21,7 +21,7 @@ public class TestTakesDao {
     }
 
     public static void testAddTakes(){
-        Takes takes = new Takes("S10000002", 102536, 2, new Date(2019), "春季", "A", false);
+        Takes takes = new Takes("S10000002", 102536, 2, 2019, "春季", "A", false);
         TakesDao takesDao = new TakesDaoImpl();
         try {
             takesDao.addTakes(takes);

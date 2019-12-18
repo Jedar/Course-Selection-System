@@ -20,7 +20,7 @@ public class CompleteSection {
     private int section_id;
 
     @JSONField(name="year")
-    private Date year;
+    private int year;
 
     @JSONField(name="semester")
     private String semester;
@@ -84,14 +84,6 @@ public class CompleteSection {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
-    }
-
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
     }
 
     public String getSemester() {
@@ -220,6 +212,14 @@ public class CompleteSection {
 
     public void setCurrent_student_num(int current_student_num) {
         this.current_student_num = current_student_num;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

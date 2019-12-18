@@ -8,7 +8,7 @@ public class Exam {
     private String exam_type;
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private String exam_building;
     private String exam_room_number;
@@ -17,25 +17,13 @@ public class Exam {
 
     }
 
-    public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, Date year, String semester, String exam_building, String exam_room_number) {
-        this.exam_time_slot_id = exam_time_slot_id;
-        this.exam_date = exam_date;
-        this.exam_type = exam_type;
-        this.course_id = course_id;
-        this.section_id = section_id;
-        this.year = year;
-        this.semester = semester;
-        this.exam_building = exam_building;
-        this.exam_room_number = exam_room_number;
-    }
-
     public Exam(int exam_time_slot_id, String exam_date, String exam_type, int course_id, int section_id, int year, String semester, String exam_building, String exam_room_number) {
         this.exam_time_slot_id = exam_time_slot_id;
         this.exam_date = exam_date;
         this.exam_type = exam_type;
         this.course_id = course_id;
         this.section_id = section_id;
-        this.year = new Date(year);
+        this.year = year;
         this.semester = semester;
         this.exam_building = exam_building;
         this.exam_room_number = exam_room_number;
@@ -81,18 +69,6 @@ public class Exam {
         this.section_id = section_id;
     }
 
-    public int getYear() {
-        return Integer.parseInt(year.toString().substring(0,4));
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
-    }
-
-    public void setYear(int year) {
-        this.year = new Date(year);
-    }
-
     public String getSemester() {
         return semester;
     }
@@ -115,6 +91,14 @@ public class Exam {
 
     public void setExam_room_number(String exam_room_number) {
         this.exam_room_number = exam_room_number;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

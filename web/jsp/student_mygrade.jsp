@@ -70,7 +70,7 @@
                 <c:forEach var="section" items="${sectionList}">
                     <tr>
                         <th scope="row">${section.course_id}</th>
-                        <td>${section.year.toString().substring(0,4)} ${section.semester}</td>
+                        <td>${section.year} ${section.semester}</td>
                         <td>${section.course_name}</td>
                         <td>${section.credits}</td>
                         <td>${section.level}</td>

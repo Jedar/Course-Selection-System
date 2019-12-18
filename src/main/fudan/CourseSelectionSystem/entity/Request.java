@@ -14,7 +14,7 @@ public class Request {
     private String student_name;
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private String request_content;
     private String pass_or_not;
@@ -25,7 +25,7 @@ public class Request {
 
     }
 
-    public Request(String student_id, int course_id, int section_id, Date year, String semester, String request_content, String pass_or_not, String reply_content) {
+    public Request(String student_id, int course_id, int section_id, int year, String semester, String request_content, String pass_or_not, String reply_content) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.section_id = section_id;
@@ -58,14 +58,6 @@ public class Request {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
-    }
-
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
     }
 
     public String getSemester() {
@@ -114,6 +106,14 @@ public class Request {
 
     public void setStudent_name(String student_name) {
         this.student_name = student_name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

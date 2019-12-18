@@ -41,7 +41,7 @@ public class SectionServiceImpl implements SectionService {
                 section.setCourse_id(Integer.parseInt(list.get(0)));
                 section.setSection_id(Integer.parseInt(list.get(1)));
                 section.setSemester(list.get(2));
-                section.setYear(Date.valueOf(list.get(3)));
+                section.setYear(Integer.parseInt(list.get(3)));
                 section.setSection_capacity(Integer.parseInt(list.get(4)));
                 section.setBuilding(list.get(5));
                 section.setRoom_number(list.get(6));
@@ -103,8 +103,7 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<CompleteSection> getCourseList() {
-        List<CompleteSection> res = sectionDao.getSectionList();
-        return res;
+        return sectionDao.getSectionList();
     }
 
     private List<TimeSlot> turnStringIntoTimeSlotList(String slots, int id){

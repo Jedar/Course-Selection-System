@@ -47,6 +47,11 @@ public class RequestServlet extends HttpServlet {
             String semester = request.getParameter("c_semester");
             /* 这里可能需要先查询一下数据库里有没有数据 */
             Request req = new Request();
+            req.setCourse_id(course_id);
+            req.setSection_id(sec_id);
+            req.setStudent_id(stu);
+            req.setYear(year);
+            req.setSemester(semester);
             req.setPass_or_not(Constant.REQ_PASS);
             req.setReply_content(Constant.REQ_PASS);
             service.readRequest(req);
@@ -72,6 +77,11 @@ public class RequestServlet extends HttpServlet {
             String semester = request.getParameter("c_semester");
             /* 这里可能需要先查询一下数据库里有没有数据 */
             Request req = new Request();
+            req.setCourse_id(course_id);
+            req.setSection_id(sec_id);
+            req.setStudent_id(stu);
+            req.setYear(year);
+            req.setSemester(semester);
             req.setPass_or_not(Constant.REQ_FAIL);
             req.setReply_content(Constant.REQ_FAIL);
             if (service.readRequest(req)){

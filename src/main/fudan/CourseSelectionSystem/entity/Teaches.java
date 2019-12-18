@@ -14,7 +14,7 @@ import java.util.List;
 public class Teaches {
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private String teacher_id;
     private String course_name;
@@ -24,7 +24,7 @@ public class Teaches {
 
     }
 
-    public Teaches(int course_id, int section_id, Date year, String semester, String teacher_id) {
+    public Teaches(int course_id, int section_id, int year, String semester, String teacher_id) {
         this.course_id = course_id;
         this.section_id = section_id;
         this.year = year;
@@ -46,18 +46,6 @@ public class Teaches {
 
     public void setSection_id(int section_id) {
         this.section_id = section_id;
-    }
-
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(java.sql.Date year) {
-        this.year = year;
-    }
-
-    public void setYear(int year) {
-        this.year = new Date(year);
     }
 
     public String getSemester() {
@@ -90,6 +78,14 @@ public class Teaches {
 
     public void setCourse_name(String course_name) {
         this.course_name = course_name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

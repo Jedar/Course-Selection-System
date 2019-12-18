@@ -13,7 +13,7 @@ import java.time.Year;
 public class Section {
     private int course_id;
     private int section_id;
-    private Date year;
+    private int year;
     private String semester;
     private int section_capacity;
     private String building;
@@ -24,21 +24,10 @@ public class Section {
 
     }
 
-    public Section(int course_id, int section_id, Date year, String semester, int section_capacity, String building, String room_number, int time_slot_id) {
-        this.course_id = course_id;
-        this.section_id = section_id;
-        this.year = year;
-        this.semester = semester;
-        this.section_capacity = section_capacity;
-        this.building = building;
-        this.room_number = room_number;
-        this.time_slot_id = time_slot_id;
-    }
-
     public Section(int course_id, int section_id, int year, String semester, int section_capacity, String building, String room_number, int time_slot_id) {
         this.course_id = course_id;
         this.section_id = section_id;
-        this.year = new Date(year);
+        this.year = year;
         this.semester = semester;
         this.section_capacity = section_capacity;
         this.building = building;
@@ -61,16 +50,6 @@ public class Section {
     public void setSection_id(int section_id) {
         this.section_id = section_id;
     }
-
-    public int getYear() {
-        return Integer.parseInt(year.toString().substring(0, 4));
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
-    }
-
-    public void setYear(int year) {this.year = new Date(year);}
 
     public String getSemester() {
         return semester;
@@ -110,6 +89,14 @@ public class Section {
 
     public void setTime_slot_id(int time_slot_id) {
         this.time_slot_id = time_slot_id;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

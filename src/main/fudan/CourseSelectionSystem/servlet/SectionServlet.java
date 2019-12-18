@@ -46,7 +46,7 @@ public class SectionServlet extends HttpServlet {
         try {
             section.setCourse_id(Integer.parseInt(request.getParameter("c_id")));
             section.setSection_id(Integer.parseInt(request.getParameter("c_sec")));
-            section.setYear(Date.valueOf(request.getParameter("c_year")));
+            section.setYear(Integer.parseInt(request.getParameter("c_year")));
             section.setSemester(request.getParameter("c_semester"));
             System.out.println(section);
             boolean flag = sectionService.deleteSection(section);
