@@ -5,7 +5,8 @@
 <%@ page import="main.fudan.CourseSelectionSystem.service.StudentService" %>
 <%@ page import="main.fudan.CourseSelectionSystem.service.Impl.StudentServiceImpl" %>
 <%@ page import="main.fudan.CourseSelectionSystem.entity.Student" %>
-<%@ page import="java.math.BigDecimal" %><%--
+<%@ page import="java.math.BigDecimal" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -15,10 +16,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    String studentID = "S10000001";
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "S10000001";
+    }
     SectionService sectionService = new SectionServiceImpl();
     StudentService studentService = new StudentServiceImpl();
-    List<SectionWithGrade> sections = sectionService.getSectionWithGradeList(studentID);
+    List<SectionWithGrade> sections = sectionService.getSectionWithGradeList(user);
     request.setAttribute("sectionList", sections);
 %>
 <!DOCTYPE html>

@@ -27,7 +27,6 @@ public class LoginFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        chain.doFilter(req, resp);
 
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
@@ -47,10 +46,8 @@ public class LoginFilter implements Filter {
 
         String user = (String)httpRequest.getSession().getAttribute(Constant.SESSION_USER);
         String permission = (String)httpRequest.getSession().getAttribute(Constant.SESSION_PERMISSION);
-        System.out.println(user);
         /* 未登录拦截 */
         if ((user == null)) {
-            System.out.println(httpRequest.getContextPath() + redirectUrl);
             httpResponse.sendRedirect(httpRequest.getContextPath() + redirectUrl);
             return;
         }

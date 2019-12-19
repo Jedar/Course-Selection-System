@@ -1,7 +1,8 @@
 <%@ page import="main.fudan.CourseSelectionSystem.entity.Request" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.fudan.CourseSelectionSystem.service.RequestService" %>
-<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl" %><%--
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %><%--
   Created by IntelliJ IDEA.
   User: Peng Deng
   Date: 2019/12/17
@@ -11,9 +12,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    String studentID = "S10000001";
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "S10000001";
+    }
     RequestService service = new RequestServiceImpl();
-    List<Request> requests = service.getRequestOfStudent(studentID);
+    List<Request> requests = service.getRequestOfStudent(user);
     request.setAttribute("requestList", requests);
 %>
 <!DOCTYPE html>

@@ -2,12 +2,17 @@
 <%@ page import="main.fudan.CourseSelectionSystem.service.Impl.TeacherServiceImpl" %>
 <%@ page import="main.fudan.CourseSelectionSystem.entity.Teaches" %>
 <%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     TeacherService service = new TeacherServiceImpl();
-    List<Teaches> teachesList = service.getTeachesListOf("T10000001");
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "T10000001";
+    }
+    List<Teaches> teachesList = service.getTeachesListOf(user);
     request.setAttribute("tlist",teachesList);
 %>
 
@@ -89,8 +94,7 @@
                                                            data-section-id="${item.section_id}"
                                                            data-year="${item.year}"
                                                            data-semester="${item.semester}"
-                                                           class="course-select"
-                                                        data->${item.course_name}${item.section_id}-${item.year}-${item.semester}</a>
+                                                           class="course-select">${item.course_name}${item.section_id}-${item.year}-${item.semester}</a>
                                                     </li>
                                                 </c:forEach>
                                             </ul>

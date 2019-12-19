@@ -71,8 +71,12 @@ public class UserServlet extends HttpServlet {
                 profile.setPermission(profileService.getPermission(profile.getProfile_id()));
                 session.setAttribute(Constant.SESSION_USER,profile.getProfile_id());
                 session.setAttribute(Constant.SESSION_PERMISSION,profile.getPermission());
+                System.out.println(profile.getPermission());
                 switch (profile.getPermission()){
-                    case Constant.PAGES_MANAGER:
+                    default:
+                        url = "/jsp/login.jsp";
+                        break;
+                    case Constant.PERM_MANAGER:
                         url = Constant.HOME_MANAGER;
                         break;
                     case Constant.PERM_TEACHER:
@@ -98,11 +102,20 @@ public class UserServlet extends HttpServlet {
 
     /*用户登出*/
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.getSession().removeAttribute(Constant.SESSION_USER);
-        request.getSession().removeAttribute(Constant.SESSION_USER);
-        json.put("success", true);
-        json.put("link",request.getContextPath()+"/jsp/home.jsp");
-        response.getWriter().println(json.toJSONString());
+        try{
+            request.getSession().removeAttribute(Constant.SESSION_USER);
+            request.getSession().removeAttribute(Constant.SESSION_PERMISSION);
+            json.put("success", true);
+            json.put("link",request.getContextPath()+"/jsp/login.jsp");
+            response.getWriter().println(json.toJSONString());
+        }
+        catch (Exception e){
+            json.put("success", false);
+            json.put("link",request.getContextPath()+"/jsp/login.jsp");
+            response.getWriter().println(json.toJSONString());
+            System.err.println(e.getMessage());
+        }
+
     }
 
 }

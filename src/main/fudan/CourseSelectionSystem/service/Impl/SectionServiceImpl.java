@@ -46,6 +46,7 @@ public class SectionServiceImpl implements SectionService {
                 section.setBuilding(list.get(5));
                 section.setRoom_number(list.get(6));
                 int time_slot_id = timeSlotDao.getMaxTimeSlotID() + 1;
+                section.setTime_slot_id(time_slot_id);
                 List<TimeSlot> slotList = turnStringIntoTimeSlotList(list.get(7),time_slot_id);
                 TimeSlot exam_slot = turnStringIntoTimeSlot(list.get(8),time_slot_id+1);
                 Exam exam = new Exam();
@@ -54,21 +55,16 @@ public class SectionServiceImpl implements SectionService {
                 exam.setSection_id(Integer.parseInt(list.get(1)));
                 exam.setSemester(list.get(2));
                 exam.setYear(Integer.parseInt(list.get(3)));
-                exam.setExam_date(list.get(9));
-                exam.setExam_type(list.get(10));
-                List<Teaches> teachesList = turnStringIntoTeachesList(list.get(11),section);
+                /* TODO： 2019需要在表中加入 */
+                exam.setExam_date("2019-"+list.get(10));
+                exam.setExam_type(list.get(9));
+                exam.setExam_building(list.get(11));
+                exam.setExam_room_number(list.get(12));
+                List<Teaches> teachesList = turnStringIntoTeachesList(list.get(13),section);
                 /* 在插入数据前应当做数据重复检测 */
 
                 /* 检测无问题则开始插入数据 */
-                for (TimeSlot ts : slotList){
-                    timeSlotDao.addTimeSlot(ts);
-                }
-                timeSlotDao.addTimeSlot(exam_slot);
-                examDao.addExam(exam);
-                for (Teaches t : teachesList){
-                    teachesDao.addTeaches(t);
-                }
-                allCorrect = insertSection(section) && allCorrect;
+                allCorrect = sectionDao.addSection(section,exam,slotList,exam_slot,teachesList) && allCorrect;
             }
             catch (Exception e){
                 System.err.println(e.getMessage());

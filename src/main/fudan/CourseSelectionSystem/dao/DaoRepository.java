@@ -33,24 +33,7 @@ public class DaoRepository {
     }
 
     public static TimeSlotDao getTimeSlotDao() {
-        return new TimeSlotDao() {
-
-            @Override
-            public int getMaxTimeSlotID() {
-                return 1;
-            }
-
-            @Override
-            public boolean addTimeSlot(TimeSlot ts) {
-                System.out.println(ts);
-                return true;
-            }
-
-            @Override
-            public List<TimeSlot> getTimeSlotList(int id) {
-                return new ArrayList<>();
-            }
-        };
+        return new TimeSlotDaoImpl();
     }
 
     public static ExamDao getExamDao() {

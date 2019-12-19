@@ -70,7 +70,8 @@ public class RequestServiceImpl implements RequestService {
         try {
             return requestDao.addRequest(request);
         } catch (SQLException e) {
-            e.printStackTrace();
+            // 插入数据出错
+//            e.printStackTrace();
         }
         return false;
     }
@@ -80,7 +81,8 @@ public class RequestServiceImpl implements RequestService {
         try {
             return requestDao.updateRequest(request);
         }catch (SQLException e) {
-            e.printStackTrace();
+            // 读取数据出错
+//            e.printStackTrace();
         }
         return false;
     }

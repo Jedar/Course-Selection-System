@@ -3,10 +3,15 @@
 <%@ page import="main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl" %>
 <%@ page import="main.fudan.CourseSelectionSystem.entity.Request" %>
 <%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     RequestService service = new RequestServiceImpl();
-    List<Request> list = service.getRequestOf("T10000001");
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "T10000001";
+    }
+    List<Request> list = service.getRequestOf(user);
     request.setAttribute("rlist",list);
 %>
 

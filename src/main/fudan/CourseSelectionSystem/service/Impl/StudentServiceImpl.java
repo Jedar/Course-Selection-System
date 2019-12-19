@@ -32,13 +32,23 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Number getGPA(String studentID) {
         Double GPA = studentDao.getGPA(studentID);
-        return Objects.requireNonNullElse(GPA, 0.0);
+        if(GPA == null){
+            return 0.0;
+        }
+        else{
+            return GPA;
+        }
     }
 
     @Override
     public Number getTotalCredit(String studentID) {
         Integer totalCredit = studentDao.getTotalCredit(studentID);
-        return Objects.requireNonNullElse(totalCredit, 0);
+        if(totalCredit == null){
+            return 0;
+        }
+        else{
+            return totalCredit;
+        }
     }
 
     @Override

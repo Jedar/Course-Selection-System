@@ -3,7 +3,8 @@
 <%@ page import="main.fudan.CourseSelectionSystem.service.TeacherService" %>
 <%@ page import="main.fudan.CourseSelectionSystem.service.Impl.TeacherServiceImpl" %>
 <%@ page import="main.fudan.CourseSelectionSystem.entity.Student" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -14,7 +15,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     TeacherService service = new TeacherServiceImpl();
-    List<Teaches> teachesList = service.getTeachesListOf("T10000001");
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "T10000001";
+    }
+    List<Teaches> teachesList = service.getTeachesListOf(user);
     request.setAttribute("tlist",teachesList);
     for (Teaches t : teachesList){
         t.setStudentList(service.getStudentsList(t));
@@ -76,7 +81,7 @@
                                        href="#v-${course.course_id}-${course.section_id}-${course.year}-${course.semester}"
                                        role="tab"
                                        aria-controls="v-pills-myCourse"
-                                       aria-selected="false">${course.course_name}-${course.year}-${course.semester}</a>
+                                       aria-selected="false">${course.course_name}.${course.section_id}-${course.year}-${course.semester}</a>
                                 </li>
                             </c:forEach>
                         </ul>

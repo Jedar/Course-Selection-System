@@ -7,10 +7,13 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
+    String user = (String)request.getSession().getAttribute(Constant.SESSION_USER);
+    if(user == null){
+        user = "S10000001";
+    }
 //    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
-    String studentID = "S10000001";
     SectionService service = new SectionServiceImpl();
-    List<CompleteSection> sections = service.getCourseListOfStudent(studentID);
+    List<CompleteSection> sections = service.getCourseListOfStudent(user);
     request.setAttribute("sectionList", sections);
 %>
 <!DOCTYPE html>
