@@ -71,6 +71,17 @@ public class UserServlet extends HttpServlet {
                 profile.setPermission(profileService.getPermission(profile.getProfile_id()));
                 session.setAttribute(Constant.SESSION_USER,profile.getProfile_id());
                 session.setAttribute(Constant.SESSION_PERMISSION,profile.getPermission());
+                switch (profile.getPermission()){
+                    case Constant.PAGES_MANAGER:
+                        url = Constant.HOME_MANAGER;
+                        break;
+                    case Constant.PERM_TEACHER:
+                        url = Constant.HOME_TEACHER;
+                        break;
+                    case Constant.PERM_STUDENT:
+                        url = Constant.HOME_STUDENT;
+                        break;
+                }
                 json.put("success", true);
                 json.put("message", Message.MSG_LOGIN_SUCCESS);
                 json.put("link",request.getContextPath()+url);

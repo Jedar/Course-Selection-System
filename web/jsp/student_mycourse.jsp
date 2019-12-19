@@ -3,13 +3,7 @@
 <%@ page import="main.fudan.CourseSelectionSystem.entity.CompleteSection" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.fudan.CourseSelectionSystem.consts.Constant" %>
-<%@ page import="main.fudan.CourseSelectionSystem.entity.CriteriaSection" %><%--
-  Created by IntelliJ IDEA.
-  User: 38403
-  Date: 2019/12/9
-  Time: 22:31
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.CriteriaSection" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -76,7 +70,7 @@
                         <td>${section.course_name}</td>
                         <td>${section.teachers}</td>
                         <td>${section.exam_building}${section.room_number}</td>
-                        <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>\n
+                        <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>

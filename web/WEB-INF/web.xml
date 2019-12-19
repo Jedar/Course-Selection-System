@@ -30,7 +30,34 @@
     <!--不需要拦截的URL列表-->
     <context-param>
         <param-name>uncheckedUrls</param-name>
-        <param-value>/index.jsp,/jsp/login.jsp</param-value>
+        <param-value>/jsp/login.jsp</param-value>
+    </context-param>
+    <!--学生才能进入的页面-->
+    <context-param>
+        <param-name>studentUrls</param-name>
+        <param-value>/jsp/student_mycourse.jsp,/jsp/student_myexam.jsp,/jsp/student_mygrade.jsp,/jsp/student_myrequest.jsp,/jsp/student_sec_req.jsp,/jsp/student_select.jsp</param-value>
+    </context-param>
+    <context-param>
+        <param-name>studentHome</param-name>
+        <param-value>/jsp/student_mygrade.jsp</param-value>
+    </context-param>
+    <!--老师才能进入的页面-->
+    <context-param>
+        <param-name>teacherUrls</param-name>
+        <param-value>/jsp/teacher_mycourse.jsp,/jsp/teacher_sec_req.jsp,/jsp/teacher_upload_grade.jsp</param-value>
+    </context-param>
+    <context-param>
+        <param-name>teacherHome</param-name>
+        <param-value>/jsp/teacher_mycourse.jsp</param-value>
+    </context-param>
+    <!--管理员才能进入的页面-->
+    <context-param>
+        <param-name>managerUrls</param-name>
+        <param-value>/jsp/manager_courselist.jsp,/jsp/manager_import.jsp,/jsp/manager_main.jsp,/jsp/manager_studentlist.jsp,/jsp/manager_teacherlist.jsp</param-value>
+    </context-param>
+    <context-param>
+        <param-name>managerHome</param-name>
+        <param-value>/jsp/manager_main.jsp</param-value>
     </context-param>
     <!--错误页面-->
     <context-param>
@@ -42,5 +69,14 @@
         <param-name>homePage</param-name>
         <param-value>/jsp/login.jsp</param-value>
     </context-param>
+
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>main.fudan.CourseSelectionSystem.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
 </web-app>

@@ -19,4 +19,14 @@ public class Constant {
     public static final String REQ_UNHANDLE = "unhandle";
     public static final String REQ_PASS = "pass";
     public static final String REQ_FAIL = "fail";
+    /* 每种类型的用户的主页 */
+    public static final String HOME_STUDENT_PAGE = "studentHome";
+    public static final String HOME_TEACHER_PAGE = "teacherHome";
+    public static final String HOME_MANAGER_PAGE = "managerHome";
+    public static final String PAGES_STUDENT = "studentUrls";
+    public static final String PAGES_TEACHER = "teacherUrls";
+    public static final String PAGES_MANAGER = "managerUrls";
+    public static final String HOME_STUDENT = "/jsp/student_mygrade.jsp";
+    public static final String HOME_TEACHER = "/jsp/teacher_mycourse.jsp";
+    public static final String HOME_MANAGER = "/jsp/manager_main.jsp";
 }
