@@ -13,10 +13,10 @@ $(function () {
                     var str = "";
                     for(i in list) {
                         str += "                <tr>\n" +
-                            "                    <th scope=\"row\">"+list[i].course_id+"</th>\n" +
-                            "                    <td>"+list[i].section_id+"</td>\n" +
-                            "                    <td>"+new Date(list[i].year).getFullYear()+" "+list[i].semester+"</td>\n" +
+                            "                    <th scope=\"row\">"+list[i].course_id+"."+list[i].section_id+"</th>\n" +
+                            "                    <td>"+list[i].year+" "+list[i].semester+"</td>\n" +
                             "                    <td>"+list[i].course_name+"</td>\n" +
+                            "                    <td>"+list[i].current_student_num+" / "+list[i].section_capacity+"</td>\\n" +
                             "                    <td><button type=\"button\" class=\"btn btn-link take-section\" data-target=" +list[i].course_id+"&"+list[i].section_id+"&"+list[i].year+"&"+list[i].semester+">选课</button></td>\n" +
                             "                </tr>";
                     }
@@ -50,12 +50,11 @@ $(function () {
     });
 
     $("#submit-request").on("click", function () {
-        alert("submit request");
         var courseID = $("#request-courseID").val();
         var sectionID = $("#request-sectionID").val();
         var year = $("#request-section-year").val();
         var semester = $("#request-section-semester").val();
-        var content = $("#request-content");
+        var content = $("#request-content").val();
         $.post("requestCourse.ss",
             {
                 courseID:courseID,
@@ -74,7 +73,6 @@ $(function () {
     });
 
     $(".drop-section").on("click", function () {
-        alert("drop section");
         var target = $(this).attr("data-target");
         var node = $(this).parents("tr");
         var args = target.split("&");

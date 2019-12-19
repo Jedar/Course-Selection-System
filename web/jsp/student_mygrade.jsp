@@ -3,7 +3,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="main.fudan.CourseSelectionSystem.entity.SectionWithGrade" %>
 <%@ page import="main.fudan.CourseSelectionSystem.service.StudentService" %>
-<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.StudentServiceImpl" %><%--
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.StudentServiceImpl" %>
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Student" %>
+<%@ page import="java.math.BigDecimal" %><%--
   Created by IntelliJ IDEA.
   User: 38403
   Date: 2019/12/9
@@ -15,6 +17,7 @@
 <%
     String studentID = "S10000001";
     SectionService sectionService = new SectionServiceImpl();
+    StudentService studentService = new StudentServiceImpl();
     List<SectionWithGrade> sections = sectionService.getSectionWithGradeList(studentID);
     request.setAttribute("sectionList", sections);
 %>
@@ -61,6 +64,24 @@
 
         <div class="container-fluid">
             <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">学期</th>
+                    <th scope="col">总门数</th>
+                    <th scope="col">总学分</th>
+                    <th scope="col">总绩点</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">2019年春季</th>
+                    <td><%=sections.size()%></td>
+                    <td><%=studentService.getTotalCredit(studentID)%></td>
+                    <td><%=(double)studentService.getGPA(studentID)%></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">课程代码</th>
@@ -73,7 +94,7 @@
                 <tbody>
                 <c:forEach var="section" items="${sectionList}">
                     <tr>
-                        <th scope="row">${section.course_id}</th>
+                        <th scope="row">${section.course_id}.${section.section_id}</th>
                         <td>${section.year} ${section.semester}</td>
                         <td>${section.course_name}</td>
                         <td>${section.credits}</td>

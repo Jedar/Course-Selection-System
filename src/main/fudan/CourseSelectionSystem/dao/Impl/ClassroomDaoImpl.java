@@ -29,7 +29,9 @@ public class ClassroomDaoImpl implements ClassroomDao {
 
     @Override
     public Classroom getClassroom(String building, String room_number) {
-        return null;
+        String sql = "select * from classroom " +
+                "where building = ? and room_number = ?";
+        return dao.get(Classroom.class, sql, building, room_number);
     }
 
     @Override

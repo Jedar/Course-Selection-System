@@ -2,6 +2,7 @@ package main.fudan.CourseSelectionSystem.dao;
 
 import main.fudan.CourseSelectionSystem.entity.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface StudentDao {
     public List<Student> getStudents();
     public Student getStudentsBySection(Section section);
     public List<SectionWithGrade> getSectionWithGradeList(String studentID);
-    public double getGPA(String studentID);
+    public Double getGPA(String studentID);
+    public Integer getTotalCredit(String studentID);
     public List<CompleteSection> getSelectedSectionList(String studentID);
 }

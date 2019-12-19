@@ -3,7 +3,6 @@ package main.fudan.CourseSelectionSystem.service.Impl;
 import main.fudan.CourseSelectionSystem.consts.Constant;
 import main.fudan.CourseSelectionSystem.dao.DaoRepository;
 import main.fudan.CourseSelectionSystem.dao.StudentDao;
-import main.fudan.CourseSelectionSystem.entity.Course;
 import main.fudan.CourseSelectionSystem.entity.Profile;
 import main.fudan.CourseSelectionSystem.entity.SectionWithGrade;
 import main.fudan.CourseSelectionSystem.entity.Student;
@@ -11,6 +10,7 @@ import main.fudan.CourseSelectionSystem.service.StudentService;
 import main.fudan.CourseSelectionSystem.util.ExcelReader;
 
 import java.util.List;
+import java.util.Objects;
 
 public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao = DaoRepository.getStudentDao();
@@ -27,6 +27,18 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<SectionWithGrade> getGradeList() {
         return null;
+    }
+
+    @Override
+    public Number getGPA(String studentID) {
+        Double GPA = studentDao.getGPA(studentID);
+        return Objects.requireNonNullElse(GPA, 0.0);
+    }
+
+    @Override
+    public Number getTotalCredit(String studentID) {
+        Integer totalCredit = studentDao.getTotalCredit(studentID);
+        return Objects.requireNonNullElse(totalCredit, 0);
     }
 
     @Override

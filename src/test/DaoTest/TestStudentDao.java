@@ -20,6 +20,7 @@ public class TestStudentDao {
     public static void testGetGPA(String studentID) {
         StudentDao studentDao = new StudentDaoImpl();
         System.out.println(studentDao.getGPA(studentID));
+        System.out.println(studentDao.getTotalCredit(studentID));
         List<CompleteSection> list = studentDao.getSelectedSectionList("S10000001");
         System.out.println(list);
     }

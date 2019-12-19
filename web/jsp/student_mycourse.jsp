@@ -66,7 +66,7 @@
                 <tbody>
                 <c:forEach var="section" items="${sectionList}">
                     <tr>
-                        <th scope="row">${section.course_id}</th>
+                        <th scope="row">${section.course_id}.${section.section_id}</th>
                         <td>${section.course_name}</td>
                         <td>${section.teachers}</td>
                         <td>${section.exam_building}${section.room_number}</td>

@@ -82,16 +82,27 @@ public class StudentDaoImpl implements StudentDao {
     public List<SectionWithGrade> getSectionWithGradeList(String studentID) {
         String sql = "select course_id, section_id, year, semester, course_name, credits, level " +
                      "from takes natural join course " +
-                     "where student_id = ?";
-        return sectionWithGradeDao.getForList(SectionWithGrade.class, sql, studentID);
+                     "where student_id = ? and drop_flag = ?";
+        return sectionWithGradeDao.getForList(SectionWithGrade.class, sql, studentID, false);
     }
 
     @Override
-    public double getGPA(String studentID) {
+    public Integer getTotalCredit(String studentID) {
+        String sql = "select sum(credits) " +
+                "from takes natural join course " +
+                "where student_id = ? and drop_flag = ?";
+        Object object = studentDao.getForValue(sql, studentID, false);
+        if(object == null)
+            return 0;
+        return Integer.parseInt(object.toString());
+    }
+
+    @Override
+    public Double getGPA(String studentID) {
         String sql = "select sum(grade * credits) / sum(credits) " +
-                "from takes natural join level_to_grade natural join course " +
-                "where student_id = ?";
-        return studentDao.getForValue(sql, studentID);
+                "from (select * from takes where level != 'U') as takes_t natural join level_to_grade natural join course " +
+                "where student_id = ? and drop_flag = ?";
+        return studentDao.getForValue(sql, studentID, false);
     }
 
     @Override

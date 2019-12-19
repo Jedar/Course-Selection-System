@@ -86,14 +86,12 @@ public class StudentServlet extends HttpServlet {
 
     /*选课*/
     private void selectCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("select a course");
         JSONObject object = takeORdropClass(true, request);
         response.getWriter().println(object.toJSONString());
     }
 
     /*退课*/
     private void dropCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("drop a course");
         JSONObject object = takeORdropClass(false, request);
         response.getWriter().println(object.toJSONString());
     }
@@ -117,14 +115,17 @@ public class StudentServlet extends HttpServlet {
                 year = Integer.parseInt(yearStr);
                 HttpSession session = request.getSession();
                 String studentID = (String) session.getAttribute(Constant.SESSION_USER);
+                studentID = "S10000001";
                 RequestService service = new RequestServiceImpl();
                 Request sectionRequest = new Request(studentID, courseID, sectionID, year, semester, content, "未处理", "");
                 boolean success = service.addRequest(sectionRequest);
+                System.out.println(success);
                 object.put("success", success);
             }catch(Exception e){
                 object.put("success", false);
             }
         }
+        response.getWriter().println(object.toJSONString());
     }
 
     private JSONObject takeORdropClass(boolean flag, HttpServletRequest request) {

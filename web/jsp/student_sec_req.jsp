@@ -61,7 +61,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="request-section-year">学年</label>
-                        <input type="text" class="form-control" id="request-section-year">
+                        <input type="number" class="form-control" id="request-section-year">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="request-section-semester">学期</label>

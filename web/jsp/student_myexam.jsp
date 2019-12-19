@@ -15,7 +15,7 @@
     //    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
     String studentID = "S10000001";
     SectionService service = new SectionServiceImpl();
-    List<CompleteSection> sections = service.searchSections(new CriteriaSection());
+    List<CompleteSection> sections = service.getCourseListOfStudent(studentID);
     request.setAttribute("sectionList", sections);
 %>
 <!DOCTYPE html>
@@ -72,7 +72,7 @@
                 <tbody>
                 <c:forEach var="section" items="${sectionList}">
                     <tr>
-                        <th scope="row">${section.course_id}</th>
+                        <th scope="row">${section.course_id}.${section.section_id}</th>
                         <td>${section.course_name}</td>
                         <td>${section.exam_date}${section.exam_time}</td>
                         <td>${section.exam_building}${section.exam_room_number}</td>
