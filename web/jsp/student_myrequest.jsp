@@ -1,4 +1,7 @@
-<%--
+<%@ page import="main.fudan.CourseSelectionSystem.entity.Request" %>
+<%@ page import="java.util.List" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.RequestService" %>
+<%@ page import="main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: Peng Deng
   Date: 2019/12/17
@@ -9,7 +12,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String studentID = "S10000001";
-
+    RequestService service = new RequestServiceImpl();
+    List<Request> requests = service.getRequestOfStudent(studentID);
+    request.setAttribute("requestList", requests);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +43,8 @@
 <body id="page-top">
 
 <jsp:include page="../inc/frame_header.inc.jsp"/>
+<jsp:useBean id="requestList" type="java.util.List<main.fudan.CourseSelectionSystem.entity.Request>" scope="request"/>
+
 
 <div id="wrapper">
 
@@ -51,12 +58,19 @@
                 <tr>
                     <th scope="col">课程代码</th>
                     <th scope="col">课程名</th>
-                    <th scope="col">任课老师</th>
-                    <th scope="col">上课地点</th>
-                    <th scope="col">操作</th>
+                    <th scope="col">学期</th>
+                    <th scope="col">申请结果</th>
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="myrequest" items="${requestList}">
+                    <tr>
+                        <th scope="row">${myrequest.course_id}.${myrequest.section_id}</th>
+                        <td>${myrequest.course_name}</td>
+                        <td>${myrequest.year} ${myrequest.semester}</td>
+                        <td>${myrequest.pass_or_not}</td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

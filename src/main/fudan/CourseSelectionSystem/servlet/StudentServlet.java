@@ -100,6 +100,7 @@ public class StudentServlet extends HttpServlet {
 
     /*选课申请*/
     private void requestCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("request course");
         String courseIDStr = request.getParameter("courseID");
         String sectionIDStr = request.getParameter("sectionID");
         String yearStr = request.getParameter("year");
@@ -117,14 +118,17 @@ public class StudentServlet extends HttpServlet {
                 year = Integer.parseInt(yearStr);
                 HttpSession session = request.getSession();
                 String studentID = (String) session.getAttribute(Constant.SESSION_USER);
+                studentID = "S10000001";
                 RequestService service = new RequestServiceImpl();
                 Request sectionRequest = new Request(studentID, courseID, sectionID, year, semester, content, "未处理", "");
                 boolean success = service.addRequest(sectionRequest);
+                System.out.println(success);
                 object.put("success", success);
             }catch(Exception e){
                 object.put("success", false);
             }
         }
+        response.getWriter().println(object.toJSONString());
     }
 
     private JSONObject takeORdropClass(boolean flag, HttpServletRequest request) {

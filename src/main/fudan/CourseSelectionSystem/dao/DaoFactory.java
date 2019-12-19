@@ -19,6 +19,7 @@ public class DaoFactory {
     private RequestDao requestDao;
     private StudentDao studentDao;
     private SectionDao sectionDao;
+    private ClassroomDao classroomDao;
 
     private DaoFactory() {
         completeSectionDao = new CompleteSectionDaoImpl();
@@ -27,6 +28,7 @@ public class DaoFactory {
         requestDao = new RequestDaoImpl();
         studentDao = new StudentDaoImpl();
         sectionDao = new SectionDaoImpl();
+        classroomDao = new ClassroomDaoImpl();
     }
 
     public static DaoFactory getInstance() {
@@ -55,5 +57,9 @@ public class DaoFactory {
 
     public SectionDao getSectionDao() {
         return sectionDao;
+    }
+
+    public ClassroomDao getClassroomDao() {
+        return classroomDao;
     }
 }

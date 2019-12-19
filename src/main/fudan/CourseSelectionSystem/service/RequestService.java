@@ -13,4 +13,7 @@ public interface RequestService {
 
     /* 获取某个老师的选课事务列表 */
     public List<Request> getRequestOf(String teacher_id);
+
+    /* 获取学生的选课事务申请列表 */
+    public List<Request> getRequestOfStudent(String studentID);
 }

@@ -166,7 +166,7 @@ public class SectionDaoImpl implements SectionDao {
 
     @Override
     public Section getSection(int courseID, int sectionID, int year, String semester) {
-        String sql = "select from * section where course_id = ? and section_id = ? and year = ? and semester = ?";
+        String sql = "select * from section where course_id = ? and section_id = ? and year = ? and semester = ?";
         return dao.get(Section.class, sql, courseID, sectionID, year, semester);
     }
 

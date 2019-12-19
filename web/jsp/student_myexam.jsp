@@ -15,7 +15,7 @@
     //    String studentID = (String) session.getAttribute(Constant.SESSION_USER);
     String studentID = "S10000001";
     SectionService service = new SectionServiceImpl();
-    List<CompleteSection> sections = service.searchSections(new CriteriaSection());
+    List<CompleteSection> sections = service.getCourseListOfStudent(studentID);
     request.setAttribute("sectionList", sections);
 %>
 <!DOCTYPE html>

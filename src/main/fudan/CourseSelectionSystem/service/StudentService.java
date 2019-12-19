@@ -1,6 +1,5 @@
 package main.fudan.CourseSelectionSystem.service;
 
-import main.fudan.CourseSelectionSystem.entity.CompleteSection;
 import main.fudan.CourseSelectionSystem.entity.SectionWithGrade;
 import main.fudan.CourseSelectionSystem.entity.Student;
 
@@ -16,6 +15,12 @@ public interface StudentService {
 
     /* 查看成绩 */
     public List<SectionWithGrade> getGradeList();
+
+    /* 查看绩点 */
+    public Number getGPA(String studentID);
+
+    /* 查看总学分 */
+    public Number getTotalCredit(String studentID);
 
     /* 得到所有学生列表 */
     public List<Student> getStudentList();
