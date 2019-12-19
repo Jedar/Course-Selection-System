@@ -81,7 +81,7 @@ public class SectionDaoImpl implements SectionDao {
 
     @Override
     public List<CompleteSection> getCriteriaSectionList(CriteriaSection criteriaSection) {
-        String sql = "SELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, exam_time, \n" +
+        String sql = "SELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, exam_time,\n" +
                 "teachers, course_time, section_capacity, course_name, credits, credit_hours, school_abbr, building, room_number, current_student_num\n" +
                 "FROM (\n" +
                 "\t(select * from section where course_id like ? and section_id like ?) as section_t JOIN (\n" +
@@ -89,22 +89,23 @@ public class SectionDaoImpl implements SectionDao {
                 "\t\t\tSELECT time_slot_id, CONCAT_WS(',',day,CONCAT_WS('-',start_time,end_time)) AS item FROM time_slot\n" +
                 "\t\t) AS temp GROUP BY time_slot_id\n" +
                 "\t) AS slots on section_t.time_slot_id = slots.time_slot_id\n" +
-                "    NATURAL JOIN (select * from course where course_name like ?) as course_t\n" +
-                "    NATURAL JOIN (\n" +
+                "\tNATURAL JOIN (select * from course where course_name like ?) as course_t\n" +
+                "\tNATURAL JOIN (\n" +
                 "\t\tSELECT course_id, section_id, year, semester, group_concat(teacher_name separator ',') AS teachers FROM \n" +
                 "\t\tteacher natural join teaches GROUP BY course_id, section_id, year, semester\n" +
                 "\t) AS teacher_t\n" +
-                "    NATURAL JOIN (\n" +
+                "\tNATURAL JOIN (\n" +
                 "\t\tSELECT course_id, section_id, year, semester,exam_date, exam_type, exam_building, exam_room_number, \n" +
                 "\t\tCONCAT_WS(',',day,CONCAT_WS('-',start_time,end_time)) AS exam_time \n" +
                 "\t\tFROM exam join time_slot ON exam.exam_time_slot_id = time_slot.time_slot_id\n" +
-                "    ) AS exam_slot_t\n" +
-                "    NATURAL JOIN (\n" +
+                "\t) AS exam_slot_t\n" +
+                "\tNATURAL JOIN (\n" +
                 "\t\tSELECT course_id, section_id, year, semester, COUNT(student_id) AS current_student_num\n" +
-                "\t\tFROM takes NATURAL RIGHT JOIN section\n" +
-                "        WHERE drop_flag = false OR drop_flag IS NULL\n" +
-                "        GROUP BY course_id, section_id, year, semester \n" +
-                "    ) AS student_num_t\n" +
+                "\t\tFROM (\n" +
+                "\t\t\tSELECT * FROM takes WHERE drop_flag = false OR drop_flag IS NULL  \n" +
+                "        ) AS takes_t  NATURAL RIGHT JOIN section\n" +
+                "\t\tGROUP BY course_id, section_id, year, semester\n" +
+                "\t) AS student_num_t\n" +
                 ")";
         return completeSectionBaseDao.getForList(CompleteSection.class, sql, criteriaSection.getCourseID(), criteriaSection.getSectionID(), criteriaSection.getName());
     }

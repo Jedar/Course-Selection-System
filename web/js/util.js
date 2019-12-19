@@ -16,6 +16,12 @@ function showError(message) {
     });
 }
 
+function showMessage(message) {
+    $("#message-modal-content").html(message);
+    // $("#messageModal").attr("aria-hidden","true");
+    $("#btn-message-modal").click();
+}
+
 $(function () {
     $("#btn-logout").on("click",function () {
         $.post("./logout.us",{
