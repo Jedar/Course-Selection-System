@@ -92,6 +92,8 @@ public class StudentDaoImpl implements StudentDao {
                 "from takes natural join course " +
                 "where student_id = ? and drop_flag = ?";
         Object object = studentDao.getForValue(sql, studentID, false);
+        if(object == null)
+            return 0;
         return Integer.parseInt(object.toString());
     }
 

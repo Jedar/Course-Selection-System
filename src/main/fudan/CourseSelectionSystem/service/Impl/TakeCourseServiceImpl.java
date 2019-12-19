@@ -96,6 +96,8 @@ public class TakeCourseServiceImpl implements TakeCourseService {
         /* 检查上课、考试时间冲突 */
         List<Section> timeConflictList = takesDao.getTimeConflictSectionList(studentID, courseID, sectionID, year, semester);  /*上课时间冲突*/
         List<Section> examConflictList = takesDao.getExamConflictSectionList(studentID, courseID, sectionID, year, semester);  /*考试时间冲突*/
+        System.out.println(timeConflictList.size());
+        System.out.println(examConflictList.size());
         if(timeConflictList.size() == 0 && examConflictList.size() == 0) {
             try {
                 return takesDao.addTakes(new Takes(studentID, courseID, sectionID, year, semester, "U", false));

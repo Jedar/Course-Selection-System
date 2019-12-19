@@ -86,21 +86,18 @@ public class StudentServlet extends HttpServlet {
 
     /*选课*/
     private void selectCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("select a course");
         JSONObject object = takeORdropClass(true, request);
         response.getWriter().println(object.toJSONString());
     }
 
     /*退课*/
     private void dropCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("drop a course");
         JSONObject object = takeORdropClass(false, request);
         response.getWriter().println(object.toJSONString());
     }
 
     /*选课申请*/
     private void requestCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("request course");
         String courseIDStr = request.getParameter("courseID");
         String sectionIDStr = request.getParameter("sectionID");
         String yearStr = request.getParameter("year");

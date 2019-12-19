@@ -72,11 +72,11 @@
                 <tbody>
                 <c:forEach var="section" items="${sectionList}">
                     <tr>
-                        <th scope="row">${section.course_id}</th>
+                        <th scope="row">${section.course_id}.${section.section_id}</th>
                         <td>${section.course_name}</td>
                         <td>${section.teachers}</td>
                         <td>${section.exam_building}${section.room_number}</td>
-                        <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>\n
+                        <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>
