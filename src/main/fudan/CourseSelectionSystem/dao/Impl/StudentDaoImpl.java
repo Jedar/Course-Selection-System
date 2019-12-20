@@ -113,7 +113,7 @@ public class StudentDaoImpl implements StudentDao {
                 "\tsection NATURAL JOIN (\n" +
                 "\t\tSELECT course_id, section_id, year, semester \n" +
                 "\t\tFROM takes \n" +
-                "        WHERE student_id = ?\n" +
+                "        WHERE student_id = ? and drop_flag = ?\n" +
                 "    ) AS student_take_t\n" +
                 "    JOIN (\n" +
                 "\t\tSELECT time_slot_id, group_concat(item separator ' ') AS course_time FROM (\n" +
@@ -137,6 +137,6 @@ public class StudentDaoImpl implements StudentDao {
                 "        GROUP BY course_id, section_id, year, semester \n" +
                 "    ) AS student_num_t\n" +
                 ")";
-        return completeSectionBaseDao.getForList(CompleteSection.class,sql,studentID);
+        return completeSectionBaseDao.getForList(CompleteSection.class,sql,studentID,false);
     }
 }
