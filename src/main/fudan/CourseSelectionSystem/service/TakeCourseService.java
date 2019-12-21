@@ -12,13 +12,12 @@ import main.fudan.CourseSelectionSystem.entity.Teaches;
 public interface TakeCourseService {
     /* 选课 */
     public boolean selectCourse(String studentID, int courseID, int sectionID, int year, String semester);
-
     /* 退课 */
     public boolean dropCourse(String studentID, int courseID, int sectionID, int year, String semester);
-
+    /* 更新课程的成绩 */
     public boolean updateGrade(Takes takes) throws SQLException;
-
+    /* 通过excel表格更新课程成绩 */
     public boolean updateGradeByExcel(String path, int courseID, int sectionID, int year, String semester) throws Exception;
-
+    /* 获取选课信息 */
     public Takes getTakeData(String studentID, int courseID, int sectionID, int year, String semester);
 }
