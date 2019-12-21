@@ -62,7 +62,8 @@
                     <th scope="col">课程代码</th>
                     <th scope="col">课程名</th>
                     <th scope="col">任课老师</th>
-                    <th scope="col">上课地点</th>
+                    <th scope="col">上课时间</th>
+                    <th scope="col">考试时间</th>
                     <th scope="col">操作</th>
                 </tr>
                 </thead>
@@ -72,7 +73,8 @@
                         <th scope="row">${section.course_id}.${section.section_id}</th>
                         <td>${section.course_name}</td>
                         <td>${section.teachers}</td>
-                        <td>${section.exam_building}${section.room_number}</td>
+                        <td>${section.course_time}</td>
+                        <td>${section.exam_time}</td>
                         <td><button type="button" class="btn btn-link drop-section" data-target="${section.course_id}&${section.section_id}&${section.year}&${section.semester}">退课</button></td>
                     </tr>
                 </c:forEach>

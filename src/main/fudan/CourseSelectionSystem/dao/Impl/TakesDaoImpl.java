@@ -55,6 +55,8 @@ public class TakesDaoImpl implements TakesDao {
                 "where course_id = ? and section_id = ? and year = ? and semester = ?";
         BaseDao<TimeSlot> timeSlotDao = new JDBCDao<>();
         List<TimeSlot> timeSlotList = timeSlotDao.getForList(TimeSlot.class, timeSlotSql, courseID, sectionID, year, semester);
+//        System.out.println("courseID = " + courseID);
+//        System.out.println(timeSlotList);
         BaseDao<Section> sectionDao = new JDBCDao<>();
         List<Section> sectionList = new LinkedList<>();
         String sectionSql = "select distinct course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id " +
@@ -77,10 +79,11 @@ public class TakesDaoImpl implements TakesDao {
                 "where time_slot_id = ?";
         BaseDao<TimeSlot> timeSlotDao = new JDBCDao<>();
         List<TimeSlot> timeSlotList = timeSlotDao.getForList(TimeSlot.class, timeSlotSql, examTimeSlotID);
+        System.out.println(timeSlotList);
         BaseDao<Section> sectionDao = new JDBCDao<>();
         List<Section> sectionList = new LinkedList<>();
-        String sectionSql = "select distinct course_id, section_id, year, semester, section_capacity, building, room_number, time_slot_id " +
-                "from takes natural join section natural join time_slot " +
+        String sectionSql = "select distinct course_id, section_id, year, semester " +
+                "from takes natural join ((select * from exam, time_slot where exam_time_slot_id = time_slot_id) as exam_time) " +
                 "where drop_flag = ? and student_id = ? and day = ? and ((start_time >= ? and start_time <= ?) or (? >= start_time and ? <= end_time))";
         for(TimeSlot timeSlot : timeSlotList) {
             sectionList.addAll(sectionDao.getForList(Section.class, sectionSql,

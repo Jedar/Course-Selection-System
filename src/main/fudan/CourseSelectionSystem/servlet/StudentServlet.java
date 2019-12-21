@@ -115,7 +115,6 @@ public class StudentServlet extends HttpServlet {
                 year = Integer.parseInt(yearStr);
                 HttpSession session = request.getSession();
                 String studentID = (String) session.getAttribute(Constant.SESSION_USER);
-                studentID = "S10000001";
                 RequestService service = new RequestServiceImpl();
                 Request sectionRequest = new Request(studentID, courseID, sectionID, year, semester, content, "未处理", "");
                 boolean success = service.addRequest(sectionRequest);
@@ -142,8 +141,8 @@ public class StudentServlet extends HttpServlet {
                 courseID = Integer.parseInt(courseIDStr);
                 sectionID = Integer.parseInt(sectionIDStr);
                 year = Integer.parseInt(yearStr);
-                String studentID = "S10000001";
-
+                HttpSession session = request.getSession();
+                String studentID = (String) session.getAttribute(Constant.SESSION_USER);
                 TakeCourseService service = new TakeCourseServiceImpl();
                 boolean success;
                 if(flag) {
@@ -151,6 +150,7 @@ public class StudentServlet extends HttpServlet {
                 }else {
                     success = service.dropCourse(studentID, courseID, sectionID, year, semester);
                 }
+//                System.out.println("studentID=" + studentID + "success = " + success);
                 object.put("success", success);
             }catch(Exception e){
                 object.put("success", false);

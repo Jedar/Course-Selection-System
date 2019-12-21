@@ -76,7 +76,7 @@ public class RequestDaoImpl implements RequestDao{
     @Override
     public List<Request> getRequestOf(String teacherID) {
         String sql = "select course_id,section_id,year,semester,request_content,pass_or_not,reply_content,course_name,student_id,student_name \n" +
-                "from sec_request natural join course natural join student natural join teaches\n" +
+                "from sec_request natural join course natural join (select student_id, student_name from student) as student_t natural join teaches\n" +
                 "where teacher_id=?";
         return dao.getForList(Request.class, sql, teacherID);
     }

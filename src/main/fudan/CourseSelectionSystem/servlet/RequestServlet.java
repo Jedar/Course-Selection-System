@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import main.fudan.CourseSelectionSystem.consts.Constant;
 import main.fudan.CourseSelectionSystem.entity.Request;
 import main.fudan.CourseSelectionSystem.service.Impl.RequestServiceImpl;
+import main.fudan.CourseSelectionSystem.service.Impl.TakeCourseServiceImpl;
 import main.fudan.CourseSelectionSystem.service.RequestService;
+import main.fudan.CourseSelectionSystem.service.TakeCourseService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +60,8 @@ public class RequestServlet extends HttpServlet {
             if (service.readRequest(req)){
                 responseMessage(request,response,true,Constant.REQ_PASS);
                 /* TODO:为学生选上课程，需要邓朋完成 */
+                TakeCourseService takeCourseService = new TakeCourseServiceImpl();
+                takeCourseService.selectCourse(stu, course_id, sec_id, year, semester);
             }
             else{
                 responseMessage(request,response,false,"操作失败");
