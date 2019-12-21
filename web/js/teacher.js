@@ -17,7 +17,7 @@ $(function () {
             result = JSON.parse(result);
             if(result.success){
                 showTip("操作成功");
-                item.parent().html("已通过")
+                item.parent().html("已通过");
             }
             else{
                 showError("操作失败");
