@@ -66,11 +66,14 @@ public class RequestServiceImpl implements RequestService {
         /* 检查是否和已选课程存在时间冲突 */
         List<Section> timeConflict = takesDao.getTimeConflictSectionList(request.getStudent_id(), request.getCourse_id(), request.getSection_id(), request.getYear(), request.getSemester());
         List<Section> examConflict = takesDao.getExamConflictSectionList(request.getStudent_id(), request.getCourse_id(), request.getSection_id(), request.getYear(), request.getSemester());
+        System.out.println(timeConflict.size());
+        System.out.println(examConflict.size());
         if(timeConflict.size() != 0 || examConflict.size()!= 0)
             return false;
 
         /* 提交申请 */
         try {
+            System.out.println("add request");
             return requestDao.addRequest(request);
         } catch (SQLException e) {
             // 插入数据出错
