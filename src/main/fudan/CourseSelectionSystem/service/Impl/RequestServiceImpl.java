@@ -1,10 +1,7 @@
 package main.fudan.CourseSelectionSystem.service.Impl;
 
 import main.fudan.CourseSelectionSystem.dao.*;
-import main.fudan.CourseSelectionSystem.entity.Classroom;
-import main.fudan.CourseSelectionSystem.entity.Request;
-import main.fudan.CourseSelectionSystem.entity.Section;
-import main.fudan.CourseSelectionSystem.entity.Takes;
+import main.fudan.CourseSelectionSystem.entity.*;
 import main.fudan.CourseSelectionSystem.service.RequestService;
 
 import java.sql.SQLException;
@@ -65,6 +62,12 @@ public class RequestServiceImpl implements RequestService {
                 return false;
             }
         }
+
+        /* 检查是否和已选课程存在时间冲突 */
+        List<Section> timeConflict = takesDao.getTimeConflictSectionList(request.getStudent_id(), request.getCourse_id(), request.getSection_id(), request.getYear(), request.getSemester());
+        List<Section> examConflict = takesDao.getExamConflictSectionList(request.getStudent_id(), request.getCourse_id(), request.getSection_id(), request.getYear(), request.getSemester());
+        if(timeConflict.size() != 0 || examConflict.size()!= 0)
+            return false;
 
         /* 提交申请 */
         try {

@@ -65,7 +65,6 @@
                 <thead>
                 <tr>
                     <th scope="col">课程代码</th>
-                    <th scope="col">课程名</th>
                     <th scope="col">学期</th>
                     <th scope="col">申请结果</th>
                 </tr>
@@ -74,7 +73,6 @@
                 <c:forEach var="myrequest" items="${requestList}">
                     <tr>
                         <th scope="row">${myrequest.course_id}.${myrequest.section_id}</th>
-                        <td>${myrequest.course_name}</td>
                         <td>${myrequest.year} ${myrequest.semester}</td>
                         <td>${myrequest.pass_or_not}</td>
                     </tr>

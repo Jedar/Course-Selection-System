@@ -81,18 +81,6 @@ public class TakeCourseServiceImpl implements TakeCourseService {
             return false;
         }
 
-        /* 处理若之前已退该课程情况 */
-        Takes takes = takesDao.getTakes(studentID, courseID, sectionID, year, semester);
-        if(takes != null){
-            takes.setDrop_flag(false);
-            try {
-                return takesDao.updateTakes(takes);
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-            return false;
-        }
-
         /* 检查上课、考试时间冲突 */
         List<Section> timeConflictList = takesDao.getTimeConflictSectionList(studentID, courseID, sectionID, year, semester);  /*上课时间冲突*/
         List<Section> examConflictList = takesDao.getExamConflictSectionList(studentID, courseID, sectionID, year, semester);  /*考试时间冲突*/
@@ -100,6 +88,15 @@ public class TakeCourseServiceImpl implements TakeCourseService {
         System.out.println(examConflictList.size());
         if(timeConflictList.size() == 0 && examConflictList.size() == 0) {
             try {
+                System.out.println("select course");
+                /* 处理若之前已退该课程情况 */
+                Takes takes = takesDao.getTakes(studentID, courseID, sectionID, year, semester);
+                if(takes != null && takes.isDrop_flag()){
+                    takes.setDrop_flag(false);
+                    return takesDao.updateTakes(takes);
+                }if(takes != null && !takes.isDrop_flag()) { /* 当前已选该课程 */
+                    return false;
+                }
                 return takesDao.addTakes(new Takes(studentID, courseID, sectionID, year, semester, "U", false));
             }catch (SQLException e) {
                 e.printStackTrace();

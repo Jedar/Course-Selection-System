@@ -80,8 +80,8 @@
                 <tr>
                     <th scope="row">2019年春季</th>
                     <td><%=sections.size()%></td>
-                    <td><%=studentService.getTotalCredit(studentID)%></td>
-                    <td><%=(double)studentService.getGPA(studentID)%></td>
+                    <td><%=studentService.getTotalCredit(user)%></td>
+                    <td><%=(double)studentService.getGPA(user)%></td>
                 </tr>
                 </tbody>
             </table>

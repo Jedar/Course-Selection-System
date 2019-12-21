@@ -68,6 +68,16 @@
                 </div>
             </div>
             <table class="table" id="search-result">
+                <thead>
+                <tr>
+                    <th scope="col">课程代码</th>
+                    <th scope="col">学期</th>
+                    <th scope="col">课程名</th>
+                    <th scope="col">上课时间</th>
+                    <th scope="col">考试时间</th>
+                    <th scope="col">课程状态</th>
+                </tr>
+                </thead>
                 <tbody>
                 </tbody>
             </table>

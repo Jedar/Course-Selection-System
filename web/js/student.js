@@ -16,11 +16,13 @@ $(function () {
                             "                    <th scope=\"row\">"+list[i].course_id+"."+list[i].section_id+"</th>\n" +
                             "                    <td>"+list[i].year+" "+list[i].semester+"</td>\n" +
                             "                    <td>"+list[i].course_name+"</td>\n" +
+                            "                    <td>"+list[i].course_time+"</td>\\n            " +
+                            "                    <td>"+list[i].exam_time+" "+list[i].exam_type+"</td>\\n               " +
                             "                    <td>"+list[i].current_student_num+" / "+list[i].section_capacity+"</td>\\n" +
                             "                    <td><button type=\"button\" class=\"btn btn-link take-section\" data-target=" +list[i].course_id+"&"+list[i].section_id+"&"+list[i].year+"&"+list[i].semester+">选课</button></td>\n" +
                             "                </tr>";
                     }
-                    $("#search-result").html(str);
+                    $("#search-result").children("tbody").html(str);
                 }else {
                     showError("请求出错");
                 }
