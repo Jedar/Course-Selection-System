@@ -154,14 +154,11 @@ public class SectionDaoImpl implements SectionDao {
                 "    FROM exam JOIN time_slot ON exam.exam_time_slot_id = time_slot.time_slot_id\n" +
                 ") AS exam_t\n" +
                 "WHERE exam_building = ? AND exam_room_number = ? AND exam_day = ? AND ? <= exam_end AND ? >= exam_start";
-        List<TimeSlot> slots = Utils.getTimeSlotListByString(section.getCourse_time());
         List<Section> sections = new ArrayList<>();
         TimeSlot exam = Utils.getTimeSlotByString(section.getExam_time());
-        for (TimeSlot ts: slots){
-            sections.addAll(dao.getForList(Section.class, sql,
-                    section.getExam_building(), section.getExam_room_number(),
-                    exam.getDay(),exam.getStart_time(),exam.getEnd_time()));
-        }
+        sections.addAll(dao.getForList(Section.class, sql,
+                section.getExam_building(), section.getExam_room_number(),
+                exam.getDay(),exam.getStart_time(),exam.getEnd_time()));
         return sections;
     }
 

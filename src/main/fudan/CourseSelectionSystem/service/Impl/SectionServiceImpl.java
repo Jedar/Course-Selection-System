@@ -16,6 +16,7 @@ public class SectionServiceImpl implements SectionService {
     private ExamDao examDao = DaoRepository.getExamDao();
     private TeachesDao teachesDao = DaoRepository.getTeachesDao();
     private StudentDao studentDao = DaoFactory.getInstance().getStudentDao();
+    private TeacherDao teacherDao = DaoRepository.getTeacherDao();
 
     @Override
     public boolean insertSection(Section section) {
@@ -62,7 +63,27 @@ public class SectionServiceImpl implements SectionService {
                 exam.setExam_room_number(list.get(12));
                 List<Teaches> teachesList = turnStringIntoTeachesList(list.get(13),section);
                 /* 在插入数据前应当做数据重复检测 */
-
+                CompleteSection completeSection = new CompleteSection();
+                completeSection.setCourse_time(list.get(7));
+                completeSection.setExam_time(list.get(8));
+                completeSection.setBuilding(list.get(5));
+                completeSection.setRoom_number(list.get(6));
+                completeSection.setExam_building(list.get(11));
+                completeSection.setExam_room_number(list.get(12));
+                List<Section> sectionList = sectionDao.getCourseConflictSectionList(completeSection);
+                if (sectionList.size() != 0){
+                    throw new Exception("Course Time Conflict");
+                }
+                sectionList = sectionDao.getExamConflictSectionList(completeSection);
+                if (sectionList.size() != 0){
+                    throw new Exception("Exam Time Conflict");
+                }
+                for (Teaches t: teachesList){
+                    sectionList = teacherDao.getTimeConflictSections(completeSection,t.getTeacher_id());
+                    if (sectionList.size() != 0){
+                        throw new Exception("Teacher Teaching Time Conflict");
+                    }
+                }
                 /* 检测无问题则开始插入数据 */
                 allCorrect = sectionDao.addSection(section,exam,slotList,exam_slot,teachesList) && allCorrect;
             }
